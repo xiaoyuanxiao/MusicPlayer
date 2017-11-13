@@ -1,17 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mymusic.musicplayer.activity.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- layout 的标签 表示是 可以用databinding 注册使用的布局-->
+    <data class="com.mymusic.musicplayer.Testdata">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        <!--
+        这 个 class指定data 生产的 databinding  类  并不是需要创建  是databidin自动生成的也可以不制定包名和类
+        class="Testdata"  或者不写生成的 类会以此文件名开头加databinding 结尾
+        -->
+        <!-- data 意义  属于给此 试图 绑定数据  如其名称
+        实例 varible
+        此时 犹如 在Testdata 中定义MainTestBean testBean=null并有get set 函数
+        用法
+        //此外 还可给试图设置点击事件
+        -->
+        <variable
+            name="testBean"
+            type="com.mymusic.musicplayer.bean.MainTestBean" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_continer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/fg_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rg_main_listenbook"
+                style="@style/fg_main"
+                android:checked="true"
+                android:drawableTop="@mipmap/ic_book_main_bar_p"
+                android:text="听书馆" />
+
+            <RadioButton
+                android:id="@+id/rg_main_radiostation"
+                style="@style/fg_main"
+                android:drawableTop="@mipmap/h_icon01_fm"
+                android:text="电台" />
+
+            <RadioButton
+                android:id="@+id/rg_main_campaign"
+                style="@style/fg_main"
+                android:drawableTop="@mipmap/ic_action_main_bar"
+                android:text="@{testBean.aa}" />
+
+            <RadioButton
+                android:id="@+id/rg_main_mine"
+                style="@style/fg_main"
+                android:checked="false"
+                android:drawableTop="@mipmap/ic_account_gary"
+                android:text="我" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</layout>
