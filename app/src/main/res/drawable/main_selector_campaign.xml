@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/ic_action_main_bar_p" android:state_checked="true" />
+    //选中后的选项，其余两个为未选中和默认的
+    <item android:drawable="@mipmap/ic_action_main_bar" android:state_checked="false" />
+    <item android:drawable="@mipmap/ic_action_main_bar" />
+
+</selector>

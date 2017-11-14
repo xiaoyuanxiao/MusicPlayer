@@ -1,26 +1,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- layout 的标签 表示是 可以用databinding 注册使用的布局-->
-    <data class="com.mymusic.musicplayer.Testdata">
+    <data class="com.mymusic.musicplayer.MainData">
 
-        <!--
-        这 个 class指定data 生产的 databinding  类  并不是需要创建  是databidin自动生成的也可以不制定包名和类
-        class="Testdata"  或者不写生成的 类会以此文件名开头加databinding 结尾
-        -->
         <!-- data 意义  属于给此 试图 绑定数据  如其名称
         实例 varible
         此时 犹如 在Testdata 中定义MainTestBean testBean=null并有get set 函数
         用法
         //此外 还可给试图设置点击事件
         -->
-        <variable
-            name="testBean"
-            type="com.mymusic.musicplayer.bean.MainTestBean" />
+        <!--<variable-->
+        <!--name="testBean"-->
+        <!--type="com.mymusic.musicplayer.bean.MainTestBean" />-->
     </data>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -28,7 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
 
         <RadioGroup
             android:id="@+id/fg_main"
@@ -40,26 +41,22 @@
                 android:id="@+id/rg_main_listenbook"
                 style="@style/fg_main"
                 android:checked="true"
-                android:drawableTop="@mipmap/ic_book_main_bar_p"
                 android:text="听书馆" />
 
             <RadioButton
                 android:id="@+id/rg_main_radiostation"
                 style="@style/fg_main"
-                android:drawableTop="@mipmap/h_icon01_fm"
                 android:text="电台" />
 
             <RadioButton
                 android:id="@+id/rg_main_campaign"
                 style="@style/fg_main"
-                android:drawableTop="@mipmap/ic_action_main_bar"
-                android:text="@{testBean.aa}" />
+                android:text="活动" />
 
             <RadioButton
                 android:id="@+id/rg_main_mine"
                 style="@style/fg_main"
                 android:checked="false"
-                android:drawableTop="@mipmap/ic_account_gary"
                 android:text="我" />
         </RadioGroup>
 
