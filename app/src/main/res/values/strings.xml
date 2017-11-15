@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">我音</string>
+    <string name="recommend">推荐</string>
+    <string name="classify">分类</string>
+    <string name="booklist">书单</string>
+    <string name="list">榜单</string>
 </resources>

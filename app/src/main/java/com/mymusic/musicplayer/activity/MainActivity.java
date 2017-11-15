@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.mymusic.musicplayer.MainData;
 import com.mymusic.musicplayer.R;
+import com.mymusic.musicplayer.fragment.ListenerBookFragment;
 import com.mymusic.musicplayer.utils.RadioButtonImgUtil;
 
 import java.util.ArrayList;
@@ -53,9 +54,11 @@ public class MainActivity extends BaseActivity {
      */
     private void initFragment() {
         fragments = new ArrayList<Fragment>();
-//        fragments.add(RecommendRecordFragment.newInstance(RecommendRecordFragment.JID4));
-//        fragments.add(RecommendRecordFragment.newInstance(RecommendRecordFragment.J1D3));
-//        showFragment(fragments.get(0));
+        fragments.add(ListenerBookFragment.newInstance());
+        fragments.add(ListenerBookFragment.newInstance());
+        fragments.add(ListenerBookFragment.newInstance());
+        fragments.add(ListenerBookFragment.newInstance());
+        showFragment(fragments.get(0));
 
     }
 
