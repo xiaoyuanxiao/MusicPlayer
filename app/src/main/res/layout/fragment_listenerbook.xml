@@ -1,60 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/rg_recommendrecords"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/tv_weight"
-            android:text="@string/recommend"
-            android:textColor="@color/main_buttomtext_yellow" />
+        <RadioGroup
+            android:id="@+id/rg_recommendrecords"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tv_weight"
+                android:text="@string/recommend"
+                android:textColor="@color/main_buttomtext_yellow" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="@color/view" />
+
+            <TextView
+                style="@style/tv_weight"
+                android:text="@string/classify"
+                android:textColor="@color/main_buttomtext_grey" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="@color/view" />
+
+            <TextView
+                style="@style/tv_weight"
+                android:text="@string/booklist"
+                android:textColor="@color/main_buttomtext_grey" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="@color/view" />
+
+            <TextView
+                style="@style/tv_weight"
+                android:text="@string/list"
+                android:textColor="@color/main_buttomtext_grey" />
+        </RadioGroup>
 
         <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
             android:background="@color/view" />
 
-        <TextView
-            style="@style/tv_weight"
-            android:text="@string/classify"
-            android:textColor="@color/main_buttomtext_grey" />
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/view" />
 
-        <TextView
-            style="@style/tv_weight"
-            android:text="@string/booklist"
-            android:textColor="@color/main_buttomtext_grey" />
-
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/view" />
-
-        <TextView
-            style="@style/tv_weight"
-            android:text="@string/list"
-            android:textColor="@color/main_buttomtext_grey" />
-    </RadioGroup>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/view" />
-
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
