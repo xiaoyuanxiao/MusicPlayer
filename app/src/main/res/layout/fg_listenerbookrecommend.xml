@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -62,20 +61,44 @@
             android:layout_width="match_parent"
             android:layout_height="100dp" />
 
-
         <TextView
             style="@style/tv_standard_14sp"
             android:text="精选书单" />
-
-        <com.mymusic.musicplayer.view.MyListView
-            android:id="@+id/fg_listenerbook_lv_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.mymusic.musicplayer.view.MyListView>
-
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
+
+        <com.mymusic.musicplayer.view.MyListView
+            android:id="@+id/lv_recommend_hotlists"
+            android:layout_width="match_parent"
+            android:divider="@color/view"
+            android:layout_height="wrap_content"></com.mymusic.musicplayer.view.MyListView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <TextView
+            style="@style/tv_standard_14sp"
+            android:text="编辑推荐" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <com.mymusic.musicplayer.view.MyListView
+            android:id="@+id/lv_recommend_editorspicks"
+            android:layout_width="match_parent"
+            android:divider="@color/view"
+            android:layout_height="wrap_content"></com.mymusic.musicplayer.view.MyListView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
     </LinearLayout>
 </ScrollView>

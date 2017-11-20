@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.mymusic.musicplayer.R;
+import com.mymusic.musicplayer.adapter.RecommendEditorsPicksAdapter;
 import com.mymusic.musicplayer.adapter.RecommendHotBooklistsAdapter;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
@@ -22,9 +23,14 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private List images = new ArrayList<>();
     private Banner banner;
     private ListenerBookRecommendPresenter listenerBookRecommendPresenter = new ListenerBookRecommendPresenter(this);
-    RecommendHotBooklistsAdapter recommendAdapter;
-    private ArrayList<RecommendationBean.HotBooklistsBean> hotBooklists;
-    private ListView fg_listenerbook_lv_one;
+    private ListView lv_recommend_hotlists, lv_recommend_editorspicks;
+    RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
+    private List<RecommendationBean.HotBooklistsBean> hotBooklists;
+
+
+    private RecommendEditorsPicksAdapter recommendEditorsPicksAdapter;
+    private List<RecommendationBean.EditorsPicksBean> editorsPickslists;
+
 
 
     public static ListenerBookRecommendFragment newInstance() {
@@ -34,8 +40,9 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
     @Override
     View initView() {
-        View inflate = View.inflate(getContext(), R.layout.fg_listenerbookrecommend, null);
-        fg_listenerbook_lv_one = (ListView) inflate.findViewById(R.id.fg_listenerbook_lv_one);
+        View inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
+        lv_recommend_hotlists = (ListView) inflate.findViewById(R.id.lv_recommend_hotlists);
+        lv_recommend_editorspicks = (ListView) inflate.findViewById(R.id.lv_recommend_editorspicks);
         banner = (Banner) inflate.findViewById(R.id.banner);
         return inflate;
     }
@@ -43,9 +50,19 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     @Override
     protected void initData() {
         super.initData();
+        /**
+         * 精选书单
+         */
         hotBooklists = new ArrayList<>();
-        recommendAdapter = new RecommendHotBooklistsAdapter(getActivity(), hotBooklists);
-        fg_listenerbook_lv_one.setAdapter(recommendAdapter);
+        recommendHotBooklistsAdapter = new RecommendHotBooklistsAdapter(getActivity(), hotBooklists);
+        lv_recommend_hotlists.setAdapter(recommendHotBooklistsAdapter);
+        /**
+         * 编辑推荐
+         */
+        editorsPickslists = new ArrayList<>();
+        recommendEditorsPicksAdapter = new RecommendEditorsPicksAdapter(getActivity(), editorsPickslists);
+        lv_recommend_editorspicks.setAdapter(recommendEditorsPicksAdapter);
+
         listenerBookRecommendPresenter.getdata();
     }
 
@@ -84,12 +101,22 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
      */
     @Override
     public void setBookRecommendHotBooklists(List<RecommendationBean.HotBooklistsBean> hotBooklists) {
+        this.hotBooklists.clear();
+        this.hotBooklists.addAll(hotBooklists);
+        recommendHotBooklistsAdapter.notifyDataSetChanged();
 
     }
 
+    /**
+     * 编辑推荐
+     *
+     * @param editorspicks
+     */
     @Override
     public void setBookRecommendEditorspicks(List<RecommendationBean.EditorsPicksBean> editorspicks) {
-
+        editorsPickslists.clear();
+        editorsPickslists.addAll(editorspicks);
+        recommendEditorsPicksAdapter.notifyDataSetChanged();
     }
 
     @Override
