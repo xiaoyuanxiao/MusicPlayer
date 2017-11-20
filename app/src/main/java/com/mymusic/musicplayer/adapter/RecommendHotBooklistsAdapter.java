@@ -12,9 +12,9 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/16.
  */
 
-public class RecommendationAdapter extends BaseListAdapter<RecommendationBean.CarouselsBean> {
+public class RecommendHotBooklistsAdapter extends BaseListAdapter<RecommendationBean.HotBooklistsBean> {
 
-    public RecommendationAdapter(Context context, List<RecommendationBean.CarouselsBean> data) {
+    public RecommendHotBooklistsAdapter(Context context, List<RecommendationBean.HotBooklistsBean> data) {
         super(context, data);
     }
 

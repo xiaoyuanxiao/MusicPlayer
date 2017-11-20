@@ -7,5 +7,7 @@ import com.mymusic.musicplayer.okhttp.oncallback.ListenerBookRecommendListener;
  */
 
 public interface IListenerBookRecommendBiz {
-    void getdata(ListenerBookRecommendListener listenerBookRecommendListener);
+    void getAlldata(ListenerBookRecommendListener listenerBookRecommendListener);
+
+
 }

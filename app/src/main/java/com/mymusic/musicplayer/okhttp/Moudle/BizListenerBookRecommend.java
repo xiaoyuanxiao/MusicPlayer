@@ -22,7 +22,7 @@ public class BizListenerBookRecommend implements IListenerBookRecommendBiz {
     }
 
     @Override
-    public void getdata(final ListenerBookRecommendListener listenerBookRecommendListener) {
+    public void getAlldata(final ListenerBookRecommendListener listenerBookRecommendListener) {
         ReHttpUtils.instans().httpRequest(new HttpSubCribe<RecommendationBean>() {
 
             @Override
