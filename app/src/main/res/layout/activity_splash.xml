@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="com.mymusic.musicplayer.SplashActivityBinding">
+
+        <!-- data 意义  属于给此 试图 绑定数据  如其名称
+        实例 varible
+        此时 犹如 在Testdata 中定义MainTestBean testBean=null并有get set 函数
+        用法
+        //此外 还可给试图设置点击事件
+        -->
+        <!--<variable-->
+        <!--name="testBean"-->
+        <!--type="com.mymusic.musicplayer.bean.MainTestBean" />-->
+    </data>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/splash"
+        android:scaleType="fitXY"
+        android:orientation="vertical">
+
+    </ImageView>
+</layout>
