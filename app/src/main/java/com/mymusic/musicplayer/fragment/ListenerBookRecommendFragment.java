@@ -1,11 +1,16 @@
 package com.mymusic.musicplayer.fragment;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.adapter.RecommendEditorsPicksAdapter;
 import com.mymusic.musicplayer.adapter.RecommendHotBooklistsAdapter;
+import com.mymusic.musicplayer.adapter.TestaaAdapter;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
@@ -24,12 +29,22 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private Banner banner;
     private ListenerBookRecommendPresenter listenerBookRecommendPresenter = new ListenerBookRecommendPresenter(this);
     private ListView lv_recommend_hotlists, lv_recommend_editorspicks;
+    private RecyclerView mRecyclerView;
+    GridLayoutManager mgr = new GridLayoutManager(getActivity(), 3);
+
+
     RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
     private List<RecommendationBean.HotBooklistsBean> hotBooklists;
 
 
     private RecommendEditorsPicksAdapter recommendEditorsPicksAdapter;
     private List<RecommendationBean.EditorsPicksBean> editorsPickslists;
+
+    private ImageView iv_topics_one, iv_topics_two;
+
+    private TestaaAdapter recommendNewarrivalsAdapter;
+    private List<RecommendationBean.NewArrivalsBean> newArrivalslists;
+
 
 
 
@@ -43,6 +58,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         View inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
         lv_recommend_hotlists = (ListView) inflate.findViewById(R.id.lv_recommend_hotlists);
         lv_recommend_editorspicks = (ListView) inflate.findViewById(R.id.lv_recommend_editorspicks);
+        mRecyclerView = (RecyclerView) inflate.findViewById(R.id.recycler_view);
+
+        iv_topics_one = (ImageView) inflate.findViewById(R.id.iv_topics_one);
+        iv_topics_two = (ImageView) inflate.findViewById(R.id.iv_topics_two);
         banner = (Banner) inflate.findViewById(R.id.banner);
         return inflate;
     }
@@ -50,6 +69,8 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     @Override
     protected void initData() {
         super.initData();
+        mRecyclerView.setLayoutManager(mgr);
+
         /**
          * 精选书单
          */
@@ -62,6 +83,12 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         editorsPickslists = new ArrayList<>();
         recommendEditorsPicksAdapter = new RecommendEditorsPicksAdapter(getActivity(), editorsPickslists);
         lv_recommend_editorspicks.setAdapter(recommendEditorsPicksAdapter);
+        /**
+         * 最新上架
+         */
+        newArrivalslists = new ArrayList<>();
+        recommendNewarrivalsAdapter = new TestaaAdapter(newArrivalslists);
+        mRecyclerView.setAdapter(recommendNewarrivalsAdapter);
 
         listenerBookRecommendPresenter.getdata();
     }
@@ -119,9 +146,19 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         recommendEditorsPicksAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * 图片主题
+     *
+     * @param topics
+     */
     @Override
     public void setBookRecommendTopics(List<RecommendationBean.TopicsBean> topics) {
-
+        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
+        Glide.with(this).load(topics.get(1).getCover()).into(iv_topics_two);
+//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
+//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
+//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
+//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
     }
 
     @Override
@@ -129,9 +166,15 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
     }
 
+    /**
+     * 最新上架
+     * @param newArrivalsBeen
+     */
     @Override
     public void setBookRecommendNewArrivals(List<RecommendationBean.NewArrivalsBean> newArrivalsBeen) {
-
+        newArrivalslists.clear();
+        newArrivalslists.addAll(newArrivalsBeen);
+        recommendNewarrivalsAdapter.notifyDataSetChanged();
     }
 
     @Override
