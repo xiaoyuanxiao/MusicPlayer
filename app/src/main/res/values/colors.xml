@@ -10,4 +10,7 @@
     <color name="red">#ff0000</color>
     <color name="black">#000000</color>
     <color name="gray_hotlists">#969696</color>
+    <color name="violet">#8879d8</color>
+    <color name="blue">#49aad7</color>
+    <color name="green">#56bd88</color>
 </resources>

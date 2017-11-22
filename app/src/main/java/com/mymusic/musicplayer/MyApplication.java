@@ -26,4 +26,8 @@ public class MyApplication extends Application {
         });
 
     }
+
+    public static Application getApp() {
+        return app;
+    }
 }

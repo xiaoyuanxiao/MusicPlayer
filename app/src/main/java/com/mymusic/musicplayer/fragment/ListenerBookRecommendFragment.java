@@ -8,9 +8,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
+import com.mymusic.musicplayer.adapter.RecommendBestAuthorsAdapter;
 import com.mymusic.musicplayer.adapter.RecommendEditorsPicksAdapter;
 import com.mymusic.musicplayer.adapter.RecommendHotBooklistsAdapter;
+import com.mymusic.musicplayer.adapter.RecommendHothitsAdapter;
 import com.mymusic.musicplayer.adapter.RecommendNewarrivalsAdapter;
+import com.mymusic.musicplayer.adapter.RecommendRecommendationsOneAdapter;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
@@ -28,10 +31,14 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private List images = new ArrayList<>();
     private Banner banner;
     private ListenerBookRecommendPresenter listenerBookRecommendPresenter = new ListenerBookRecommendPresenter(this);
-    private RecyclerView rv_recommend_hotlists, rv_recommend_editorspicks, rv_recommend_newarrivals;
+    private RecyclerView rv_recommend_hotlists, rv_recommend_editorspicks, rv_recommend_hothits, rv_recommend_newarrivals,
+            rv_recommend_bestauthors, rv_recommend_JYWX;
     private RecyclerView.LayoutManager HotBooklistsLayoutManager;
     private RecyclerView.LayoutManager EditorsPicksLayoutManager;
-    private GridLayoutManager mgr;
+    private GridLayoutManager HothitsLayoutManager;
+    private GridLayoutManager NewarrivalsLayoutManager;
+    private GridLayoutManager BestAuthorsLayoutManager;
+    private GridLayoutManager RecommendationsLayoutManager;
 
     RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
     private List<RecommendationBean.HotBooklistsBean> hotBooklists;
@@ -42,9 +49,17 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
     private ImageView iv_topics_one, iv_topics_two;
 
+    private RecommendHothitsAdapter recommendHothitsAdapter;
+    private List<RecommendationBean.HotHitsBean> hotHitslists;
+
     private RecommendNewarrivalsAdapter recommendNewarrivalsAdapter;
     private List<RecommendationBean.NewArrivalsBean> newArrivalslists;
 
+    private RecommendBestAuthorsAdapter recommendBestAuthorsAdapter;
+    private List<RecommendationBean.BestAuthorsBean> bestAuthorslists;
+
+    private RecommendRecommendationsOneAdapter recommendRecommendationsOneAdapter;
+    private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationslists;
 
 
     public static ListenerBookRecommendFragment newInstance() {
@@ -57,7 +72,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         View inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
         rv_recommend_hotlists = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hotlists);
         rv_recommend_editorspicks = (RecyclerView) inflate.findViewById(R.id.rv_recommend_editorspicks);
+        rv_recommend_hothits = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hothits);
         rv_recommend_newarrivals = (RecyclerView) inflate.findViewById(R.id.rv_recommend_newarrivals);
+        rv_recommend_bestauthors = (RecyclerView) inflate.findViewById(R.id.rv_recommend_bestauthors);
+        rv_recommend_JYWX = (RecyclerView) inflate.findViewById(R.id.rv_recommend_JYWX);
 
         iv_topics_one = (ImageView) inflate.findViewById(R.id.iv_topics_one);
         iv_topics_two = (ImageView) inflate.findViewById(R.id.iv_topics_two);
@@ -89,15 +107,42 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         rv_recommend_editorspicks.setHasFixedSize(true);
         recommendEditorsPicksAdapter = new RecommendEditorsPicksAdapter(editorsPickslists);
         rv_recommend_editorspicks.setAdapter(recommendEditorsPicksAdapter);
+
+        /**
+         * 大家都在听
+         */
+        hotHitslists = new ArrayList<>();
+        recommendHothitsAdapter = new RecommendHothitsAdapter(hotHitslists);
+        HothitsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        rv_recommend_hothits.setLayoutManager(HothitsLayoutManager);
+        rv_recommend_hothits.setAdapter(recommendHothitsAdapter);
+
         /**
          * 最新上架
          */
         newArrivalslists = new ArrayList<>();
         recommendNewarrivalsAdapter = new RecommendNewarrivalsAdapter(newArrivalslists);
-        mgr = new GridLayoutManager(getActivity(), 3);
-        rv_recommend_newarrivals.setLayoutManager(mgr);
+        NewarrivalsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        rv_recommend_newarrivals.setLayoutManager(NewarrivalsLayoutManager);
         rv_recommend_newarrivals.setAdapter(recommendNewarrivalsAdapter);
 
+        /**
+         * 名家名作
+         */
+        bestAuthorslists = new ArrayList<>();
+        recommendBestAuthorsAdapter = new RecommendBestAuthorsAdapter(bestAuthorslists);
+        BestAuthorsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        rv_recommend_bestauthors.setLayoutManager(BestAuthorsLayoutManager);
+        rv_recommend_bestauthors.setAdapter(recommendBestAuthorsAdapter);
+
+        /**
+         * 个性推荐
+         */
+        recommendationslists = new ArrayList<>();
+        recommendRecommendationsOneAdapter = new RecommendRecommendationsOneAdapter(recommendationslists);
+        RecommendationsLayoutManager = new GridLayoutManager(getActivity(), 4);
+        rv_recommend_JYWX.setLayoutManager(RecommendationsLayoutManager);
+        rv_recommend_JYWX.setAdapter(recommendRecommendationsOneAdapter);
 
         listenerBookRecommendPresenter.getdata();
     }
@@ -170,13 +215,21 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 //        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
     }
 
+    /**
+     * 大家都在听
+     *
+     * @param hotHits
+     */
     @Override
     public void setBookRecommendHotHits(List<RecommendationBean.HotHitsBean> hotHits) {
-
+        hotHitslists.clear();
+        hotHitslists.addAll(hotHits);
+        recommendHothitsAdapter.notifyDataSetChanged();
     }
 
     /**
      * 最新上架
+     *
      * @param newArrivalsBeen
      */
     @Override
@@ -186,9 +239,15 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         recommendNewarrivalsAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * 名家名作
+     * @param bestAuthors
+     */
     @Override
     public void setBookRecommendBestAuthors(List<RecommendationBean.BestAuthorsBean> bestAuthors) {
-
+        bestAuthorslists.clear();
+        bestAuthorslists.addAll(bestAuthors);
+        recommendBestAuthorsAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -196,8 +255,15 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
     }
 
+    /**
+     * 个性推荐
+     * @param recommendations
+     */
     @Override
     public void setBookRecommendRecommendations(List<RecommendationBean.RecommendationsBean> recommendations) {
-
+        List<RecommendationBean.RecommendationsBean.BooksBeanOne> books = recommendations.get(0).getBooks();
+        recommendationslists.clear();
+        recommendationslists.addAll(books);
+        recommendRecommendationsOneAdapter.notifyDataSetChanged();
     }
 }

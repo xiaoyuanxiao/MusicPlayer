@@ -1761,7 +1761,7 @@ public class RecommendationBean {
         private Object cover;
         private String name;
         private int count_of_books;
-        private List<BooksBeanX> books;
+        private List<BooksBeanOne> books;
 
         public int getId() {
             return id;
@@ -1803,30 +1803,30 @@ public class RecommendationBean {
             this.count_of_books = count_of_books;
         }
 
-        public List<BooksBeanX> getBooks() {
+        public List<BooksBeanOne> getBooks() {
             return books;
         }
 
-        public void setBooks(List<BooksBeanX> books) {
+        public void setBooks(List<BooksBeanOne> books) {
             this.books = books;
         }
 
-        public static class BooksBeanX {
+        public static class BooksBeanOne {
             /**
              * book : {"id":5,"title":"飞狐外传","description":"《雪山飞狐》番外篇，大侠胡斐的成长之路。江湖纷争夹杂着三角关系，又热闹又缠绵。无奈大侠终会长大，生死离别是成长的烙印。","thumbnail":"http://jyts-public-oss.longruncloud.com/images/4ab7e00c44f0060f35e7e3ae49ef3eecc481022adc41e330f63c39798c5a2959.jpg?x-oss-process=image/resize,w_256,h_256","cover":"http://jyts-public-oss.longruncloud.com/images/4ab7e00c44f0060f35e7e3ae49ef3eecc481022adc41e330f63c39798c5a2959.jpg","author":{"id":1,"title":"作者","name":"金庸","description":"金庸，本名查良镛，浙江海宁人，一九二四年生。曾任报社记者、翻译、编辑，电影公司编剧、导演等。一九五九年在香港创办明报机构，出版报纸、杂志及书籍，1955年以金庸为笔名在香港《新晚报》副刊连载武侠小说《书剑恩仇录》。由此开始，先后创作武侠小说十五部，开创了中国当代文学新领域，广受读者欢迎，至今已蔚为全世界华人的共同语言，并兴起海内外金学研究风气。其《金庸作品集》已出版中文简体、繁体版，并有英、法、意大利、希腊、日、韩、泰、越、印尼等多种译文。","head":"http://jyts-public-oss.longruncloud.com/images/authors/b4d32d651aa2fac799c3786392c3c408a5a2fb9ab42a06c1ed8a82e6f65033e3.jpg"},"recorder":{"id":3,"title":"演播","name":"袁志伟","description":"从事电台主持人工作至今，曾在多家地方和网络媒体工作，如：厦广音乐台 、北京一听音乐网 、扬州音乐广播等。\r\n\r\n接触有声小说多年，至今已经演播了长短篇小说30余部，如：《狱霸》《叱咤》《红嫁衣》《惊悚集系列》《鬼故事谜系列》《网游之盗版神话》《我一无是处的大学青春》等 。\r\n","head":"http://jyts-public-oss.longruncloud.com/images/recorders/3e799d989f168bf3dd95b2c94dce34266af30281185ec075462c8bdd8c23f736.jpg"},"is_bundle":true,"status_code":0,"status":"完结","section_pages":0}
              */
 
-            private BookBeanXXXXX book;
+            private BookBeanSecond book;
 
-            public BookBeanXXXXX getBook() {
+            public BookBeanSecond getBook() {
                 return book;
             }
 
-            public void setBook(BookBeanXXXXX book) {
+            public void setBook(BookBeanSecond book) {
                 this.book = book;
             }
 
-            public static class BookBeanXXXXX {
+            public static class BookBeanSecond {
                 /**
                  * id : 5
                  * title : 飞狐外传
@@ -1846,8 +1846,8 @@ public class RecommendationBean {
                 private String description;
                 private String thumbnail;
                 private String cover;
-                private AuthorBeanXXXXX author;
-                private RecorderBeanXXXXXX recorder;
+                private AuthorBeanRecommendatation author;
+                private RecorderBeanRecommendatation recorder;
                 private boolean is_bundle;
                 private int status_code;
                 private String status;
@@ -1893,19 +1893,19 @@ public class RecommendationBean {
                     this.cover = cover;
                 }
 
-                public AuthorBeanXXXXX getAuthor() {
+                public AuthorBeanRecommendatation getAuthor() {
                     return author;
                 }
 
-                public void setAuthor(AuthorBeanXXXXX author) {
+                public void setAuthor(AuthorBeanRecommendatation author) {
                     this.author = author;
                 }
 
-                public RecorderBeanXXXXXX getRecorder() {
+                public RecorderBeanRecommendatation getRecorder() {
                     return recorder;
                 }
 
-                public void setRecorder(RecorderBeanXXXXXX recorder) {
+                public void setRecorder(RecorderBeanRecommendatation recorder) {
                     this.recorder = recorder;
                 }
 
@@ -1941,7 +1941,7 @@ public class RecommendationBean {
                     this.section_pages = section_pages;
                 }
 
-                public static class AuthorBeanXXXXX {
+                public static class AuthorBeanRecommendatation {
                     /**
                      * id : 1
                      * title : 作者
@@ -1997,7 +1997,7 @@ public class RecommendationBean {
                     }
                 }
 
-                public static class RecorderBeanXXXXXX {
+                public static class RecorderBeanRecommendatation {
                     /**
                      * id : 3
                      * title : 演播

@@ -134,6 +134,28 @@
 
         <TextView
             style="@style/tv_standard_14sp"
+            android:text="大家都在听" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_hothits"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+
+        <TextView
+            style="@style/tv_standard_14sp"
             android:text="最新上架" />
 
         <View
@@ -142,9 +164,9 @@
             android:background="@color/view" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_newarrivals"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rv_recommend_newarrivals"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
@@ -152,5 +174,130 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
+
+        <TextView
+            style="@style/tv_standard_14sp"
+            android:text="名家名作" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_bestauthors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <TextView
+            style="@style/tv_standard_14sp"
+            android:text="人气演播" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_hotrecorders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <TextView
+            style="@style/tv_standard_14sp"
+            android:text="个性推荐" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/tv_standard_white"
+                android:text="金庸武侠"
+                android:background="@color/violet" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend_JYWX"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/tv_standard_white"
+                android:text="武侠世界"
+                android:background="@color/blue" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend_WXSJ"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/view" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                style="@style/tv_standard_white"
+                android:text="四大名著"
+                android:background="@color/green" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend_SDMZ"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
