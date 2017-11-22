@@ -1,36 +1,44 @@
 package com.mymusic.musicplayer.adapter;
 
+
 import android.content.Context;
-import android.widget.BaseAdapter;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 
 import java.util.List;
 
 /**
- * @author xiaoyu:
- * @version 创建时间：2016-12-14 下午2:38:10
+ * Created by xiaoyu on 2017/11/22.
  */
-public abstract class BaseListAdapter<T> extends BaseAdapter {
-    List<T> data;
-    Context context;
 
-    public BaseListAdapter(Context context, List<T> data) {
+public abstract class BaseListAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
+    Context context;
+    List<T> data;
+    int layId;
+
+    public BaseListAdapter(Context context, List<T> data, int layId) {
         this.context = context;
         this.data = data;
+        this.layId = layId;
     }
 
     @Override
-    public int getCount() {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        ViewHolder viewHolder = ViewHolder.get(context, parent, layId);
+        return viewHolder;
+    }
+
+    public abstract void convert(ViewHolder holder, T t);
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        //  holder.updatePosition(position);
+        convert(holder, data.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
         return data.size();
     }
-
-    @Override
-    public Object getItem(int position) {
-        return data.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
 }

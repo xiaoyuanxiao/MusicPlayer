@@ -1,6 +1,6 @@
 package com.mymusic.musicplayer.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,35 +16,48 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/16.
  */
 
-public class RecommendHotBooklistsAdapter extends BaseListAdapter<RecommendationBean.HotBooklistsBean> {
+public class RecommendHotBooklistsAdapter extends RecyclerView.Adapter<RecommendHotBooklistsAdapter.ViewHolder> {
+    List<RecommendationBean.HotBooklistsBean> list;
 
-    public RecommendHotBooklistsAdapter(Context context, List<RecommendationBean.HotBooklistsBean> data) {
-        super(context, data);
+    public RecommendHotBooklistsAdapter(List<RecommendationBean.HotBooklistsBean> list) {
+        this.list = list;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendationBean.HotBooklistsBean hotBooklistsBean = data.get(i);
-        ViewHolder holder;
-        if (view == null) {
-            holder = new ViewHolder();
-            view = View.inflate(context, R.layout.item_recommend_listview, null);
-            holder.iv_hot_booklists = (ImageView) view.findViewById(R.id.iv_hot_booklists);
-            holder.tv_hot_booklists_title = (TextView) view.findViewById(R.id.tv_hot_booklists_title);
-            holder.tv_hot_booklists_description = (TextView) view.findViewById(R.id.tv_hot_booklists_description);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        Glide.with(context).load(hotBooklistsBean.getCover()).into(holder.iv_hot_booklists);
-        holder.tv_hot_booklists_title.setText(hotBooklistsBean.getTitle());
-        holder.tv_hot_booklists_description.setText(hotBooklistsBean.getDescription());
-        return view;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = View.inflate(parent.getContext(), R.layout.item_recommend_listview, null);
+        RecommendHotBooklistsAdapter.ViewHolder viewHolder = new RecommendHotBooklistsAdapter.ViewHolder(inflate);
+        return viewHolder;
     }
 
-    class ViewHolder {
+    @Override
+    public void onBindViewHolder(RecommendHotBooklistsAdapter.ViewHolder holder, int position) {
+        RecommendationBean.HotBooklistsBean hotBooklistsBean = list.get(position);
+
+        holder.tv_hot_booklists_title.setText(hotBooklistsBean.getTitle());
+        holder.tv_hot_booklists_description.setText(hotBooklistsBean.getDescription());
+        Glide.with(holder.tv_hot_booklists_title.getContext()).load(hotBooklistsBean.getCover()).into(holder.iv_hot_booklists);
+    }
+
+    @Override
+    public int getItemCount() {
+        if (list == null)
+            return 0;
+        if (list.size() > 4)
+            return 4;
+        return list.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_hot_booklists;
         TextView tv_hot_booklists_title;
         TextView tv_hot_booklists_description;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            iv_hot_booklists = (ImageView) itemView.findViewById(R.id.iv_hot_booklists);
+            tv_hot_booklists_title = (TextView) itemView.findViewById(R.id.tv_hot_booklists_title);
+            tv_hot_booklists_description = (TextView) itemView.findViewById(R.id.tv_hot_booklists_description);
+        }
     }
 }

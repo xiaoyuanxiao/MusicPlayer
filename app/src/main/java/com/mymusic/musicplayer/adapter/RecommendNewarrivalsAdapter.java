@@ -1,6 +1,6 @@
 package com.mymusic.musicplayer.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,42 +16,43 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/16.
  */
 
-public class RecommendNewarrivalsAdapter extends BaseListAdapter<RecommendationBean.NewArrivalsBean> {
+public class RecommendNewarrivalsAdapter extends RecyclerView.Adapter<RecommendNewarrivalsAdapter.ViewHolder> {
+    List<RecommendationBean.NewArrivalsBean> list;
 
-    public RecommendNewarrivalsAdapter(Context context, List<RecommendationBean.NewArrivalsBean> data) {
-        super(context, data);
+    public RecommendNewarrivalsAdapter(List<RecommendationBean.NewArrivalsBean> list) {
+        this.list = list;
     }
 
     @Override
-    public int getCount() {
-        if (super.getCount() == 0)
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = View.inflate(parent.getContext(), R.layout.item_recommend_listview1, null);
+        ViewHolder viewHolder = new ViewHolder(inflate);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.tv_title.setText(list.get(position).getBook().getTitle());
+        Glide.with(holder.tv_title.getContext()).load(list.get(position).getBook().getCover()).into(holder.iv_cover);
+    }
+
+    @Override
+    public int getItemCount() {
+        if (list == null)
             return 0;
-        if (super.getCount() >= 6)
+        if (list.size() > 6)
             return 6;
-        return super.getCount();
+        return list.size();
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        RecommendationBean.NewArrivalsBean newArrivalsBean = data.get(i);
-        RecommendationBean.NewArrivalsBean.BookBeanXX book = newArrivalsBean.getBook();
-        ViewHolder holder;
-        if (view == null) {
-            holder = new ViewHolder();
-            view = View.inflate(context, R.layout.item_recommend_listview1, null);
-            holder.iv_cover = (ImageView) view.findViewById(R.id.iv_cover);
-            holder.tv_title = (TextView) view.findViewById(R.id.tv_title);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        Glide.with(context).load(book.getCover()).into(holder.iv_cover);
-        holder.tv_title.setText(book.getTitle());
-        return view;
-    }
-
-    class ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_cover;
         TextView tv_title;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            iv_cover = (ImageView) itemView.findViewById(R.id.iv_cover);
+            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+        }
     }
 }

@@ -70,11 +70,13 @@
             android:layout_height="0.1dp"
             android:background="@color/view" />
 
-        <com.mymusic.musicplayer.view.MyListView
-            android:id="@+id/lv_recommend_hotlists"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_hotlists"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/view"></com.mymusic.musicplayer.view.MyListView>
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
 
         <View
             android:layout_width="match_parent"
@@ -90,11 +92,13 @@
             android:layout_height="0.1dp"
             android:background="@color/view" />
 
-        <com.mymusic.musicplayer.view.MyListView
-            android:id="@+id/lv_recommend_editorspicks"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recommend_editorspicks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/view"></com.mymusic.musicplayer.view.MyListView>
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
 
         <View
             android:layout_width="match_parent"
@@ -140,7 +144,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recycler_view"
+            android:id="@+id/rv_recommend_newarrivals"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
