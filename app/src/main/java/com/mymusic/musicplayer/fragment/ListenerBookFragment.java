@@ -52,7 +52,7 @@ public class ListenerBookFragment extends BaseFragment {
         fragments = new ArrayList<Fragment>();
         fragments.add(ListenerBookRecommendFragment.newInstance());
         fragments.add(ListenerBookRecommendFragment.newInstance());
-        fragments.add(ListenerBookRecommendFragment.newInstance());
+        fragments.add(ListenerBookListsFragment.newInstance());
         fragments.add(ListenerBookRecommendFragment.newInstance());
         showFragment(fragments.get(0));
 
@@ -99,13 +99,16 @@ public class ListenerBookFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_fg_listenerbook_recommend:
-
+                showFragment(fragments.get(0));
                 break;
             case R.id.tv_fg_listenerbook_classify:
+                showFragment(fragments.get(1));
                 break;
             case R.id.tv_fg_listenerbook_booklist:
+                showFragment(fragments.get(2));
                 break;
             case R.id.tv_fg_listenerbook_list:
+                showFragment(fragments.get(3));
                 break;
         }
 

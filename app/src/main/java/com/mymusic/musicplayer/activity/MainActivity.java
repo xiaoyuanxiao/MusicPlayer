@@ -96,16 +96,16 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rg_main_listenbook:
-
+                showFragment(fragments.get(0));
                 break;
             case R.id.rg_main_radiostation:
-
+                showFragment(fragments.get(1));
                 break;
             case R.id.rg_main_campaign:
-
+                showFragment(fragments.get(2));
                 break;
             case R.id.rg_main_mine:
-
+                showFragment(fragments.get(3));
                 break;
         }
 
