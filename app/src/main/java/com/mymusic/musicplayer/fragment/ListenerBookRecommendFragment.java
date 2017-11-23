@@ -52,7 +52,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private RecommendEditorsPicksAdapter recommendEditorsPicksAdapter;
     private List<RecommendationBean.EditorsPicksBean> editorsPickslists;
 
-    private ImageView iv_topics_one, iv_topics_two;
+    private ImageView iv_topics_one, iv_topics_two, iv_topics_three, iv_topics_four, iv_topics_five, iv_topics_six;
 
     private RecommendHothitsAdapter recommendHothitsAdapter;
     private List<RecommendationBean.HotHitsBean> hotHitslists;
@@ -96,6 +96,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
         iv_topics_one = (ImageView) inflate.findViewById(R.id.iv_topics_one);
         iv_topics_two = (ImageView) inflate.findViewById(R.id.iv_topics_two);
+        iv_topics_three = (ImageView) inflate.findViewById(R.id.iv_topics_three);
+        iv_topics_four = (ImageView) inflate.findViewById(R.id.iv_topics_four);
+        iv_topics_five = (ImageView) inflate.findViewById(R.id.iv_topics_five);
+        iv_topics_six = (ImageView) inflate.findViewById(R.id.iv_topics_six);
         banner = (Banner) inflate.findViewById(R.id.banner);
         return inflate;
     }
@@ -258,10 +262,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     public void setBookRecommendTopics(List<RecommendationBean.TopicsBean> topics) {
         Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
         Glide.with(this).load(topics.get(1).getCover()).into(iv_topics_two);
-//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
-//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
-//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
-//        Glide.with(this).load(topics.get(0).getCover()).into(iv_topics_one);
+        Glide.with(this).load(topics.get(2).getCover()).into(iv_topics_three);
+        Glide.with(this).load(topics.get(3).getCover()).into(iv_topics_four);
+        Glide.with(this).load(topics.get(4).getCover()).into(iv_topics_five);
+        Glide.with(this).load(topics.get(5).getCover()).into(iv_topics_six);
     }
 
     /**
