@@ -11,13 +11,15 @@ import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.adapter.RecommendBestAuthorsAdapter;
 import com.mymusic.musicplayer.adapter.RecommendEditorsPicksAdapter;
 import com.mymusic.musicplayer.adapter.RecommendHotBooklistsAdapter;
+import com.mymusic.musicplayer.adapter.RecommendHotRecordersAdapter;
 import com.mymusic.musicplayer.adapter.RecommendHothitsAdapter;
 import com.mymusic.musicplayer.adapter.RecommendNewarrivalsAdapter;
-import com.mymusic.musicplayer.adapter.RecommendRecommendationsOneAdapter;
+import com.mymusic.musicplayer.adapter.RecommendRecommendationsAdapter;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
 import com.mymusic.musicplayer.view.GlideImageLoader;
+import com.mymusic.musicplayer.view.SpacesItemDecoration;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -32,13 +34,16 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private Banner banner;
     private ListenerBookRecommendPresenter listenerBookRecommendPresenter = new ListenerBookRecommendPresenter(this);
     private RecyclerView rv_recommend_hotlists, rv_recommend_editorspicks, rv_recommend_hothits, rv_recommend_newarrivals,
-            rv_recommend_bestauthors, rv_recommend_JYWX;
+            rv_recommend_bestauthors, rv_recommend_hotrecorders, rv_recommend_JYWX, rv_recommend_WXSJ, rv_recommend_SDMZ;
     private RecyclerView.LayoutManager HotBooklistsLayoutManager;
     private RecyclerView.LayoutManager EditorsPicksLayoutManager;
+    private LinearLayoutManager HotRecordersLayoutManager;
     private GridLayoutManager HothitsLayoutManager;
     private GridLayoutManager NewarrivalsLayoutManager;
     private GridLayoutManager BestAuthorsLayoutManager;
-    private GridLayoutManager RecommendationsLayoutManager;
+    private GridLayoutManager RecommendationsJYWXLayoutManager;
+    private GridLayoutManager RecommendationsWXSJLayoutManager;
+    private GridLayoutManager RecommendationsSDMZLayoutManager;
 
     RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
     private List<RecommendationBean.HotBooklistsBean> hotBooklists;
@@ -58,10 +63,19 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private RecommendBestAuthorsAdapter recommendBestAuthorsAdapter;
     private List<RecommendationBean.BestAuthorsBean> bestAuthorslists;
 
-    private RecommendRecommendationsOneAdapter recommendRecommendationsOneAdapter;
-    private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationslists;
+    private RecommendHotRecordersAdapter recommendHotRecordersAdapter;
+    private List<RecommendationBean.HotRecordersBean> hotRecorderslists;
 
+    private RecommendRecommendationsAdapter recommendRecommendationsJYWXAdapter;
+    private RecommendRecommendationsAdapter recommendRecommendationsWXSJAdapter;
+    private RecommendRecommendationsAdapter recommendRecommendationsSDMZAdapter;
+    private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationsjywxlists;
+    private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationswxsjlists;
+    private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationssdmzlists;
 
+    int spanCount = 4;
+    int spacing = 10;
+    boolean includeEdge = false;
     public static ListenerBookRecommendFragment newInstance() {
         ListenerBookRecommendFragment listenerBookRecommendFragment = new ListenerBookRecommendFragment();
         return listenerBookRecommendFragment;
@@ -73,9 +87,12 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         rv_recommend_hotlists = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hotlists);
         rv_recommend_editorspicks = (RecyclerView) inflate.findViewById(R.id.rv_recommend_editorspicks);
         rv_recommend_hothits = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hothits);
+        rv_recommend_hotrecorders = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hotrecorders);
         rv_recommend_newarrivals = (RecyclerView) inflate.findViewById(R.id.rv_recommend_newarrivals);
         rv_recommend_bestauthors = (RecyclerView) inflate.findViewById(R.id.rv_recommend_bestauthors);
         rv_recommend_JYWX = (RecyclerView) inflate.findViewById(R.id.rv_recommend_JYWX);
+        rv_recommend_WXSJ = (RecyclerView) inflate.findViewById(R.id.rv_recommend_WXSJ);
+        rv_recommend_SDMZ = (RecyclerView) inflate.findViewById(R.id.rv_recommend_SDMZ);
 
         iv_topics_one = (ImageView) inflate.findViewById(R.id.iv_topics_one);
         iv_topics_two = (ImageView) inflate.findViewById(R.id.iv_topics_two);
@@ -120,6 +137,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         /**
          * 最新上架
          */
+
         newArrivalslists = new ArrayList<>();
         recommendNewarrivalsAdapter = new RecommendNewarrivalsAdapter(newArrivalslists);
         NewarrivalsLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -129,6 +147,8 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         /**
          * 名家名作
          */
+
+        //    rv_recommend_bestauthors.addItemDecoration(new SpacesItemDecoration(spanCount,));
         bestAuthorslists = new ArrayList<>();
         recommendBestAuthorsAdapter = new RecommendBestAuthorsAdapter(bestAuthorslists);
         BestAuthorsLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -136,15 +156,44 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         rv_recommend_bestauthors.setAdapter(recommendBestAuthorsAdapter);
 
         /**
+         * 人气演播
+         */
+
+        hotRecorderslists = new ArrayList<>();
+        HotRecordersLayoutManager = new LinearLayoutManager(getActivity());
+        HotRecordersLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rv_recommend_hotrecorders.setLayoutManager(HotRecordersLayoutManager);
+        recommendHotRecordersAdapter = new RecommendHotRecordersAdapter(hotRecorderslists);
+        rv_recommend_hotrecorders.setAdapter(recommendHotRecordersAdapter);
+
+        /**
          * 个性推荐
          */
-        recommendationslists = new ArrayList<>();
-        recommendRecommendationsOneAdapter = new RecommendRecommendationsOneAdapter(recommendationslists);
-        RecommendationsLayoutManager = new GridLayoutManager(getActivity(), 4);
-        rv_recommend_JYWX.setLayoutManager(RecommendationsLayoutManager);
-        rv_recommend_JYWX.setAdapter(recommendRecommendationsOneAdapter);
 
+        rv_recommend_JYWX.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        recommendationsjywxlists = new ArrayList<>();
+        recommendRecommendationsJYWXAdapter = new RecommendRecommendationsAdapter(recommendationsjywxlists);
+        RecommendationsJYWXLayoutManager = new GridLayoutManager(getActivity(), 4);
+        rv_recommend_JYWX.setLayoutManager(RecommendationsJYWXLayoutManager);
+        rv_recommend_JYWX.setAdapter(recommendRecommendationsJYWXAdapter);
+
+        rv_recommend_WXSJ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        recommendationswxsjlists = new ArrayList<>();
+        recommendRecommendationsWXSJAdapter = new RecommendRecommendationsAdapter(recommendationswxsjlists);
+        RecommendationsWXSJLayoutManager = new GridLayoutManager(getActivity(), 4);
+        rv_recommend_WXSJ.setLayoutManager(RecommendationsWXSJLayoutManager);
+        rv_recommend_WXSJ.setAdapter(recommendRecommendationsWXSJAdapter);
+
+        rv_recommend_SDMZ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        recommendationssdmzlists = new ArrayList<>();
+        recommendRecommendationsSDMZAdapter = new RecommendRecommendationsAdapter(recommendationssdmzlists);
+        RecommendationsSDMZLayoutManager = new GridLayoutManager(getActivity(), 4);
+        rv_recommend_SDMZ.setLayoutManager(RecommendationsSDMZLayoutManager);
+        rv_recommend_SDMZ.setAdapter(recommendRecommendationsSDMZAdapter);
+        
         listenerBookRecommendPresenter.getdata();
+
+
     }
 
 
@@ -251,9 +300,16 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         recommendBestAuthorsAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * 人气主播
+     *
+     * @param hotRecorders
+     */
     @Override
     public void setBookRecommendHotRecorders(List<RecommendationBean.HotRecordersBean> hotRecorders) {
-
+        hotRecorderslists.clear();
+        hotRecorderslists.addAll(hotRecorders);
+        recommendHotRecordersAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -262,9 +318,20 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
      */
     @Override
     public void setBookRecommendRecommendations(List<RecommendationBean.RecommendationsBean> recommendations) {
-        List<RecommendationBean.RecommendationsBean.BooksBeanOne> books = recommendations.get(0).getBooks();
-        recommendationslists.clear();
-        recommendationslists.addAll(books);
-        recommendRecommendationsOneAdapter.notifyDataSetChanged();
+        List<RecommendationBean.RecommendationsBean.BooksBeanOne> JYWXbooks = recommendations.get(0).getBooks();
+        List<RecommendationBean.RecommendationsBean.BooksBeanOne> WXSJbooks = recommendations.get(1).getBooks();
+        List<RecommendationBean.RecommendationsBean.BooksBeanOne> SDMZbooks = recommendations.get(2).getBooks();
+        recommendationsjywxlists.clear();
+        recommendationsjywxlists.addAll(JYWXbooks);
+        recommendRecommendationsJYWXAdapter.notifyDataSetChanged();
+
+        recommendationswxsjlists.clear();
+        recommendationswxsjlists.addAll(WXSJbooks);
+        recommendRecommendationsWXSJAdapter.notifyDataSetChanged();
+
+        recommendationssdmzlists.clear();
+        recommendationssdmzlists.addAll(SDMZbooks);
+        recommendRecommendationsSDMZAdapter.notifyDataSetChanged();
+
     }
 }

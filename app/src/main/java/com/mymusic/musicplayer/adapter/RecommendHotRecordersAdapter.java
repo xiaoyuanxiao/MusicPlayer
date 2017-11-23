@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 
@@ -31,16 +32,12 @@ public class RecommendHotRecordersAdapter extends RecyclerView.Adapter<Recommend
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.tv_title.setText(list.get(position).getBook().getTitle());
-//        Glide.with(holder.tv_title.getContext()).load(list.get(position).getBook().getCover()).into(holder.iv_cover);
+        holder.tv_title.setText(list.get(position).getRecorder().getName());
+        Glide.with(holder.tv_title.getContext()).load(list.get(position).getRecorder().getHead()).into(holder.iv_cover);
     }
 
     @Override
     public int getItemCount() {
-        if (list == null)
-            return 0;
-        if (list.size() > 6)
-            return 6;
         return list.size();
     }
 

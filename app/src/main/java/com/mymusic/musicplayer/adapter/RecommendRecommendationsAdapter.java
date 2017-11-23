@@ -1,16 +1,14 @@
 package com.mymusic.musicplayer.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.bean.RecommendationBean;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -18,10 +16,10 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/16.
  */
 
-public class RecommendRecommendationsOneAdapter extends RecyclerView.Adapter<RecommendRecommendationsOneAdapter.ViewHolder> {
+public class RecommendRecommendationsAdapter extends RecyclerView.Adapter<RecommendRecommendationsAdapter.ViewHolder> {
     List<RecommendationBean.RecommendationsBean.BooksBeanOne> list;
 
-    public RecommendRecommendationsOneAdapter(List<RecommendationBean.RecommendationsBean.BooksBeanOne> list) {
+    public RecommendRecommendationsAdapter(List<RecommendationBean.RecommendationsBean.BooksBeanOne> list) {
         this.list = list;
     }
 
@@ -34,11 +32,12 @@ public class RecommendRecommendationsOneAdapter extends RecyclerView.Adapter<Rec
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        WindowManager wm = (WindowManager) holder.iv_cover.getContext().getSystemService(Context.WINDOW_SERVICE);
-
-        int width = wm.getDefaultDisplay().getWidth();
-        holder.iv_cover.setLayoutParams(new LinearLayout.LayoutParams((width - 55) / 4, (width - 55) / 4));
-        Glide.with(holder.iv_cover.getContext()).load(list.get(position).getBook().getCover())
+        Logger.d("==" + list.get(position).getBook().getCover());
+        Glide.with(holder.iv_cover.getContext())
+                .load(list.get(position).getBook().getCover())
+                .placeholder(R.mipmap.h_icon01_active)
+                .error(R.mipmap.h_icon01_book)
+                .centerCrop()
                 .into(holder.iv_cover);
     }
 
