@@ -25,38 +25,30 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommend_hotlists"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
-
         <TextView
             style="@style/tv_standard_14sp"
             android:text="编辑推荐" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommend_editorspicks"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +110,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommend_newarrivals"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
@@ -139,7 +131,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommend_bestauthors"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
@@ -157,12 +149,18 @@
             android:layout_height="0.1dp"
             android:background="@color/view" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_hotrecorders"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend_hotrecorders"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -195,6 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
             android:background="@color/view" />
+
         <TextView
             style="@style/tv_standard_14sp"
             android:text="个性推荐" />
@@ -218,9 +217,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_recommend_JYWX"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <View
@@ -242,9 +241,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_recommend_WXSJ"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <View
@@ -266,9 +265,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_recommend_SDMZ"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout

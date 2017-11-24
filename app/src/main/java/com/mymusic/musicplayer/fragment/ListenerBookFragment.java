@@ -23,9 +23,9 @@ public class ListenerBookFragment extends BaseFragment {
     private ArrayList<Fragment> fragments;
     private FragmentManager fragmentManager;
 
-    public static ListenerBookRecommendFragment newInstance() {
-        ListenerBookRecommendFragment listenerBookRecommendFragment = new ListenerBookRecommendFragment();
-        return listenerBookRecommendFragment;
+    public static ListenerBookFragment newInstance() {
+        ListenerBookFragment listenerBookFragment = new ListenerBookFragment();
+        return listenerBookFragment;
     }
 
     @Override
