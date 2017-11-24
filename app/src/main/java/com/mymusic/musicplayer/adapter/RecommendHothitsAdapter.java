@@ -4,11 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.bean.RecommendationBean;
+import com.mymusic.musicplayer.utils.ScreenUtils;
 
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class RecommendHothitsAdapter extends RecyclerView.Adapter<RecommendHothi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        int screenWidth = ScreenUtils.getScreenWidth(holder.tv_title.getContext());
+        holder.iv_cover.setLayoutParams(new LinearLayout.LayoutParams((screenWidth - 40) / 4, (screenWidth - 40) / 4));
         holder.tv_title.setText(list.get(position).getBook().getTitle());
         Glide.with(holder.tv_title.getContext()).load(list.get(position).getBook().getCover()).into(holder.iv_cover);
     }
