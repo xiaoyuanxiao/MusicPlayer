@@ -4,10 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.bean.RecommendationBean;
+import com.mymusic.musicplayer.utils.ScreenUtils;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -56,6 +58,9 @@ public class RecommendRecommendationsAdapter extends RecyclerView.Adapter<Recomm
         public ViewHolder(View itemView) {
             super(itemView);
             iv_cover = (ImageView) itemView.findViewById(R.id.iv_cover);
+            int screenWidth = ScreenUtils.getScreenWidth(iv_cover.getContext());
+            LinearLayout.LayoutParams lau = new LinearLayout.LayoutParams(screenWidth / 4 - itemView.getPaddingLeft() * 2 - 12, (screenWidth / 3) - itemView.getPaddingLeft() * 2 - 12);
+            iv_cover.setLayoutParams(lau);
         }
     }
 }

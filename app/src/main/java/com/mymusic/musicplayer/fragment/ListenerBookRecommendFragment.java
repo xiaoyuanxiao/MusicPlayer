@@ -19,7 +19,6 @@ import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
 import com.mymusic.musicplayer.view.GlideImageLoader;
-import com.mymusic.musicplayer.view.SpacesItemDecoration;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -171,21 +170,21 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          * 个性推荐
          */
 
-        rv_recommend_JYWX.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        // rv_recommend_JYWX.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationsjywxlists = new ArrayList<>();
         recommendRecommendationsJYWXAdapter = new RecommendRecommendationsAdapter(recommendationsjywxlists);
         RecommendationsJYWXLayoutManager = new GridLayoutManager(getActivity(), 4);
         rv_recommend_JYWX.setLayoutManager(RecommendationsJYWXLayoutManager);
         rv_recommend_JYWX.setAdapter(recommendRecommendationsJYWXAdapter);
 
-        rv_recommend_WXSJ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        //   rv_recommend_WXSJ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationswxsjlists = new ArrayList<>();
         recommendRecommendationsWXSJAdapter = new RecommendRecommendationsAdapter(recommendationswxsjlists);
         RecommendationsWXSJLayoutManager = new GridLayoutManager(getActivity(), 4);
         rv_recommend_WXSJ.setLayoutManager(RecommendationsWXSJLayoutManager);
         rv_recommend_WXSJ.setAdapter(recommendRecommendationsWXSJAdapter);
 
-        rv_recommend_SDMZ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
+        //  rv_recommend_SDMZ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationssdmzlists = new ArrayList<>();
         recommendRecommendationsSDMZAdapter = new RecommendRecommendationsAdapter(recommendationssdmzlists);
         RecommendationsSDMZLayoutManager = new GridLayoutManager(getActivity(), 4);
