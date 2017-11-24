@@ -94,6 +94,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_recommend_hothits"
             android:layout_width="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
@@ -117,6 +119,8 @@
             android:id="@+id/rv_recommend_newarrivals"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
@@ -138,6 +142,8 @@
             android:id="@+id/rv_recommend_bestauthors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 

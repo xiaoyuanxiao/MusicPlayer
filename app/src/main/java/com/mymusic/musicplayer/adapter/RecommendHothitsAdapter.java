@@ -34,8 +34,6 @@ public class RecommendHothitsAdapter extends RecyclerView.Adapter<RecommendHothi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        int screenWidth = ScreenUtils.getScreenWidth(holder.tv_title.getContext());
-        holder.iv_cover.setLayoutParams(new LinearLayout.LayoutParams((screenWidth - 40) / 4, (screenWidth - 40) / 4));
         holder.tv_title.setText(list.get(position).getBook().getTitle());
         Glide.with(holder.tv_title.getContext()).load(list.get(position).getBook().getCover()).into(holder.iv_cover);
     }
@@ -57,6 +55,9 @@ public class RecommendHothitsAdapter extends RecyclerView.Adapter<RecommendHothi
             super(itemView);
             iv_cover = (ImageView) itemView.findViewById(R.id.iv_cover);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            int screenWidth = ScreenUtils.getScreenWidth(tv_title.getContext());
+            LinearLayout.LayoutParams lau = new LinearLayout.LayoutParams(screenWidth / 3 - itemView.getPaddingLeft() * 2 - 10, (screenWidth / 3) - itemView.getPaddingLeft() * 2 - 10);
+            iv_cover.setLayoutParams(lau);
         }
     }
 }

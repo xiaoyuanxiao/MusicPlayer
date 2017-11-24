@@ -132,7 +132,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         /**
          * 大家都在听
          */
-        rv_recommend_bestauthors.addItemDecoration(new SpacesItemDecoration(3, spacing, false));
         hotHitslists = new ArrayList<>();
         recommendHothitsAdapter = new RecommendHothitsAdapter(hotHitslists);
         HothitsLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -142,7 +141,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         /**
          * 最新上架
          */
-        rv_recommend_newarrivals.addItemDecoration(new SpacesItemDecoration(3, 10, false));
         newArrivalslists = new ArrayList<>();
         recommendNewarrivalsAdapter = new RecommendNewarrivalsAdapter(newArrivalslists);
         NewarrivalsLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -153,7 +151,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          * 名家名作
          */
 
-        rv_recommend_bestauthors.addItemDecoration(new SpacesItemDecoration(3, 10, false));
         bestAuthorslists = new ArrayList<>();
         recommendBestAuthorsAdapter = new RecommendBestAuthorsAdapter(bestAuthorslists);
         BestAuthorsLayoutManager = new GridLayoutManager(getActivity(), 3);
@@ -163,7 +160,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         /**
          * 人气演播
          */
-        //  rv_recommend_hotrecorders.addItemDecoration(new SpacesItemDecoration(spanCount, 10, includeEdge));
         hotRecorderslists = new ArrayList<>();
         HotRecordersLayoutManager = new LinearLayoutManager(getActivity());
         HotRecordersLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
