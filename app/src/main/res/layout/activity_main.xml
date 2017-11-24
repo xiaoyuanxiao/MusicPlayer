@@ -24,6 +24,8 @@
             android:background="@color/orange"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:padding="8dp">
 
             <LinearLayout
