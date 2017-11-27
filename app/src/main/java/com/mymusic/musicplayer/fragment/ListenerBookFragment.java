@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
 import com.mymusic.musicplayer.R;
 
@@ -16,10 +16,10 @@ import java.util.ArrayList;
  */
 
 public class ListenerBookFragment extends BaseFragment {
-    private TextView mTv_fg_listenerbook_recommend;
-    private TextView mTv_fg_listenerbook_classify;
-    private TextView mTv_fg_listenerbook_booklist;
-    private TextView mTv_fg_listenerbook_list;
+    private RadioButton mRb_fg_listenerbook_recommend;
+    private RadioButton mRb_fg_listenerbook_classify;
+    private RadioButton mRb_fg_listenerbook_booklist;
+    private RadioButton mRb_fg_listenerbook_list;
     private ArrayList<Fragment> fragments;
     private FragmentManager fragmentManager;
 
@@ -31,10 +31,10 @@ public class ListenerBookFragment extends BaseFragment {
     @Override
     View initView() {
         View inflate = View.inflate(getActivity(), R.layout.fg_listenerbook, null);
-        mTv_fg_listenerbook_recommend = (TextView) inflate.findViewById(R.id.tv_fg_listenerbook_recommend);
-        mTv_fg_listenerbook_classify = (TextView) inflate.findViewById(R.id.tv_fg_listenerbook_classify);
-        mTv_fg_listenerbook_booklist = (TextView) inflate.findViewById(R.id.tv_fg_listenerbook_booklist);
-        mTv_fg_listenerbook_list = (TextView) inflate.findViewById(R.id.tv_fg_listenerbook_list);
+        mRb_fg_listenerbook_recommend = (RadioButton) inflate.findViewById(R.id.rb_fg_listenerbook_recommend);
+        mRb_fg_listenerbook_classify = (RadioButton) inflate.findViewById(R.id.rb_fg_listenerbook_classify);
+        mRb_fg_listenerbook_booklist = (RadioButton) inflate.findViewById(R.id.rb_fg_listenerbook_booklist);
+        mRb_fg_listenerbook_list = (RadioButton) inflate.findViewById(R.id.rb_fg_listenerbook_list);
         return inflate;
     }
 
@@ -51,7 +51,7 @@ public class ListenerBookFragment extends BaseFragment {
     private void initFragment() {
         fragments = new ArrayList<Fragment>();
         fragments.add(ListenerBookRecommendFragment.newInstance());
-        fragments.add(ListenerBookRecommendFragment.newInstance());
+        fragments.add(ClassifyFragment.newInstance());
         fragments.add(ListenerBookListsFragment.newInstance());
         fragments.add(ListenerBookRecommendFragment.newInstance());
         showFragment(fragments.get(0));
@@ -89,28 +89,28 @@ public class ListenerBookFragment extends BaseFragment {
 
     @Override
     protected void setOnclick() {
-        mTv_fg_listenerbook_recommend.setOnClickListener(this);
-        mTv_fg_listenerbook_classify.setOnClickListener(this);
-        mTv_fg_listenerbook_booklist.setOnClickListener(this);
-        mTv_fg_listenerbook_list.setOnClickListener(this);
+        mRb_fg_listenerbook_recommend.setOnClickListener(this);
+        mRb_fg_listenerbook_classify.setOnClickListener(this);
+        mRb_fg_listenerbook_booklist.setOnClickListener(this);
+        mRb_fg_listenerbook_list.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_fg_listenerbook_recommend:
+            case R.id.rb_fg_listenerbook_recommend:
                 showFragment(fragments.get(0));
                 break;
-            case R.id.tv_fg_listenerbook_classify:
+            case R.id.rb_fg_listenerbook_classify:
                 showFragment(fragments.get(1));
                 break;
-            case R.id.tv_fg_listenerbook_booklist:
+            case R.id.rb_fg_listenerbook_booklist:
                 showFragment(fragments.get(2));
                 break;
-            case R.id.tv_fg_listenerbook_list:
+            case R.id.rb_fg_listenerbook_list:
                 showFragment(fragments.get(3));
                 break;
         }
-
     }
+
 }

@@ -16,43 +16,50 @@
             android:layout_height="match_parent"
             android:background="@color/view" />
 
-        <TextView
-            android:id="@+id/tv_fg_listenerbook_recommend"
+        <RadioButton
+            android:id="@+id/rb_fg_listenerbook_recommend"
             style="@style/tv_weight"
             android:text="@string/recommend"
-            android:textColor="@color/main_buttomtext_yellow" />
+            android:button="@null"
+            android:checked="true"
+            android:textColor="@drawable/selector_text_color" />
 
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
             android:background="@color/view" />
-        <TextView
-            android:id="@+id/tv_fg_listenerbook_classify"
+
+        <RadioButton
+            android:id="@+id/rb_fg_listenerbook_classify"
             style="@style/tv_weight"
             android:text="@string/classify"
-            android:textColor="@color/main_buttomtext_grey" />
+            android:button="@null"
+            android:textColor="@drawable/selector_text_color" />
+
 
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
             android:background="@color/view" />
 
-        <TextView
-            android:id="@+id/tv_fg_listenerbook_booklist"
+        <RadioButton
+            android:id="@+id/rb_fg_listenerbook_booklist"
             style="@style/tv_weight"
             android:text="@string/booklist"
-            android:textColor="@color/main_buttomtext_grey" />
+            android:button="@null"
+            android:textColor="@drawable/selector_text_color" />
 
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
             android:background="@color/view" />
 
-        <TextView
-            android:id="@+id/tv_fg_listenerbook_list"
+        <RadioButton
+            android:id="@+id/rb_fg_listenerbook_list"
             style="@style/tv_weight"
             android:text="@string/list"
-            android:textColor="@color/main_buttomtext_grey" />
+            android:button="@null"
+            android:textColor="@drawable/selector_text_color" />
     </RadioGroup>
 
     <View

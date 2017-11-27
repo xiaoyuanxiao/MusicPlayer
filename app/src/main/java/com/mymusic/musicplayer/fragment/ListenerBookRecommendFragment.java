@@ -1,7 +1,5 @@
 package com.mymusic.musicplayer.fragment;
 
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -85,8 +83,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationssdmzlists;
     private RefreshLayout mRefreshLayout;
     private ClassicsHeader mClassicsHeader;
-    private static boolean isFirstEnter = true;
-    private Drawable mDrawableProgress;
+    private boolean isFirstEnter = true;
 
     public static ListenerBookRecommendFragment newInstance() {
         ListenerBookRecommendFragment listenerBookRecommendFragment = new ListenerBookRecommendFragment();
@@ -149,11 +146,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         mClassicsHeader.setLastUpdateTime(new Date(System.currentTimeMillis() - deta));
         mClassicsHeader.setTimeFormat(new SimpleDateFormat("更新于 MM-dd HH:mm", Locale.CHINA));
         mClassicsHeader.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
-        mDrawableProgress = mClassicsHeader.getProgressView().getDrawable();
-        if (mDrawableProgress instanceof LayerDrawable) {
-            mDrawableProgress = ((LayerDrawable) mDrawableProgress).getDrawable(0);
-        }
-
         if (isFirstEnter) {
             isFirstEnter = false;
             //触发自动刷新
