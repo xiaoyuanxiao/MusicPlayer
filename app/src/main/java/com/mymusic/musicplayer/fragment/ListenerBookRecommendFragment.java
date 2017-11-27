@@ -1,10 +1,13 @@
 package com.mymusic.musicplayer.fragment;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
@@ -18,11 +21,20 @@ import com.mymusic.musicplayer.adapter.RecommendRecommendationsAdapter;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
+import com.mymusic.musicplayer.utils.DynamicTimeFormat;
 import com.mymusic.musicplayer.view.GlideImageLoader;
+import com.orhanobut.logger.Logger;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.youth.banner.Banner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 /**
  * Created by xiaoyu on 2017/11/20.
@@ -43,7 +55,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private GridLayoutManager RecommendationsJYWXLayoutManager;
     private GridLayoutManager RecommendationsWXSJLayoutManager;
     private GridLayoutManager RecommendationsSDMZLayoutManager;
-
+    LinearLayout ll_fg_lintenerbookrecommend;
     RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
     private List<RecommendationBean.HotBooklistsBean> hotBooklists;
 
@@ -71,18 +83,24 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationsjywxlists;
     private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationswxsjlists;
     private List<RecommendationBean.RecommendationsBean.BooksBeanOne> recommendationssdmzlists;
+    private RefreshLayout mRefreshLayout;
+    private ClassicsHeader mClassicsHeader;
+    private static boolean isFirstEnter = true;
+    private Drawable mDrawableProgress;
 
-    int spanCount = 4;
-    int spacing = 10;
-    boolean includeEdge = false;
     public static ListenerBookRecommendFragment newInstance() {
         ListenerBookRecommendFragment listenerBookRecommendFragment = new ListenerBookRecommendFragment();
         return listenerBookRecommendFragment;
     }
 
+
     @Override
     View initView() {
         View inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
+        ll_fg_lintenerbookrecommend = (LinearLayout) inflate.findViewById(R.id.ll_fg_lintenerbookrecommend);
+
+        mRefreshLayout = (RefreshLayout) inflate.findViewById(R.id.refreshLayout);
+
         rv_recommend_hotlists = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hotlists);
         rv_recommend_editorspicks = (RecyclerView) inflate.findViewById(R.id.rv_recommend_editorspicks);
         rv_recommend_hothits = (RecyclerView) inflate.findViewById(R.id.rv_recommend_hothits);
@@ -106,6 +124,41 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     @Override
     protected void initData() {
         super.initData();
+
+        int deta = new Random().nextInt(7 * 24 * 60 * 60 * 1000);
+        mClassicsHeader = (ClassicsHeader) mRefreshLayout.getRefreshHeader();
+        mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                //加载 我们来加载更多
+
+                refreshlayout.finishLoadmore();
+                Logger.d("加载结束准备");
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                //刷新
+
+                Logger.d("刷新准备");
+                ll_fg_lintenerbookrecommend.setVisibility(View.VISIBLE);
+
+                listenerBookRecommendPresenter.getdata();
+            }
+        });
+        mClassicsHeader.setLastUpdateTime(new Date(System.currentTimeMillis() - deta));
+        mClassicsHeader.setTimeFormat(new SimpleDateFormat("更新于 MM-dd HH:mm", Locale.CHINA));
+        mClassicsHeader.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
+        mDrawableProgress = mClassicsHeader.getProgressView().getDrawable();
+        if (mDrawableProgress instanceof LayerDrawable) {
+            mDrawableProgress = ((LayerDrawable) mDrawableProgress).getDrawable(0);
+        }
+
+        if (isFirstEnter) {
+            isFirstEnter = false;
+            //触发自动刷新
+            mRefreshLayout.autoRefresh();
+        }
         /**
          * 精选书单
          */
@@ -190,10 +243,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         RecommendationsSDMZLayoutManager = new GridLayoutManager(getActivity(), 4);
         rv_recommend_SDMZ.setLayoutManager(RecommendationsSDMZLayoutManager);
         rv_recommend_SDMZ.setAdapter(recommendRecommendationsSDMZAdapter);
-        
-        listenerBookRecommendPresenter.getdata();
-
-
     }
 
 
@@ -247,6 +296,8 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         editorsPickslists.clear();
         editorsPickslists.addAll(editorspicks);
         recommendEditorsPicksAdapter.notifyDataSetChanged();
+        mRefreshLayout.finishRefresh();
+        Logger.d("傻逼刷新结束==犹如仙女");
     }
 
     /**
@@ -314,6 +365,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
     /**
      * 个性推荐
+     *
      * @param recommendations
      */
     @Override

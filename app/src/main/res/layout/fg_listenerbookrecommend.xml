@@ -1,316 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:srlEnableLoadmore="true">
 
-        <com.youth.banner.Banner
-            android:id="@+id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="精选书单" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_hotlists"
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlDrawableArrowSize="20dp"
+            app:srlDrawableMarginRight="20dp"
+            app:srlDrawableProgress="@drawable/ic_progress_hojder"
+            app:srlDrawableProgressSize="20dp"
+            app:srlEnableLastTime="true"
+            app:srlFinishDuration="500"
+            app:srlTextSizeTime="10dp"
+            app:srlTextSizeTitle="16sp"
+            app:srlTextTimeMarginTop="2dp" />
 
-        <View
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
+            android:layout_height="match_parent">
 
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="编辑推荐" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_editorspicks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/iv_topics_one"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-
-            <ImageView
-                android:id="@+id/iv_topics_two"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="大家都在听" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_hothits"
-            android:layout_width="match_parent"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="最新上架" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_newarrivals"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="名家名作" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_bestauthors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="人气演播" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_recommend_hotrecorders"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/iv_topics_three"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-
-            <ImageView
-                android:id="@+id/iv_topics_four"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <TextView
-            style="@style/tv_standard_14sp"
-            android:text="个性推荐" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <TextView
-                style="@style/tv_standard_white"
-                android:background="@color/violet"
-                android:layout_marginLeft="6dp"
-                android:text="金庸武侠" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recommend_JYWX"
-                android:layout_width="0dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+            <LinearLayout
+                android:id="@+id/ll_fg_lintenerbookrecommend"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:visibility="gone"
+                android:orientation="vertical">
 
-        <View
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="精选书单" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_hotlists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="编辑推荐" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_editorspicks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/iv_topics_one"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/iv_topics_two"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="大家都在听" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_hothits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="最新上架" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_newarrivals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="名家名作" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_bestauthors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="人气演播" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_recommend_hotrecorders"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/iv_topics_three"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/iv_topics_four"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <TextView
+                    style="@style/tv_standard_14sp"
+                    android:text="个性推荐" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        style="@style/tv_standard_white"
+                        android:layout_marginLeft="6dp"
+                        android:background="@color/violet"
+                        android:text="金庸武侠" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_recommend_JYWX"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        style="@style/tv_standard_white"
+                        android:layout_marginLeft="6dp"
+                        android:background="@color/blue"
+                        android:text="武侠世界" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_recommend_WXSJ"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        style="@style/tv_standard_white"
+                        android:layout_marginLeft="6dp"
+                        android:background="@color/green"
+                        android:text="四大名著" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_recommend_SDMZ"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/view" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/iv_topics_five"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/iv_topics_six"
+                        android:layout_width="0dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
+            android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <TextView
-                style="@style/tv_standard_white"
-                android:background="@color/blue"
-                android:layout_marginLeft="6dp"
-                android:text="武侠世界" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recommend_WXSJ"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <TextView
-                style="@style/tv_standard_white"
-                android:background="@color/green"
-                android:layout_marginLeft="6dp"
-                android:text="四大名著" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recommend_SDMZ"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/view" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/iv_topics_five"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-
-            <ImageView
-                android:id="@+id/iv_topics_six"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:scaleType="fitXY" />
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>
