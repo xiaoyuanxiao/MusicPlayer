@@ -37,7 +37,7 @@ public class BizListenerBookRecommend implements IListenerBookRecommendBiz {
 
             @Override
             public Observable<RecommendationBean> getObservable(MyRetroService retrofit) {
-                return retrofit.getData();
+                return retrofit.getRecommendData();
             }
         });
     }

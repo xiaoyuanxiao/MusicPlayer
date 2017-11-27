@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.mynet;
 
 
+import com.mymusic.musicplayer.bean.ClassifyBean;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 
 import retrofit2.http.GET;
@@ -13,7 +14,10 @@ import rx.Observable;
 public interface MyRetroService {
 
     @GET("api/recommendations")
-    Observable<RecommendationBean> getData();
+    Observable<RecommendationBean> getRecommendData();
+
+    @GET("api/labels")
+    Observable<ClassifyBean> getClassifyData();
 
 
 }

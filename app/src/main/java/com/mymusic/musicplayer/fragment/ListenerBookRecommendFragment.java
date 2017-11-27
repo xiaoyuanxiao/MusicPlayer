@@ -27,12 +27,8 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.youth.banner.Banner;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 /**
  * Created by xiaoyu on 2017/11/20.
@@ -122,7 +118,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     protected void initData() {
         super.initData();
 
-        int deta = new Random().nextInt(7 * 24 * 60 * 60 * 1000);
         mClassicsHeader = (ClassicsHeader) mRefreshLayout.getRefreshHeader();
         mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
@@ -143,9 +138,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
                 listenerBookRecommendPresenter.getdata();
             }
         });
-        mClassicsHeader.setLastUpdateTime(new Date(System.currentTimeMillis() - deta));
-        mClassicsHeader.setTimeFormat(new SimpleDateFormat("更新于 MM-dd HH:mm", Locale.CHINA));
-        mClassicsHeader.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
+        mClassicsHeader.setTimeFormat(new DynamicTimeFormat("最后更新 %s"));
         if (isFirstEnter) {
             isFirstEnter = false;
             //触发自动刷新

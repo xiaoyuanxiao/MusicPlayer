@@ -1,6 +1,8 @@
 package com.mymusic.musicplayer.okhttp.Factory;
 
+import com.mymusic.musicplayer.okhttp.Moudle.BizClassifyFragment;
 import com.mymusic.musicplayer.okhttp.Moudle.BizListenerBookRecommend;
+import com.mymusic.musicplayer.okhttp.Moudle.IClassifyFragmentBiz;
 import com.mymusic.musicplayer.okhttp.Moudle.IListenerBookRecommendBiz;
 
 /**
@@ -13,4 +15,7 @@ public class IBizFactory {
         return BizListenerBookRecommend.getInstanse();
     }
 
+    public static IClassifyFragmentBiz getClassifyFragmentBiz() {
+        return BizClassifyFragment.getInstanse();
+    }
 }
