@@ -14,7 +14,6 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlClassicsSpinnerStyle="FixedBehind"
             app:srlDrawableArrowSize="20dp"
             app:srlDrawableMarginRight="20dp"
             app:srlDrawableProgress="@drawable/ic_progress_hojder"

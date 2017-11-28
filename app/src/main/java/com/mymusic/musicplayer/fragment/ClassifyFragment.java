@@ -14,7 +14,6 @@ import com.mymusic.musicplayer.okhttp.Presenter.ClassifyFragmentPresenter;
 import com.mymusic.musicplayer.utils.DynamicTimeFormat;
 import com.mymusic.musicplayer.view.MyDividerDecoration;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 import java.util.ArrayList;
@@ -29,8 +28,8 @@ public class ClassifyFragment extends BaseFragment implements IClassifyFragmentV
     private GridLayoutManager ChineseLayoutManager;
     private GridLayoutManager OtherLayoutManager;
     private RefreshLayout mRefreshLayout;
-    private RecyclerView rv_classify_all, rv_classify_chinese, rv_classify_otherCountries;
     private ClassicsHeader mClassicsHeader;
+    private RecyclerView rv_classify_all, rv_classify_chinese, rv_classify_otherCountries;
     private ClassifyAllAdapter classifyAllAdapter;
     private List<ClassifyBean.LabelsBean> labelsBeanList;
     private ClassifyStandardAdapter classifyStandardChineseAdapter;
@@ -66,7 +65,6 @@ public class ClassifyFragment extends BaseFragment implements IClassifyFragmentV
         super.initData();
         myGridRvDividerDecoration = new MyDividerDecoration(getActivity());
         mClassicsHeader = (ClassicsHeader) mRefreshLayout.getRefreshHeader();
-        mClassicsHeader.setSpinnerStyle(SpinnerStyle.Translate);
         mClassicsHeader.setTimeFormat(new DynamicTimeFormat("最后更新 %s"));
 //        mRefreshLayout.autoRefresh();
 
