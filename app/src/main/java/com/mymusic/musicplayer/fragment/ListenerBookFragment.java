@@ -51,9 +51,9 @@ public class ListenerBookFragment extends BaseFragment {
     private void initFragment() {
         fragments = new ArrayList<Fragment>();
         fragments.add(ListenerBookRecommendFragment.newInstance());
-        fragments.add(ClassifyFragment.newInstance());
+        fragments.add(ListenerBookClassifyFragment.newInstance());
         fragments.add(ListenerBookListsFragment.newInstance());
-        fragments.add(ListenerBookRecommendFragment.newInstance());
+        fragments.add(ListenerBookRankFragment.newInstance());
         showFragment(fragments.get(0));
 
     }

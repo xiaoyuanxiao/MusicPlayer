@@ -22,7 +22,7 @@ import rx.schedulers.Schedulers;
 
 
 public class ReHttpUtils {
-    private static String baseUrl = "https://baiting.longruncloud.com/";
+    private static String baseUrl = "http://baiting.longruncloud.com/";
     private static ReHttpUtils reHttpUtils;
 
     private ReHttpUtils() {

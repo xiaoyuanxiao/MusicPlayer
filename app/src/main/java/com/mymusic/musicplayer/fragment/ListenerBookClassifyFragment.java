@@ -23,7 +23,7 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/27.
  */
 
-public class ClassifyFragment extends BaseFragment implements IClassifyFragmentView {
+public class ListenerBookClassifyFragment extends BaseFragment implements IClassifyFragmentView {
     private GridLayoutManager AllLayoutManager;
     private GridLayoutManager ChineseLayoutManager;
     private GridLayoutManager OtherLayoutManager;
@@ -43,8 +43,8 @@ public class ClassifyFragment extends BaseFragment implements IClassifyFragmentV
 
     MyDividerDecoration myGridRvDividerDecoration;
 
-    public static ClassifyFragment newInstance() {
-        ClassifyFragment classifyFragment = new ClassifyFragment();
+    public static ListenerBookClassifyFragment newInstance() {
+        ListenerBookClassifyFragment classifyFragment = new ListenerBookClassifyFragment();
         return classifyFragment;
     }
 

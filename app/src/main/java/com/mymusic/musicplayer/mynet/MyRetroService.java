@@ -3,6 +3,7 @@ package com.mymusic.musicplayer.mynet;
 
 import com.mymusic.musicplayer.bean.BookListBean;
 import com.mymusic.musicplayer.bean.ClassifyBean;
+import com.mymusic.musicplayer.bean.RankingBean;
 import com.mymusic.musicplayer.bean.RecommendationBean;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public interface MyRetroService {
 
     /**
      * 分类
+     *
      * @return
      */
     @GET("api/labels")
@@ -38,5 +40,12 @@ public interface MyRetroService {
     @GET("api/booklists")
     Observable<List<BookListBean>> getBookListData();
 
+    /**
+     * 榜单
+     *
+     * @return
+     */
+    @GET("api/ranks")
+    Observable<RankingBean> getRankData();
 
 }
