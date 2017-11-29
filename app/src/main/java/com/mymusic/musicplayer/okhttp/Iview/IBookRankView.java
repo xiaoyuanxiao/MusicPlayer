@@ -7,15 +7,5 @@ import com.mymusic.musicplayer.bean.RankingBean;
  */
 
 public interface IBookRankView {
-    void setAuthorData(RankingBean.AuthorBean authorData);
-
-    void setListeningData(RankingBean.ListeningBean listeningData);
-
-    void setNewArrivalsData(RankingBean.NewArrivalsBean newArrivalsData);
-
-    void setRecorderData(RankingBean.RecorderBeanRecond recorderData);
-
-    void setSalesData(RankingBean.SalesBean salesData);
-
-    void setSpendingData(RankingBean.SpendingBean spendingData);
+    void getAllData(RankingBean rankingBean);
 }

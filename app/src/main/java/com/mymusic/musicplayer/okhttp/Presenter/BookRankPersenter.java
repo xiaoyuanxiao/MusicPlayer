@@ -25,18 +25,7 @@ public class BookRankPersenter {
         iBookRankBiz.getData(new BookRankListener() {
             @Override
             public void onSuccess(RankingBean rankingBean) {
-                RankingBean.AuthorBean author = rankingBean.getAuthor();
-                RankingBean.ListeningBean listening = rankingBean.getListening();
-                RankingBean.NewArrivalsBean new_arrivals = rankingBean.getNew_arrivals();
-                RankingBean.RecorderBeanRecond recorder = rankingBean.getRecorder();
-                RankingBean.SalesBean sales = rankingBean.getSales();
-                RankingBean.SpendingBean spending = rankingBean.getSpending();
-                iBookRankView.setAuthorData(author);
-                iBookRankView.setListeningData(listening);
-                iBookRankView.setNewArrivalsData(new_arrivals);
-                iBookRankView.setRecorderData(recorder);
-                iBookRankView.setSalesData(sales);
-                iBookRankView.setSpendingData(spending);
+                iBookRankView.getAllData(rankingBean);
             }
 
             @Override

@@ -53,6 +53,7 @@
                 android:background="@color/view" />
 
             <RelativeLayout
+                android:id="@+id/rl_listenerbookrank_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
@@ -125,6 +126,7 @@
                 android:background="@color/view" />
 
             <RelativeLayout
+                android:id="@+id/rl_listenerbookrank_persons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">
@@ -197,6 +199,7 @@
                 android:background="@color/view" />
 
             <RelativeLayout
+                android:id="@+id/rl_listenerbookrank_recorder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp">

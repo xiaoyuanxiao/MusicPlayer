@@ -4,4 +4,7 @@
     <string name="classify">分类</string>
     <string name="booklist">书单</string>
     <string name="list">榜单</string>
+    <string name="colon">&#160;:&#160;</string>
+    <string name="space">&#160;&#160;</string>
+
 </resources>
