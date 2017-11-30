@@ -6,7 +6,7 @@
 
         <variable
             name="salesBean"
-            type="com.mymusic.musicplayer.bean.RankingBean.SalesBean.BooksBeanX" />
+            type="com.mymusic.musicplayer.bean.RankingBean.SalesBean.BooksBeanDes" />
     </data>
 
     <RelativeLayout

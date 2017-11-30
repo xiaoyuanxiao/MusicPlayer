@@ -104,7 +104,7 @@ public class ListenerBookRankFragment extends BaseFragment implements IBookRankV
     public void getAllData(RankingBean rankingBean) {
         refreshLayout.finishRefresh();
         RankingBean.SalesBean sales = rankingBean.getSales();
-        List<RankingBean.SalesBean.BooksBeanX> books = rankingBean.getSales().getBooks();
+        List<RankingBean.SalesBean.BooksBeanDes> books = rankingBean.getSales().getBooks();
         tv_type_sales.setText(sales.getTitle());
         tv_listenerbookrank_sales_one.setText(books.get(0).getBook().getTitle());
         tv_listenerbookrank_sales_two.setText(books.get(1).getBook().getTitle());

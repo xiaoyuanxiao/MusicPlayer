@@ -14,10 +14,8 @@ import java.util.List;
  * Created by xiaoyu on 2017/11/29.
  */
 
-public class SalesRankAdapter extends BaseDatabindingAdapter<RankingBean.SalesBean.BooksBeanX, SalesRankAdapter.ViewHolder> {
-
-
-    public SalesRankAdapter(List<RankingBean.SalesBean.BooksBeanX> data) {
+public class SalesRankAdapter extends BaseDatabindingAdapter<RankingBean.SalesBean.BooksBeanDes, SalesRankAdapter.ViewHolder> {
+    public SalesRankAdapter(List<RankingBean.SalesBean.BooksBeanDes> data) {
         super(data);
     }
 
@@ -33,7 +31,8 @@ public class SalesRankAdapter extends BaseDatabindingAdapter<RankingBean.SalesBe
 
     @Override
     public void onBindViewHolder(SalesRankAdapter.ViewHolder holder, int position) {
-        RankingBean.SalesBean.BooksBeanX booksBeanX = data.get(position);
+        //这里就是绑定数据的地方
+        RankingBean.SalesBean.BooksBeanDes booksBeanX = data.get(position);
         holder.databinding.setSalesBean(booksBeanX);
         if (position > 8) {
             holder.databinding.tvItemSalesrankNumber.setText(String.valueOf(position + 1));
@@ -53,7 +52,7 @@ public class SalesRankAdapter extends BaseDatabindingAdapter<RankingBean.SalesBe
 
         public ViewHolder(ViewDataBinding itemView) {
             super(itemView.getRoot());
-            this.databinding = (SalesRankData) itemView;
+            this.databinding = (SalesRankData) itemView;//把ViewDataBinding强转成我们定义的类
         }
     }
 }

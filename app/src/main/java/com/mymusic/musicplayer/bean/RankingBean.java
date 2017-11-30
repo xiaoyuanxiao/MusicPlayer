@@ -623,7 +623,7 @@ public class RankingBean {
 
         private String title;
         private String subtitle;
-        private List<BooksBeanX> books;
+        private List<BooksBeanDes> books;
 
         public String getTitle() {
             return title;
@@ -641,15 +641,15 @@ public class RankingBean {
             this.subtitle = subtitle;
         }
 
-        public List<BooksBeanX> getBooks() {
+        public List<BooksBeanDes> getBooks() {
             return books;
         }
 
-        public void setBooks(List<BooksBeanX> books) {
+        public void setBooks(List<BooksBeanDes> books) {
             this.books = books;
         }
 
-        public static class BooksBeanX {
+        public static class BooksBeanDes {
             /**
              * book : {"id":970,"title":"城南旧事","description":"沉沉的相思、淡淡的哀愁，恰到好处的真诚与温度，打动了一代又一代的读者。\r\n\r\n《城南旧事》是著名女作家林海音创作的、以其七岁到十三岁的生活为背景的一部自传体短篇小说集。全书透过小主人公英子童稚的双眼，观看大人世界的喜怒哀乐、悲欢离合，淡淡的哀愁与浓浓的思念感染了一代又一代读者，是林海音的代表作，也是儿童文学史上的一部名著。","thumbnail":"http://jyts-public-oss.longruncloud.com/images/4ee98d67ccf5e5d33db6eba5046e1e289eb8d787f7888aab69280e169b4556c5.jpg?x-oss-process=image/resize,w_256,h_256","cover":"http://jyts-public-oss.longruncloud.com/images/4ee98d67ccf5e5d33db6eba5046e1e289eb8d787f7888aab69280e169b4556c5.jpg","author":{"id":343,"title":"作者","name":"林海音","description":"林海音，原名林含英，小名英子，祖籍广东蕉岭，生于日本大阪，作家。提出了\u201c纯文学\u201d的概念，提携了大量台湾的文学青年。一生创作了多篇长篇小说和短篇小说集，产量十分可观。其中小说《城南旧事》（1960年）最为著名。她所创立的纯文学出版社（1968-1995）堪称中国第一个文学专业出版社，曾出版了许多脍炙人口的好书。","head":"http://jyts-public-oss.longruncloud.com/images/authors/dd18824c2375ac0fc6fed3036763bd4bfda1a2cbfdd3f02bb676aca8b89260f4.jpg"},"recorder":{"id":305,"title":"演播","name":"阿珂","description":"略","head":"http://jyts-public-oss.longruncloud.com/images/recorders/1310759a4f99d744feef3a6d5f20200384b85255fd84b80e40b1feec92fd239d.jpg"},"is_bundle":false,"status_code":0,"status":"完结","section_pages":2}
              * stat : {"sales":155}

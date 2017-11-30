@@ -22,19 +22,14 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
 
     private SalesData salesData;
     private LinearLayoutManager linearLayoutManager;
-    private List<RankingBean.SalesBean.BooksBeanX> salesBeen;
+    private List<RankingBean.SalesBean.BooksBeanDes> salesBeen;
     private SalesRankAdapter salesRankAdapter;
     private BookRankPersenter bookRankPersenter = new BookRankPersenter(this);
 
-    @Override
-    public void setOnclick() {
-
-    }
 
     @Override
     void initdatabinding() {
         salesData = DataBindingUtil.setContentView(this, R.layout.activity_salesrank);
-
     }
 
     @Override
@@ -55,9 +50,12 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
     }
 
     @Override
+    public void setOnclick() {
+    }
+    @Override
     public void getAllData(RankingBean rankingBean) {
         salesBeen.clear();
-        List<RankingBean.SalesBean.BooksBeanX> books = rankingBean.getSales().getBooks();
+        List<RankingBean.SalesBean.BooksBeanDes> books = rankingBean.getSales().getBooks();
         salesBeen.addAll(books);
         salesRankAdapter.notifyDataSetChanged();
     }
