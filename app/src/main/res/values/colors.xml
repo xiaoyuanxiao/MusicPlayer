@@ -15,4 +15,5 @@
     <color name="green">#56bd88</color>
     <color name="orange">#fe8158</color>
     <color name="bg_gray">#f9f9f9</color>
+    <color name="bg_title">#f29270</color>
 </resources>

@@ -29,7 +29,7 @@ public class ListenerBookRankFragment extends BaseFragment implements IBookRankV
     private TextView tv_listenerbookrank_recorder_one, tv_listenerbookrank_recorder_two, tv_listenerbookrank_recorder_three, tv_listenerbookrank_recorder_four;
     private BookRankPersenter bookRankPersenter = new BookRankPersenter(this);
     private RelativeLayout rl_listenerbookrank_sales, rl_listenerbookrank_persons, rl_listenerbookrank_recorder;
-
+    Intent intent;
 
     public static ListenerBookRankFragment newInstance() {
         ListenerBookRankFragment listenerBookRankFragment = new ListenerBookRankFragment();
@@ -88,13 +88,19 @@ public class ListenerBookRankFragment extends BaseFragment implements IBookRankV
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_listenerbookrank_sales:
-                startActivity(new Intent(getActivity(), SalesRankActivity.class));
+                intent = new Intent(getActivity(), SalesRankActivity.class);
+                intent.putExtra("rank", "sales");
+                startActivity(intent);
                 break;
             case R.id.rl_listenerbookrank_persons:
-
+                intent = new Intent(getActivity(), SalesRankActivity.class);
+                intent.putExtra("rank", "persons");
+                startActivity(intent);
                 break;
             case R.id.rl_listenerbookrank_recorder:
-
+                intent = new Intent(getActivity(), SalesRankActivity.class);
+                intent.putExtra("rank", "recorder");
+                startActivity(intent);
                 break;
         }
     }

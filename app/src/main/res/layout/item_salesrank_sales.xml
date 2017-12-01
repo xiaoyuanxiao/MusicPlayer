@@ -7,6 +7,10 @@
         <variable
             name="salesBean"
             type="com.mymusic.musicplayer.bean.RankingBean.SalesBean.BooksBeanDes" />
+
+        <variable
+            name="itemtestnum"
+            type="java.lang.String" />
     </data>
 
     <RelativeLayout
@@ -22,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="10sp"
-            android:text="01"
+            android:text="@{itemtestnum}"
             android:textColor="@color/main_buttomtext_yellow"
             android:textSize="14sp" />
 

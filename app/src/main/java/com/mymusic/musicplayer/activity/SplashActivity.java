@@ -1,7 +1,6 @@
 package com.mymusic.musicplayer.activity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Handler;
 import android.view.View;
 
@@ -18,13 +17,22 @@ public class SplashActivity extends BaseActivity {
     private SplashActivityBinding splashActivityBinding;
 
     @Override
-    public void setOnclick() {
-
+    int initview() {
+        return R.layout.activity_splash;
     }
 
     @Override
-    void initdatabinding() {
-        splashActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
+    public int getTitleview() {
+        return View.GONE;
+    }
+
+    @Override
+    void initdata() {
+        splashActivityBinding = getBind();
+        initData();
+    }
+
+    private void initData() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -32,7 +40,6 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
         }, 2000);
-
     }
 
     @Override

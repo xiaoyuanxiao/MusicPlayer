@@ -1,6 +1,5 @@
 package com.mymusic.musicplayer.activity;
 
-import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,10 +21,26 @@ public class MainActivity extends BaseActivity {
     private MainData mainData;
     private ArrayList<Fragment> fragments;
     private FragmentManager fragmentManager;
-    @Override
-    void initdatabinding() {
-        mainData = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+    @Override
+    int initview() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    void initdata() {
+        mainData = getBind();
+        initdatabinding();
+        setOnclick();
+        initFragment();
+    }
+
+    @Override
+    public int getTitleview() {
+        return View.GONE;
+    }
+
+    void initdatabinding() {
         //资源集合，mipmap和selector都可以
         int[] drawables = {R.drawable.main_selector_book, R.drawable.main_selector_radiostation,
                 R.drawable.main_selector_campaign, R.drawable.main_selector_mine};
@@ -33,33 +48,25 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
     public void setOnclick() {
         mainData.rgMainListenbook.setOnClickListener(this);
         mainData.rgMainRadiostation.setOnClickListener(this);
         mainData.rgMainCampaign.setOnClickListener(this);
         mainData.rgMainMine.setOnClickListener(this);
-
     }
 
-    @Override
-    public void initData() {
-        super.initData();
-        fragmentManager = getSupportFragmentManager();
-        initFragment();
-    }
 
     /**
      * 初始化所有基fragment
      */
     private void initFragment() {
+        fragmentManager = getSupportFragmentManager();
         fragments = new ArrayList<Fragment>();
         fragments.add(ListenerBookFragment.newInstance());
         fragments.add(ListenerBookFragment.newInstance());
         fragments.add(ListenerBookFragment.newInstance());
         fragments.add(ListenerBookFragment.newInstance());
         showFragment(fragments.get(0));
-
     }
 
     /**

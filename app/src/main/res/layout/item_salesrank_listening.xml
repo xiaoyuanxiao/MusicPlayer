@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="com.mymusic.musicplayer.SalesRankListenData">
+
+        <variable
+            name="personBean"
+            type="com.mymusic.musicplayer.bean.RankingBean.ListeningBean.PersonsBeanX" />
+
+        <variable
+            name="itemtestnum"
+            type="java.lang.String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_item_salesranklisten_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10sp"
+                android:text="@{itemtestnum}"
+                android:textColor="@color/main_buttomtext_yellow"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_item_salesranklisten"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                app:imgurl="@{personBean.account.head}" />
+
+            <TextView
+                android:id="@+id/tv_item_salesranklisten_name"
+                style="@style/tv_standard_12sp"
+                android:text="@{personBean.account.nickname}" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/view" />
+    </LinearLayout>
+</layout>

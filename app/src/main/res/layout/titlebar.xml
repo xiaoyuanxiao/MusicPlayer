@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:background="@color/main_buttomtext_yellow"
-    android:layout_height="30dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="返回"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        android:drawableLeft="@mipmap/back" />
+    <data class="com.mymusic.musicplayer.BaseInfoData">
 
-</LinearLayout>
+        <variable
+            name="baseInfoActivityonclic"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/bg_title">
+
+            <TextView
+                android:id="@+id/tv_titlebar_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/back"
+                android:drawablePadding="5dp"
+                android:onClick="@{baseInfoActivityonclic::onClick}"
+                android:paddingLeft="10dp"
+                android:text="返回"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_titlebar_center"
+                style="@style/tv_standard_white_10sp"
+                android:layout_centerInParent="true"
+                android:text="djasfd" />
+
+            <ImageView
+                android:id="@+id/iv_titlebar_right"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="10dp"
+                android:src="@mipmap/ic_player_bar_btn" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/content_parnt_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </LinearLayout>
+</layout>

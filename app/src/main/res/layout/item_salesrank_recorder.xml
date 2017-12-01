@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="recorderBean"
+            type="com.mymusic.musicplayer.bean.RankingBean.RecorderBeanRecond.RecordersBean" />
+
+        <variable
+            name="itemtestnum"
+            type="java.lang.String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10sp"
+                android:text="@{itemtestnum}"
+                android:textColor="@color/main_buttomtext_yellow"
+                android:textSize="14sp" />
+
+            <com.mymusic.musicplayer.view.NoBorderCircleImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                app:imgurl="@{recorderBean.head}" />
+
+            <TextView
+                style="@style/tv_standard_12sp"
+                android:text="@{recorderBean.name}" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/view" />
+    </LinearLayout>
+</layout>
