@@ -32,17 +32,13 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
     private String rank;
     private Intent intent;
 
+
     @Override
     int initview() {
         return R.layout.activity_salesrank;
     }
 
     @Override
-    void initdata() {
-        initdatabinding();
-        initData();
-    }
-
     void initdatabinding() {
         salesData = getBind();
     }
@@ -66,9 +62,6 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
             recordersRankAdapter = new ListenerBookRankAdapter(recordersBean, R.layout.item_salesrank_recorder, BR.recorderBean);
             salesData.rvSalesRank.setAdapter(recordersRankAdapter);
         }
-
-
-
         bookRankPersenter.getData();
         salesData.refreshLayout.autoRefresh();
     }

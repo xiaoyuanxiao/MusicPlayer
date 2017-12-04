@@ -22,17 +22,16 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
+    void initdatabinding() {
+        splashActivityBinding = getBind();
+    }
+
+    @Override
     public int getTitleview() {
         return View.GONE;
     }
 
-    @Override
-    void initdata() {
-        splashActivityBinding = getBind();
-        initData();
-    }
-
-    private void initData() {
+    public void initData() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

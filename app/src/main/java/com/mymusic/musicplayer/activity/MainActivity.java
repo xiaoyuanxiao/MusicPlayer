@@ -28,24 +28,24 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    void initdata() {
-        mainData = getBind();
-        initdatabinding();
-        setOnclick();
-        initFragment();
-    }
-
-    @Override
     public int getTitleview() {
         return View.GONE;
     }
 
     void initdatabinding() {
+        mainData = getBind();
         //资源集合，mipmap和selector都可以
         int[] drawables = {R.drawable.main_selector_book, R.drawable.main_selector_radiostation,
                 R.drawable.main_selector_campaign, R.drawable.main_selector_mine};
         RadioButtonImgUtil.setRadioButtonImg(this, drawables, 35, mainData.rgMainListenbook, mainData.rgMainRadiostation, mainData.rgMainCampaign, mainData.rgMainMine);
 
+    }
+
+    @Override
+    void initData() {
+
+        setOnclick();
+        initFragment();
     }
 
     public void setOnclick() {

@@ -32,9 +32,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         baseInfoData.rlTitlebar.setVisibility(getTitleview());
         baseInfoData.setBaseInfoActivityonclic(this);
         LayoutInflater from = LayoutInflater.from(this);
-        inflate = DataBindingUtil.inflate(from, initview(), null, false);
-        baseInfoData.contentParntView.addView(inflate.getRoot());
-        initdata();
+        inflate = DataBindingUtil.inflate(from, initview(), baseInfoData.contentParntView, true);
+        initdatabinding();
+        initData();
     }
 
     public <T extends ViewDataBinding> T getBind() {
@@ -43,7 +43,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     abstract int initview();
 
-    abstract void initdata();
+    abstract void initdatabinding();
+
+    abstract void initData();
 
     @Override
     public void onClick(View view) {
