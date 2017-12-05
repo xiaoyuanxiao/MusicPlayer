@@ -23,7 +23,7 @@ import java.util.List;
  * Created by xiaoyu on 2017/12/4.
  */
 
-public class BookRankDetailsActivity extends BaseActivity implements IBookRankDetailsView {
+public class BookRankDetailsActivity extends BaseActivity implements IBookRankDetailsView, View.OnClickListener {
 
     private RankDetailsBinding detailsBinding;
     private BookRankDetailsPresenter bookRankDetailsPresenter = new BookRankDetailsPresenter(this);
@@ -87,13 +87,10 @@ public class BookRankDetailsActivity extends BaseActivity implements IBookRankDe
         Bundle bundle = new Bundle();
         bundle.putString("Synopsis", bookRankDetailsBean.getBook().getDescription());//这里的values就是我们要传的值
         rankSynopsisFragment.setArguments(bundle);
-        f
         fragments.add(rankSynopsisFragment);
-        fragments.add(ListenerBookFragment.azsvasdz
-                n
-                ASWESDFG
-                ewInstance());
-        fragments.add(ListenerBookFragment.newInstasdf
+        fragments.add(ListenerBookFragment.newInstance());
+        fragments.add(ListenerBookFragment.newInstance());
+        showFragment(fragments.get(0));
     }
 
     @Override

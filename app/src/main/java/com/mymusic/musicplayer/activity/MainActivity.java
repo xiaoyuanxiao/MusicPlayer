@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by xiaoyu on 2017/11/14.
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private MainData mainData;
     private ArrayList<Fragment> fragments;

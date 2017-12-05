@@ -27,7 +27,6 @@ public class FragmentUtils {
         }
         transaction.commit();
     }
-
     /**
      * 隐藏其他fragment
      *

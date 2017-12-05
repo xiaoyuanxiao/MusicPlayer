@@ -17,7 +17,6 @@ public class RankSynopsisFragment extends BaseFragment {
         RankSynopsisFragment rankSynopsisFragment = new RankSynopsisFragment();
         return rankSynopsisFragment;
     }
-
     @Override
     View initView() {
         View inflate = View.inflate(getActivity(), R.layout.fg_ranksynopsis, null);

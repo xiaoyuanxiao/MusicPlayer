@@ -40,9 +40,4 @@ public class SplashActivity extends BaseActivity {
             }
         }, 2000);
     }
-
-    @Override
-    public void onClick(View view) {
-
-    }
 }
