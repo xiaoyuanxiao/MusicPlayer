@@ -4,43 +4,27 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
- * Created by burning on 2017/11/22.
+ * Created by fairy on 2017/11/30.
  * When I wrote this, only God and I understood what I was doing
  * Now, God only knows
- * -------------------------//┏┓　　　┏┓
- * -------------------------//┏┛┻━━━┛┻┓
- * -------------------------//┃　　　　　　　┃
- * -------------------------//┃　　　━　　　┃
- * -------------------------//┃　┳┛　┗┳　┃
- * -------------------------//┃　　　　　　　┃
- * -------------------------//┃　　　┻　　　┃
- * -------------------------//┃　　　　　　　┃
- * -------------------------//┗━┓　　　┏━┛
- * -------------------------//┃　　　┃  神兽保佑
- * -------------------------//┃　　　┃  代码无BUG！
- * -------------------------//┃　　　┗━━━┓
- * -------------------------//┃　　　　　　　┣┓
- * -------------------------//┃　　　　　　　┏┛
- * -------------------------//┗┓┓┏━┳┓┏┛
- * -------------------------// ┃┫┫　┃┫┫
- * -------------------------// ┗┻┛　┗┻┛
  */
 
 public class BaseRecyleAdapter extends RecyclerView.Adapter<BaseRecyleAdapter.ViewHolder> {
     public List<?> data;
-    int layout;
-    int varid;
+    Map<Integer, Integer> hashMap;
 
-    public BaseRecyleAdapter(List<?> data, int layout, int varid) {
+    public BaseRecyleAdapter(List<?> data, Map<Integer, Integer> hashMap) {
         this.data = data;
-        this.layout = layout;
-        this.varid = varid;
+        this.hashMap = hashMap;
     }
 
     @Override
@@ -50,14 +34,44 @@ public class BaseRecyleAdapter extends RecyclerView.Adapter<BaseRecyleAdapter.Vi
         return new ViewHolder(inflate);
     }
 
+    /**
+     * 默认取值 MAP 第一个Key
+     *
+     * @param position
+     * @return
+     */
     @Override
     public int getItemViewType(int position) {
-        return layout;
+        Set<Integer> integers = hashMap.keySet();
+        return integers.iterator().next();
     }
 
+
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        Integer varid = hashMap.get(getItemViewType(position));
         holder.dataBinding.setVariable(varid, data.get(position));
+        if (onRecycleitemOnClic != null)
+            holder.dataBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRecycleitemOnClic.onItemClic(view, position);
+                }
+            });
+    }
+
+    public OnRecycleitemOnClic getOnRecycleitemOnClic() {
+        return onRecycleitemOnClic;
+    }
+
+    public void setOnRecycleitemOnClic(OnRecycleitemOnClic onRecycleitemOnClic) {
+        this.onRecycleitemOnClic = onRecycleitemOnClic;
+    }
+
+    OnRecycleitemOnClic onRecycleitemOnClic;
+
+    public interface OnRecycleitemOnClic {
+        void onItemClic(View view, int position);
     }
 
     @Override

@@ -22,19 +22,24 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     ViewDataBinding inflate;
     int titleview = View.VISIBLE;
+    BaseInfoData baseInfoData;
 
     public int getTitleview() {
         return titleview;
     }
 
     private void initBaseTitle() {
-        BaseInfoData baseInfoData = DataBindingUtil.setContentView(this, R.layout.titlebar);
+        baseInfoData = DataBindingUtil.setContentView(this, R.layout.titlebar);
         baseInfoData.rlTitlebar.setVisibility(getTitleview());
         baseInfoData.setBaseInfoActivityonclic(this);
         LayoutInflater from = LayoutInflater.from(this);
         inflate = DataBindingUtil.inflate(from, initview(), baseInfoData.contentParntView, true);
         initdatabinding();
         initData();
+    }
+
+    public void settitlename(String titlename) {
+        baseInfoData.setTitlename(titlename);
     }
 
     public <T extends ViewDataBinding> T getBind() {

@@ -2,6 +2,7 @@ package com.mymusic.musicplayer.mynet;
 
 
 import com.mymusic.musicplayer.bean.BookListBean;
+import com.mymusic.musicplayer.bean.BookRankDetailsBean;
 import com.mymusic.musicplayer.bean.ClassifyBean;
 import com.mymusic.musicplayer.bean.RankingBean;
 import com.mymusic.musicplayer.bean.RecommendationBean;
@@ -9,6 +10,7 @@ import com.mymusic.musicplayer.bean.RecommendationBean;
 import java.util.List;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -47,5 +49,12 @@ public interface MyRetroService {
      */
     @GET("api/ranks")
     Observable<RankingBean> getRankData();
+
+    /**
+     * 榜单详情
+     */
+    @GET("api/book")
+    Observable<BookRankDetailsBean> getRankDetailsData(@Query("id") int id);
+
 
 }

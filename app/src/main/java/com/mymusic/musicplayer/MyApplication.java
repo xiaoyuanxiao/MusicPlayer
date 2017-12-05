@@ -12,6 +12,7 @@ import com.orhanobut.logger.Logger;
 
 public class MyApplication extends Application {
     private static Application app;
+    public static int ID;
 
     @Override
     public void onCreate() {

@@ -59,6 +59,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="tv_standard_9sp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="tv_standard_white_10sp">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -66,10 +72,17 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="tv_standard_9sp">
+    <style name="tv_standard_9sp_gray">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">9sp</item>
+        <item name="android:textColor">@color/gray_hotlists</item>
+    </style>
+
+    <style name="tv_standard_10sp_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/gray_hotlists</item>
     </style>
 </resources>

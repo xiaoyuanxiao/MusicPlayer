@@ -6,5 +6,10 @@
     <string name="list">榜单</string>
     <string name="colon">&#160;:&#160;</string>
     <string name="space">&#160;&#160;</string>
+    <string name="quotes">&#34;&#34;</string>
+    <string name="gong">共</string>
+    <string name="ji">集</string>
+    <string name="zongjia">&#160;总价:&#160;</string>
+    <string name="langbi">&#160;朗币</string>
 
 </resources>

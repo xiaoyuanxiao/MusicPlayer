@@ -3,6 +3,7 @@ package com.mymusic.musicplayer.activity;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.mymusic.musicplayer.BR;
 import com.mymusic.musicplayer.R;
@@ -14,13 +15,15 @@ import com.mymusic.musicplayer.okhttp.Iview.IBookRankView;
 import com.mymusic.musicplayer.okhttp.Presenter.BookRankPersenter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xiaoyu on 2017/11/29.
  */
 
-public class SalesRankActivity extends BaseActivity implements IBookRankView {
+public class SalesRankActivity extends BaseActivity implements IBookRankView, AdapterView.OnItemClickListener {
 
     private SalesData salesData;
     private LinearLayoutManager linearLayoutManager;
@@ -51,15 +54,23 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
 
         if ("sales".equals(rank)) {
             salesBeen = new ArrayList<>();
-            salesRankAdapter = new ListenerBookRankAdapter(salesBeen, R.layout.item_salesrank_sales, BR.salesBean);
+            Map<Integer, Integer> map = new HashMap<>();
+            map.put(R.layout.item_salesrank_sales, BR.salesBean);
+            salesRankAdapter = new ListenerBookRankAdapter(salesBeen, map);
             salesData.rvSalesRank.setAdapter(salesRankAdapter);
+
+
         } else if ("persons".equals(rank)) {
             personsBean = new ArrayList<>();
-            personsRankAdapter = new ListenerBookRankAdapter(personsBean, R.layout.item_salesrank_listening, BR.personBean);
+            Map<Integer, Integer> map1 = new HashMap<>();
+            map1.put(R.layout.item_salesrank_listening, BR.personBean);
+            personsRankAdapter = new ListenerBookRankAdapter(personsBean, map1);
             salesData.rvSalesRank.setAdapter(personsRankAdapter);
         } else if ("recorder".equals(rank)) {
             recordersBean = new ArrayList<>();
-            recordersRankAdapter = new ListenerBookRankAdapter(recordersBean, R.layout.item_salesrank_recorder, BR.recorderBean);
+            Map<Integer, Integer> map2 = new HashMap<>();
+            map2.put(R.layout.item_salesrank_recorder, BR.recorderBean);
+            recordersRankAdapter = new ListenerBookRankAdapter(recordersBean, map2);
             salesData.rvSalesRank.setAdapter(recordersRankAdapter);
         }
         bookRankPersenter.getData();
@@ -73,6 +84,7 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
 
         }
     }
+
 
 
     @Override
@@ -95,6 +107,11 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView {
             recordersBean.addAll(recorders);
             recordersRankAdapter.notifyDataSetChanged();
         }
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
 }
