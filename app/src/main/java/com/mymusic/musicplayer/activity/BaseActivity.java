@@ -13,7 +13,7 @@ import com.mymusic.musicplayer.R;
 /**
  * Created by 小羽 on 2017/3/22.
  */
-public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
+public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +31,16 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     private void initBaseTitle() {
         baseInfoData = DataBindingUtil.setContentView(this, R.layout.titlebar);
         baseInfoData.rlTitlebar.setVisibility(getTitleview());
-        baseInfoData.setBaseInfoActivityonclic(this);
         LayoutInflater from = LayoutInflater.from(this);
         inflate = DataBindingUtil.inflate(from, initview(), baseInfoData.contentParntView, true);
         initdatabinding();
         initData();
+        baseInfoData.setBaseInfoActivityonclic(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void settitlename(String titlename) {
@@ -52,8 +57,4 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     abstract void initData();
 
-    @Override
-    public void onClick(View view) {
-        finish();
-    }
 }

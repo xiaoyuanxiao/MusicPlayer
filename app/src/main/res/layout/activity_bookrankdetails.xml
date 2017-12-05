@@ -7,6 +7,10 @@
         <variable
             name="detailsBean"
             type="com.mymusic.musicplayer.bean.BookRankDetailsBean" />
+
+        <variable
+            name="bookRankDetailsActivityclick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout
@@ -40,9 +44,9 @@
                     android:text="@{detailsBean.book.title}" />
 
                 <TextView
-                    android:layout_marginTop="5dp"
                     android:id="@+id/tv_bookrankdetail_author"
                     style="@style/tv_standard_10sp_gray"
+                    android:layout_marginTop="5dp"
                     android:text="@{detailsBean.book.author.title+@string/colon+detailsBean.book.author.name}" />
 
                 <TextView
@@ -115,9 +119,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:button="@null"
                 android:drawableTop="@mipmap/h_icon04_collect"
                 android:gravity="center"
-                android:button="@null"
                 android:text="@{detailsBean.stat.count_of_favorite+@string/quotes}"
                 android:textColor="@color/gray_hotlists"
                 android:textSize="10sp" />
@@ -127,9 +131,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:button="@null"
                 android:drawableTop="@mipmap/h_icon04_share"
                 android:gravity="center"
-                android:button="@null"
                 android:text="@{detailsBean.stat.count_of_share+@string/quotes}"
                 android:textColor="@color/gray_hotlists"
                 android:textSize="10sp" />
@@ -139,9 +143,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:button="@null"
                 android:drawableTop="@mipmap/h_icon04_comment"
                 android:gravity="center"
-                android:button="@null"
                 android:text="@{detailsBean.stat.count_of_comment+@string/quotes}"
                 android:textColor="@color/gray_hotlists"
                 android:textSize="10sp" />
@@ -161,12 +165,14 @@
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/rb_bookrankdetail_synopsis"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/gray_selector_bg"
                 android:button="@null"
                 android:gravity="center"
+                android:onClick="@{bookRankDetailsActivityclick::onClick}"
                 android:text="简介"
                 android:textColor="@color/white_selector_bg"
                 android:textSize="10sp" />
@@ -177,12 +183,14 @@
                 android:background="@color/main_buttomtext_grey" />
 
             <RadioButton
+                android:id="@+id/rb_bookrankdetail_comment"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/gray_selector_bg"
                 android:button="@null"
                 android:gravity="center"
+                android:onClick="@{bookRankDetailsActivityclick::onClick}"
                 android:text="评论"
                 android:textColor="@color/white_selector_bg"
                 android:textSize="10sp" />
@@ -193,12 +201,14 @@
                 android:background="@color/main_buttomtext_grey" />
 
             <RadioButton
+                android:id="@+id/rb_bookrankdetail_catalog"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/gray_selector_bg"
                 android:button="@null"
                 android:gravity="center"
+                android:onClick="@{bookRankDetailsActivityclick::onClick}"
                 android:text="目录"
                 android:textColor="@color/white_selector_bg"
                 android:textSize="10sp" />
@@ -208,8 +218,8 @@
             android:id="@+id/ll_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:orientation="vertical"></LinearLayout>
 
 

@@ -77,16 +77,6 @@ public class SalesRankActivity extends BaseActivity implements IBookRankView, Ad
         salesData.refreshLayout.autoRefresh();
     }
 
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-        }
-    }
-
-
-
     @Override
     public void getAllData(RankingBean rankingBean) {
         salesData.refreshLayout.finishRefresh();

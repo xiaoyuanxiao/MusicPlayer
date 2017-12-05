@@ -12,16 +12,19 @@ import android.view.ViewGroup;
 /**
  * Created by xiaoyu on 2016/2/24.
  */
-public abstract class BaseFragment extends Fragment implements View.OnClickListener{
+public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     View view;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +32,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         view = initView();
         return view;
     }
+
     abstract View initView();
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

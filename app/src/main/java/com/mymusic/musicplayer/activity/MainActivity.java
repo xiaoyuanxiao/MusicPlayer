@@ -2,12 +2,12 @@ package com.mymusic.musicplayer.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.mymusic.musicplayer.MainData;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.fragment.ListenerBookFragment;
+import com.mymusic.musicplayer.utils.FragmentUtils;
 import com.mymusic.musicplayer.utils.RadioButtonImgUtil;
 
 import java.util.ArrayList;
@@ -66,53 +66,23 @@ public class MainActivity extends BaseActivity {
         fragments.add(ListenerBookFragment.newInstance());
         fragments.add(ListenerBookFragment.newInstance());
         fragments.add(ListenerBookFragment.newInstance());
-        showFragment(fragments.get(0));
+        FragmentUtils.showFragment(fragments.get(0), R.id.ll_container, fragmentManager, fragments);
     }
-
-    /**
-     * 显示fragment
-     *
-     * @param fragment 要显示的fragment
-     */
-    private void showFragment(Fragment fragment) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        hideFragment(transaction);
-        if (fragment.isAdded()) {
-            transaction.show(fragment);
-        } else {
-            transaction.add(R.id.ll_container, fragment, fragment.getClass().getName());
-        }
-        transaction.commit();
-    }
-
-    /**
-     * 隐藏其他fragment
-     *
-     * @param transaction 控制器
-     */
-    private void hideFragment(FragmentTransaction transaction) {
-        for (int i = 0; fragments.size() > i; i++) {
-            if (fragments.get(i).isVisible()) {
-                transaction.hide(fragments.get(i));
-            }
-        }
-    }
-
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rg_main_listenbook:
-                showFragment(fragments.get(0));
+                FragmentUtils.showFragment(fragments.get(0), R.id.ll_container, fragmentManager, fragments);
                 break;
             case R.id.rg_main_radiostation:
-                showFragment(fragments.get(1));
+                FragmentUtils.showFragment(fragments.get(1), R.id.ll_container, fragmentManager, fragments);
                 break;
             case R.id.rg_main_campaign:
-                showFragment(fragments.get(2));
+                FragmentUtils.showFragment(fragments.get(2), R.id.ll_container, fragmentManager, fragments);
                 break;
             case R.id.rg_main_mine:
-                showFragment(fragments.get(3));
+                FragmentUtils.showFragment(fragments.get(3), R.id.ll_container, fragmentManager, fragments);
                 break;
         }
 
