@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="com.mymusic.musicplayer.CatalogBinding">
+
+        <!--<variable-->
+        <!--name="sectionsBean"-->
+        <!--type="com.mymusic.musicplayer.bean.BookRankDetailsBean.SectionsBean" />-->
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <TextView
+            style="@style/tv_standard_10sp"
+            android:background="@drawable/corner_translucent"
+            android:text="所有章节" />
+
+        <TextView
+            android:id="@+id/tv_catalog_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="全部下载"
+            android:textColor="@color/orange"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/corner_orangestroke" />
+
+        <View
+            android:id="@+id/view_catalog"
+            android:layout_below="@+id/tv_catalog_download"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_catalog"
+            android:layout_below="@+id/view_catalog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+</layout>

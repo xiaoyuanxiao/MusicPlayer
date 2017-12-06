@@ -16,4 +16,5 @@
     <color name="orange">#fe8158</color>
     <color name="bg_gray">#f9f9f9</color>
     <color name="bg_title">#f29270</color>
+    <color name="translucent">#33000000</color>
 </resources>

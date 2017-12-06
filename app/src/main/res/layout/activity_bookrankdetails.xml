@@ -16,211 +16,253 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+
         android:orientation="vertical">
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_bookrankdetail"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:scaleType="fitXY"
-                app:imgurl="@{detailsBean.book.cover}" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_bookrankdetail_title"
-                    style="@style/tv_standard_12sp"
-                    android:text="@{detailsBean.book.title}" />
-
-                <TextView
-                    android:id="@+id/tv_bookrankdetail_author"
-                    style="@style/tv_standard_10sp_gray"
-                    android:layout_marginTop="5dp"
-                    android:text="@{detailsBean.book.author.title+@string/colon+detailsBean.book.author.name}" />
-
-                <TextView
-                    android:id="@+id/tv_bookrankdetail_recorder"
-                    style="@style/tv_standard_10sp_gray"
-                    android:text="@{detailsBean.book.recorder.title+@string/colon+detailsBean.book.recorder.name}" />
-
-                <TextView
-                    android:id="@+id/tv_bookrankdetail_rawprice"
-                    style="@style/tv_standard_9sp_gray"
-                    android:text="@{@string/gong+detailsBean.sections.size()+@string/ji+@string/zongjia+detailsBean.pricing.raw_price+@string/langbi}" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/tv_standard_9sp"
-                        android:text="暑假促销价  " />
+                    <ImageView
+                        android:id="@+id/iv_bookrankdetail"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="fitXY"
+                        app:imgurl="@{detailsBean.book.cover}" />
 
-                    <TextView
-                        android:id="@+id/tv_bookrankdetail_price"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{detailsBean.pricing.price+@string/quotes}"
-                        android:textColor="@color/main_buttomtext_yellow"
-                        android:textSize="11sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        style="@style/tv_standard_9sp"
-                        android:text="  朗币" />
+                        <TextView
+                            android:id="@+id/tv_bookrankdetail_title"
+                            style="@style/tv_standard_12sp"
+                            android:text="@{detailsBean.book.title}" />
+
+                        <TextView
+                            android:id="@+id/tv_bookrankdetail_author"
+                            style="@style/tv_standard_10sp_gray"
+                            android:layout_marginTop="5dp"
+                            android:text="@{detailsBean.book.author.title+@string/colon+detailsBean.book.author.name}" />
+
+                        <TextView
+                            android:id="@+id/tv_bookrankdetail_recorder"
+                            style="@style/tv_standard_10sp_gray"
+                            android:text="@{detailsBean.book.recorder.title+@string/colon+detailsBean.book.recorder.name}" />
+
+                        <TextView
+                            android:id="@+id/tv_bookrankdetail_rawprice"
+                            style="@style/tv_standard_9sp_gray"
+                            android:text="@{@string/gong+detailsBean.sections.size()+@string/ji+@string/zongjia+detailsBean.pricing.raw_price+@string/langbi}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/tv_standard_9sp"
+                                android:text="暑假促销价  " />
+
+                            <TextView
+                                android:id="@+id/tv_bookrankdetail_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{detailsBean.pricing.price+@string/quotes}"
+                                android:textColor="@color/main_buttomtext_yellow"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                style="@style/tv_standard_9sp"
+                                android:text="  朗币" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/view" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/corner_orange"
+                        android:text="试听"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/corner_yellow"
+                        android:text="购买"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" />
+
+                    <RadioButton
+                        android:id="@+id/tv_bookrankdetail_favorite"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableTop="@mipmap/h_icon04_collect"
+                        android:gravity="center"
+                        android:text="@{detailsBean.stat.count_of_favorite+@string/quotes}"
+                        android:textColor="@color/gray_hotlists"
+                        android:textSize="10sp" />
+
+                    <RadioButton
+                        android:id="@+id/tv_bookrankdetail_share"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableTop="@mipmap/h_icon04_share"
+                        android:gravity="center"
+                        android:text="@{detailsBean.stat.count_of_share+@string/quotes}"
+                        android:textColor="@color/gray_hotlists"
+                        android:textSize="10sp" />
+
+                    <RadioButton
+                        android:id="@+id/tv_bookrankdetail_comment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawableTop="@mipmap/h_icon04_comment"
+                        android:gravity="center"
+                        android:text="@{detailsBean.stat.count_of_comment+@string/quotes}"
+                        android:textColor="@color/gray_hotlists"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/view" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/corner_gray"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_bookrankdetail_synopsis"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_selector_bg"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{bookRankDetailsActivityclick::onClick}"
+                        android:text="简介"
+                        android:textColor="@color/white_selector_bg"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:layout_width="0.1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/main_buttomtext_grey" />
+
+                    <RadioButton
+                        android:id="@+id/rb_bookrankdetail_comment"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_selector_bg"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{bookRankDetailsActivityclick::onClick}"
+                        android:text="评论"
+                        android:textColor="@color/white_selector_bg"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:layout_width="0.1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/main_buttomtext_grey" />
+
+                    <RadioButton
+                        android:id="@+id/rb_bookrankdetail_catalog"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_selector_bg"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:onClick="@{bookRankDetailsActivityclick::onClick}"
+                        android:text="目录"
+                        android:textColor="@color/white_selector_bg"
+                        android:textSize="10sp" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/ll_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" />
             </LinearLayout>
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:background="@color/view" />
-
+        </ScrollView>
 
         <LinearLayout
+            android:id="@+id/ll_rankdetails_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:background="@color/white"
+            android:visibility="gone"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="28dp"
-                android:background="@drawable/corner_orange"
-                android:text="试听"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/view" />
 
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="28dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/corner_yellow"
-                android:text="购买"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
-
-            <RadioButton
-                android:id="@+id/tv_bookrankdetail_favorite"
-                android:layout_width="0dp"
+            <EditText
+                android:id="@+id/edt_rankdetails"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@mipmap/h_icon04_collect"
-                android:gravity="center"
-                android:text="@{detailsBean.stat.count_of_favorite+@string/quotes}"
-                android:textColor="@color/gray_hotlists"
+                android:layout_margin="5dp"
+                android:background="@drawable/edt_corner_stroke"
+                android:hint="说两句吧..."
+                android:textColorHint="@color/main_buttomtext_grey"
                 android:textSize="10sp" />
 
-            <RadioButton
-                android:id="@+id/tv_bookrankdetail_share"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@mipmap/h_icon04_share"
-                android:gravity="center"
-                android:text="@{detailsBean.stat.count_of_share+@string/quotes}"
-                android:textColor="@color/gray_hotlists"
-                android:textSize="10sp" />
 
-            <RadioButton
-                android:id="@+id/tv_bookrankdetail_comment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableTop="@mipmap/h_icon04_comment"
-                android:gravity="center"
-                android:text="@{detailsBean.stat.count_of_comment+@string/quotes}"
-                android:textColor="@color/gray_hotlists"
-                android:textSize="10sp" />
         </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:background="@color/view" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/corner_gray"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rb_bookrankdetail_synopsis"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/gray_selector_bg"
-                android:button="@null"
-                android:gravity="center"
-                android:onClick="@{bookRankDetailsActivityclick::onClick}"
-                android:text="简介"
-                android:textColor="@color/white_selector_bg"
-                android:textSize="10sp" />
-
-            <View
-                android:layout_width="0.1dp"
-                android:layout_height="match_parent"
-                android:background="@color/main_buttomtext_grey" />
-
-            <RadioButton
-                android:id="@+id/rb_bookrankdetail_comment"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/gray_selector_bg"
-                android:button="@null"
-                android:gravity="center"
-                android:onClick="@{bookRankDetailsActivityclick::onClick}"
-                android:text="评论"
-                android:textColor="@color/white_selector_bg"
-                android:textSize="10sp" />
-
-            <View
-                android:layout_width="0.1dp"
-                android:layout_height="match_parent"
-                android:background="@color/main_buttomtext_grey" />
-
-            <RadioButton
-                android:id="@+id/rb_bookrankdetail_catalog"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/gray_selector_bg"
-                android:button="@null"
-                android:gravity="center"
-                android:onClick="@{bookRankDetailsActivityclick::onClick}"
-                android:text="目录"
-                android:textColor="@color/white_selector_bg"
-                android:textSize="10sp" />
-        </RadioGroup>
-
-        <LinearLayout
-            android:id="@+id/ll_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
 
 
     </LinearLayout>

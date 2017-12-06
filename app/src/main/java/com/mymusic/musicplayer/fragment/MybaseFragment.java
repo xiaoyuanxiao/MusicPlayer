@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * Created by xiaoyu on 2017/12/5.
  */
 
-public abstract class MybaseFragment extends Fragment {
+public abstract class MyBaseFragment extends Fragment {
     ViewDataBinding dataBinding;
 
     @Override

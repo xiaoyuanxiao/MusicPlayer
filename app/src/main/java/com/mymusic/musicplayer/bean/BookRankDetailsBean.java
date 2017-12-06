@@ -1,5 +1,6 @@
 package com.mymusic.musicplayer.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -552,7 +553,7 @@ public class BookRankDetailsBean {
         }
     }
 
-    public static class CommentsBean {
+    public static class CommentsBean implements Serializable {
         /**
          * hottest : []
          * latest : [{"comment":{"id":372,"content":"不是般若，是bo re","created_at":"2017-04-26 20:14:15","account":{"id":2549,"nickname":"Tina","head":"http://jyts-public-oss.longruncloud.com/photos/2017/01/06/0b8bb1918ba25167696bc2858edda37487348d2ebe1b1cbc999758da39e3fcfc.jpg"},"stars":5},"stat":{"count_of_like":0,"count_of_reply":0},"account":{"like":null}}]
@@ -794,7 +795,7 @@ public class BookRankDetailsBean {
         }
     }
 
-    public static class SectionsBean {
+    public static class SectionsBean implements Serializable {
         /**
          * section : {"id":19091,"section_number":0,"title":"001\t一下青山万里愁","description":"略","length":1244,"file_size":29879007}
          * pricing : {"is_free":true,"price":4,"raw_price":4}

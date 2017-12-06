@@ -11,5 +11,7 @@
     <string name="ji">集</string>
     <string name="zongjia">&#160;总价:&#160;</string>
     <string name="langbi">&#160;朗币</string>
+    <string name="timelength">时长:&#160;</string>
+    <string name="MB">&#160;MB&#160;</string>
 
 </resources>

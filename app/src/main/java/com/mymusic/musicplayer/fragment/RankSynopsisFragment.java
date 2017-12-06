@@ -9,7 +9,7 @@ import com.mymusic.musicplayer.RankSynopsisData;
  * Created by xiaoyu on 2017/12/5.
  */
 
-public class RankSynopsisFragment extends MybaseFragment {
+public class RankSynopsisFragment extends MyBaseFragment {
     RankSynopsisData rankSynopsisData;
     public static RankSynopsisFragment newInstance() {
         RankSynopsisFragment rankSynopsisFragment = new RankSynopsisFragment();
@@ -26,6 +26,12 @@ public class RankSynopsisFragment extends MybaseFragment {
     protected void initData() {
         super.initData();
         rankSynopsisData = getBind();
+        getActivityData();
+
+
+    }
+
+    private void getActivityData() {
         Bundle bundle = getArguments();//从activity传过来的Bundle
         if (bundle != null) {
             String synopsis = bundle.getString("Synopsis");
