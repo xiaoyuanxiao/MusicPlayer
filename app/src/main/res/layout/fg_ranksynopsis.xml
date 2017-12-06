@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="com.mymusic.musicplayer.RankSynopsisData">
+
+    </data>
 
 
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tv_ranksynopsis"
-    style="@style/tv_standard_10sp" />
+    <TextView
+        android:id="@+id/tv_ranksynopsis"
+        style="@style/tv_standard_10sp" />
+</layout>

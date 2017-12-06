@@ -61,11 +61,6 @@ public class ListenerBookListsFragment extends BaseFragment implements IBookList
     }
 
     @Override
-    protected void setOnclick() {
-
-    }
-
-    @Override
     public void onClick(View view) {
 
     }

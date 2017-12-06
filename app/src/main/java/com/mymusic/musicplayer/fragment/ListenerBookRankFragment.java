@@ -75,9 +75,9 @@ public class ListenerBookRankFragment extends BaseFragment implements IBookRankV
         refreshLayout.setEnableLoadmoreWhenContentNotFull(false);
         refreshLayout.autoRefresh();
         bookRankPersenter.getData();
+        setOnclick();
     }
 
-    @Override
     protected void setOnclick() {
         rl_listenerbookrank_sales.setOnClickListener(this);
         rl_listenerbookrank_persons.setOnClickListener(this);

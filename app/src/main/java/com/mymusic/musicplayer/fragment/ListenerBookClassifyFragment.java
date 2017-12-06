@@ -94,16 +94,6 @@ public class ListenerBookClassifyFragment extends BaseFragment implements IClass
     }
 
     @Override
-    protected void setOnclick() {
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
     public void setClassifyLabels(List<ClassifyBean.LabelsBean> labelsBeen) {
         labelsBeanList.clear();
         labelsBeanList.addAll(labelsBeen);
@@ -123,5 +113,10 @@ public class ListenerBookClassifyFragment extends BaseFragment implements IClass
         classifyStandardOhterAdapter.notifyDataSetChanged();
         tv_classify_one.setText(standardtypes.get(0).getName());
         tv_classify_two.setText(standardtypes.get(1).getName());
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

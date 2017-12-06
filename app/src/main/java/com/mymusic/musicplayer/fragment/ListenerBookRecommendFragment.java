@@ -232,11 +232,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
 
     @Override
-    protected void setOnclick() {
-
-    }
-
-    @Override
     public void onClick(View view) {
 
     }

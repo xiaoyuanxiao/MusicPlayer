@@ -43,6 +43,7 @@ public class ListenerBookFragment extends BaseFragment {
         super.initData();
         fragmentManager = getFragmentManager();
         initFragment();
+        setOnclick();
     }
 
     /**
@@ -87,7 +88,6 @@ public class ListenerBookFragment extends BaseFragment {
         }
     }
 
-    @Override
     protected void setOnclick() {
         mRb_fg_listenerbook_recommend.setOnClickListener(this);
         mRb_fg_listenerbook_classify.setOnClickListener(this);
