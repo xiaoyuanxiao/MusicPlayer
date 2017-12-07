@@ -25,11 +25,11 @@
             android:layout_weight="1">
 
             <LinearLayout
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
 
@@ -175,7 +175,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:background="@drawable/corner_gray"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -191,17 +190,14 @@
                         android:textColor="@color/white_selector_bg"
                         android:textSize="10sp" />
 
-                    <View
-                        android:layout_width="0.1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/main_buttomtext_grey" />
+
 
                     <RadioButton
                         android:id="@+id/rb_bookrankdetail_comment"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
-                        android:background="@drawable/gray_selector_bg"
+                        android:background="@drawable/stroke_selector_bg"
                         android:button="@null"
                         android:gravity="center"
                         android:onClick="@{bookRankDetailsActivityclick::onClick}"
@@ -209,17 +205,12 @@
                         android:textColor="@color/white_selector_bg"
                         android:textSize="10sp" />
 
-                    <View
-                        android:layout_width="0.1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/main_buttomtext_grey" />
-
                     <RadioButton
                         android:id="@+id/rb_bookrankdetail_catalog"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
-                        android:background="@drawable/gray_selector_bg"
+                        android:background="@drawable/gray_selector_bg_right"
                         android:button="@null"
                         android:gravity="center"
                         android:onClick="@{bookRankDetailsActivityclick::onClick}"
@@ -243,8 +234,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"
