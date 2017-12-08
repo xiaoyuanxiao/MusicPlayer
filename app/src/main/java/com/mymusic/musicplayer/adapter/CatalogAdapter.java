@@ -1,6 +1,8 @@
 package com.mymusic.musicplayer.adapter;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -19,6 +21,7 @@ import java.util.Map;
 public class CatalogAdapter extends BaseRecyleAdapter {
     ItemRankCatalogData itemRankCatalogData;
     private List<BookRankDetailsBean.SectionsBean> sectionBeen;
+    private Context context;
 
     public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap) {
         super(data, hashMap);
@@ -27,6 +30,7 @@ public class CatalogAdapter extends BaseRecyleAdapter {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        context = parent.getContext();
         itemRankCatalogData = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_fg_catalog, parent, false);
         return new ViewHolder(itemRankCatalogData);
     }
@@ -43,6 +47,16 @@ public class CatalogAdapter extends BaseRecyleAdapter {
             a = "0" + i;
         } else {
             a = i + "";
+        }
+        boolean is_free = sectionBeen.get(position).getPricing().isIs_free();
+        if (is_free) {
+            itemRankCatalogData.tvItemCatlogDown.setBackgroundResource(R.drawable.corner_orangestroke);
+            itemRankCatalogData.tvItemCatlogDown.setTextColor(ContextCompat.getColor(context, R.color.orange));
+            itemRankCatalogData.tvItemCatlogDown.setText("下载");
+        } else {
+            itemRankCatalogData.tvItemCatlogDown.setBackgroundResource(R.drawable.corner_black);
+            itemRankCatalogData.tvItemCatlogDown.setTextColor(ContextCompat.getColor(context, R.color.black));
+            itemRankCatalogData.tvItemCatlogDown.setText(sectionBeen.get(position).getPricing().getPrice() + "朗币");
         }
         itemRankCatalogData.tvCatalogDes.setText("时长： " + sectionBeen.get(position).getSection().getLength() / 60 + ":" + a + "  " + df.format(v) + " MB");
     }
