@@ -7,6 +7,10 @@
             name="audioUrlBean"
             type="com.mymusic.musicplayer.bean.AudioUrlBean" />
 
+        <variable
+            name="AudioPlayActivityonclick"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
 
@@ -108,9 +112,11 @@
                 android:src="@mipmap/f_icon03_last" />
 
             <ImageView
+                android:id="@+id/iv_audioplay_play"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="40dp"
+                android:onClick="@{AudioPlayActivityonclick::onClick}"
                 android:src="@drawable/selector_play" />
 
             <ImageView

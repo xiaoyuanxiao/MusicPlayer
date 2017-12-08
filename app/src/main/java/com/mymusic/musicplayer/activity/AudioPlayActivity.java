@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.activity;
 
 import android.content.Intent;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.AudioPlayBinding;
@@ -14,9 +15,10 @@ import com.mymusic.musicplayer.okhttp.Presenter.AudioPlayPresenter;
  * Created by xiaoyu on 2017/12/8.
  */
 
-public class AudioPlayActivity extends BaseActivity implements IAudioPlayView {
+public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, View.OnClickListener {
     AudioPlayBinding audioPlayBinding;
     private AudioPlayPresenter audioPlayPresenter = new AudioPlayPresenter(this);
+    private boolean isChecked = true;
 
     @Override
     int initview() {
@@ -26,7 +28,7 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView {
     @Override
     void initdatabinding() {
         audioPlayBinding = getBind();
-
+        audioPlayBinding.setAudioPlayActivityonclick(this);
     }
 
     @Override
@@ -42,5 +44,22 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView {
     @Override
     public void setdata(AudioUrlBean audioUrlBean) {
         audioPlayBinding.setAudioUrlBean(audioUrlBean);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_audioplay_play:
+                if (isChecked) {
+                    isChecked = false;
+                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_play);
+                } else {
+                    isChecked = true;
+                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_stop);
+                }
+
+                break;
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:state_selected="true" android:drawable="@mipmap/f_icon03_play" />
-    <item android:drawable="@mipmap/f_icon03_stop" />
-
+    <item android:drawable="@mipmap/f_icon03_play" android:state_checked="true" />
+    //选中后
+    <item android:drawable="@mipmap/f_icon03_stop" android:state_checked="false" />//未选中
+    <item android:drawable="@mipmap/f_icon03_stop" />//未选中
 </selector>
