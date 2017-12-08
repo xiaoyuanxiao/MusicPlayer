@@ -1,13 +1,16 @@
 package com.mymusic.musicplayer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.mymusic.musicplayer.ItemRankCatalogData;
 import com.mymusic.musicplayer.R;
+import com.mymusic.musicplayer.activity.AudioPlayActivity;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
 
 import java.text.DecimalFormat;
@@ -18,14 +21,17 @@ import java.util.Map;
  * Created by xiaoyu on 2017/12/6.
  */
 
-public class CatalogAdapter extends BaseRecyleAdapter {
+public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapter.OnRecycleitemOnClic {
     ItemRankCatalogData itemRankCatalogData;
     private List<BookRankDetailsBean.SectionsBean> sectionBeen;
     private Context context;
+    private String thumbnail;
 
-    public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap) {
+    public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap, String thumbnail) {
         super(data, hashMap);
         sectionBeen = (List<BookRankDetailsBean.SectionsBean>) data;
+        this.thumbnail = thumbnail;
+        setOnRecycleitemOnClic(this);
     }
 
     @Override
@@ -36,7 +42,8 @@ public class CatalogAdapter extends BaseRecyleAdapter {
     }
 
     String a;
-
+    int id;
+    String title;
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
@@ -49,6 +56,7 @@ public class CatalogAdapter extends BaseRecyleAdapter {
             a = i + "";
         }
         boolean is_free = sectionBeen.get(position).getPricing().isIs_free();
+
         if (is_free) {
             itemRankCatalogData.tvItemCatlogDown.setBackgroundResource(R.drawable.corner_orangestroke);
             itemRankCatalogData.tvItemCatlogDown.setTextColor(ContextCompat.getColor(context, R.color.orange));
@@ -59,5 +67,15 @@ public class CatalogAdapter extends BaseRecyleAdapter {
             itemRankCatalogData.tvItemCatlogDown.setText(sectionBeen.get(position).getPricing().getPrice() + "朗币");
         }
         itemRankCatalogData.tvCatalogDes.setText("时长： " + sectionBeen.get(position).getSection().getLength() / 60 + ":" + a + "  " + df.format(v) + " MB");
+    }
+
+    @Override
+    public void onItemClic(View view, int position) {
+        Intent intent = new Intent(context, AudioPlayActivity.class);
+        BookRankDetailsBean.SectionsBean sectionsBean = sectionBeen.get(position);
+        intent.putExtra("sectionsBean", sectionsBean);
+        intent.putExtra("thumbnail", thumbnail);
+        context.startActivity(intent);
+
     }
 }

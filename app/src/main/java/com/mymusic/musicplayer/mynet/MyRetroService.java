@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.mynet;
 
 
+import com.mymusic.musicplayer.bean.AudioUrlBean;
 import com.mymusic.musicplayer.bean.BookListBean;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
 import com.mymusic.musicplayer.bean.ClassifyBean;
@@ -55,6 +56,12 @@ public interface MyRetroService {
      */
     @GET("api/book")
     Observable<BookRankDetailsBean> getRankDetailsData(@Query("id") int id);
+
+    /**
+     * 图片资源
+     */
+    @GET("api/play")
+    Observable<AudioUrlBean> getAudioUrl(@Query("id") int id, @Query("type") String type);
 
 
 }

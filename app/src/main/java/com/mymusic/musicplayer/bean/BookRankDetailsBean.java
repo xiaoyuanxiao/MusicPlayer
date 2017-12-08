@@ -1,5 +1,8 @@
 package com.mymusic.musicplayer.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -795,7 +798,7 @@ public class BookRankDetailsBean {
         }
     }
 
-    public static class SectionsBean implements Serializable {
+    public static class SectionsBean implements Parcelable {
         /**
          * section : {"id":19091,"section_number":0,"title":"001\t一下青山万里愁","description":"略","length":1244,"file_size":29879007}
          * pricing : {"is_free":true,"price":4,"raw_price":4}
@@ -807,6 +810,7 @@ public class BookRankDetailsBean {
         private PricingBeanX pricing;
         private AccountBeanXXX account;
         private StatBeanXX stat;
+
 
         public SectionBean getSection() {
             return section;
@@ -840,7 +844,34 @@ public class BookRankDetailsBean {
             this.stat = stat;
         }
 
-        public static class SectionBean {
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeParcelable(section, 0);
+        }
+
+        public static final Parcelable.Creator<SectionsBean> CREATOR = new Parcelable.Creator<SectionsBean>() {
+
+            @Override
+            public SectionsBean createFromParcel(Parcel source) {
+                // TODO Auto-generated method stub
+                SectionsBean person = new SectionsBean();
+                person.section = source.readParcelable(Thread.currentThread().getContextClassLoader());
+                return person;
+            }
+
+            @Override
+            public SectionsBean[] newArray(int size) {
+                // TODO Auto-generated method stub
+                return new SectionsBean[size];
+            }
+        };
+
+        public static class SectionBean implements Parcelable {
             /**
              * id : 19091
              * section_number : 0
@@ -856,6 +887,27 @@ public class BookRankDetailsBean {
             private String description;
             private int length;
             private int file_size;
+
+            protected SectionBean(Parcel in) {
+                id = in.readInt();
+                section_number = in.readInt();
+                title = in.readString();
+                description = in.readString();
+                length = in.readInt();
+                file_size = in.readInt();
+            }
+
+            public static final Creator<SectionBean> CREATOR = new Creator<SectionBean>() {
+                @Override
+                public SectionBean createFromParcel(Parcel in) {
+                    return new SectionBean(in);
+                }
+
+                @Override
+                public SectionBean[] newArray(int size) {
+                    return new SectionBean[size];
+                }
+            };
 
             public int getId() {
                 return id;
@@ -904,6 +956,22 @@ public class BookRankDetailsBean {
             public void setFile_size(int file_size) {
                 this.file_size = file_size;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeInt(id);
+                dest.writeInt(section_number);
+                dest.writeString(title);
+                dest.writeString(description);
+                dest.writeInt(length);
+                dest.writeInt(file_size);
+            }
+
         }
 
         public static class PricingBeanX {

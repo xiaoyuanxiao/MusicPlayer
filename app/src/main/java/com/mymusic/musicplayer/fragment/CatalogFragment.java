@@ -41,17 +41,18 @@ public class CatalogFragment extends MyBaseFragment {
         catalogBinding.rvCatalog.setLayoutManager(linearLayoutManager);
         Map<Integer, Integer> map = new HashMap<>();
         map.put(R.layout.item_fg_catalog, BR.catalogBean);
-        catalogAdapter = new CatalogAdapter(catalog, map);
+        catalogAdapter = new CatalogAdapter(catalog, map, thumbnail);
         catalogBinding.rvCatalog.setAdapter(catalogAdapter);
 
     }
 
     List<BookRankDetailsBean.SectionsBean> catalog;
-
+    String thumbnail;
     private void getActivityData() {
         Bundle arguments = getArguments();
         if (arguments != null) {
             catalog = (List<BookRankDetailsBean.SectionsBean>) arguments.getSerializable("catalog");
+            thumbnail = arguments.getString("thumbnail", "thumbnail");
         }
     }
 }

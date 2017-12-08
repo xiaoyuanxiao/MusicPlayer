@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="com.mymusic.musicplayer.AudioPlayBinding">
+
+        <variable
+            name="audioUrlBean"
+            type="com.mymusic.musicplayer.bean.AudioUrlBean" />
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_audioplay_title"
+            style="@style/tv_standard_12sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" />
+
+        <ImageView
+            android:layout_below="@+id/tv_audioplay_title"
+            android:id="@+id/iv_audioplay_cover"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_margin="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_above="@+id/rl_audioplay_seekbar"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/f_icon04_list" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/h_icon04_collect" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/f_icon04_collect2" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/more" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_audioplay_seekbar"
+            android:layout_above="@+id/ll_audioplay_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/tv_standard_10sp_gray"
+                android:layout_marginLeft="8dp"
+                android:text="00:00" />
+
+            <TextView
+                android:id="@+id/tv_audioplay_endtime"
+                style="@style/tv_standard_10sp_gray"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:text="-00:00" />
+
+            <SeekBar
+                android:layout_below="@+id/tv_audioplay_endtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_audioplay_bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:src="@mipmap/pre_5s" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:src="@mipmap/f_icon03_last" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:src="@drawable/selector_play" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:src="@mipmap/f_icon03_next" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:src="@mipmap/next_5s" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

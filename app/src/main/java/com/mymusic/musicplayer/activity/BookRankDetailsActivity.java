@@ -102,6 +102,7 @@ public class BookRankDetailsActivity extends BaseActivity implements IBookRankDe
         bundle2 = new Bundle();
         List<BookRankDetailsBean.SectionsBean> sections = bookRankDetailsBean.getSections();
         bundle2.putSerializable("catalog", (Serializable) sections);
+        bundle2.putString("thumbnail", bookRankDetailsBean.getBook().getThumbnail());
         catalogFragment.setArguments(bundle2);
         fragments.add(catalogFragment);
         showFragment(fragments.get(0));
