@@ -36,11 +36,10 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     private int length;
     public MediaPlayer mediaPlayer;
     private String url;
-    int progress = 0;
+    int pro = 0;
     private int i;
-    private String s;
+    private String s, s1;
     private Timer timer;
-
     @Override
     int initview() {
         return R.layout.activity_audioplay;
@@ -55,6 +54,7 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     }
 
     String a;
+
     @Override
     void initData() {
         Intent intent = getIntent();
@@ -65,7 +65,7 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
         audioPlayBinding.tvAudioplayTitle.setText(sectionsBean.getSection().getTitle());
         audioPlayBinding.seekbarAudioplay.setMax(sectionsBean.getSection().getLength());//设置seekbar的最大值为时间长度
         i = timelength % 60;
-        s = (i < 10) ? (a = "0" + i) : (a = i + "");
+        s = (i < 10) ? ("0" + i) : (i + "");
         audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
         Glide.with(this).load(thumbnail).into(audioPlayBinding.ivAudioplayCover);
         setDataTitle(title);
@@ -83,12 +83,16 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
              */
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                audioPlayBinding.seekbarAudioplay.setProgress(progress);
-//                timelength = length-progress;
-//                i = timelength % 60;
-//                s = (i < 10) ? (a = "0" + i) : (a = i + "");
-//                audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
-                progress = progress;
+                if (fromUser) {
+
+                    mediaPlayer.seekTo(progress);// 当进度条的值改变时，音乐播放器从新的位置开始播放
+                    audioPlayBinding.seekbarAudioplay.setProgress(progress);
+                    timelength = length - progress;
+                    pro = progress;
+                    i = timelength % 60;
+                    s = (i < 10) ? (a = "0" + i) : (a = i + "");
+                    audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
+                }
             }
 
             /**
@@ -98,7 +102,8 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
              */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                timer.cancel();
+                mediaPlayer.pause(); // 开始拖动进度条时，音乐暂停播放
             }
 
             /**
@@ -108,11 +113,8 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
              */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                audioPlayBinding.seekbarAudioplay.setProgress(progress);
-                timelength = length - progress;
-                i = timelength % 60;
-                s = (i < 10) ? (a = "0" + i) : (a = i + "");
-                audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
+                mediaPlayer.start(); // 停止拖动进度条时，音乐开始播放
+                SeekbarChange();
             }
         });
 
@@ -183,12 +185,13 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
 
             }
             if (msg.what == PROGRESS) {
-                progress++;
+                pro++;
                 timelength--;
-                i = timelength % 60;
-                s = (i < 10) ? (a = "0" + i) : (a = i + "");
+                s = ((timelength % 60) < 10) ? ("0" + (timelength % 60)) : ((timelength % 60) + "");
+                s1 = ((length - timelength % 60) < 10) ? ("0" + (length - timelength % 60)) : ((length - timelength % 60) + "");
                 audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
-                audioPlayBinding.seekbarAudioplay.setProgress(progress);
+                audioPlayBinding.tvAudioplayStarttime.setText((length - timelength) / 60 + ":" + s1);
+                audioPlayBinding.seekbarAudioplay.setProgress(pro);
             }
         }
     };
@@ -196,7 +199,7 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     @Override
     protected void onDestroy() {
         super.onDestroy();
-           mediaPlayer.release();
+        mediaPlayer.release();
     }
 
 }
