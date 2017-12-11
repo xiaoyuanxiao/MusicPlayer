@@ -106,7 +106,7 @@ public class BookRankDetailsBean {
         this.books = books;
     }
 
-    public static class BookBean {
+    public static class BookBean implements Parcelable {
         /**
          * id : 685
          * title : 道士下山
@@ -462,6 +462,53 @@ public class BookRankDetailsBean {
                 this.cover = cover;
             }
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.id);
+            dest.writeString(this.title);
+            dest.writeString(this.description);
+            dest.writeString(this.thumbnail);
+            dest.writeString(this.cover);
+            dest.writeByte(this.is_bundle ? (byte) 1 : (byte) 0);
+            dest.writeInt(this.status_code);
+            dest.writeString(this.status);
+            dest.writeInt(this.section_pages);
+        }
+
+        public BookBean() {
+        }
+
+        protected BookBean(Parcel in) {
+            this.id = in.readInt();
+            this.title = in.readString();
+            this.description = in.readString();
+            this.thumbnail = in.readString();
+            this.cover = in.readString();
+            this.style = in.readParcelable(StyleBean.class.getClassLoader());
+            this.publisher = in.readParcelable(PublisherBean.class.getClassLoader());
+            this.is_bundle = in.readByte() != 0;
+            this.status_code = in.readInt();
+            this.status = in.readString();
+            this.section_pages = in.readInt();
+        }
+
+        public static final Parcelable.Creator<BookBean> CREATOR = new Parcelable.Creator<BookBean>() {
+            @Override
+            public BookBean createFromParcel(Parcel source) {
+                return new BookBean(source);
+            }
+
+            @Override
+            public BookBean[] newArray(int size) {
+                return new BookBean[size];
+            }
+        };
     }
 
     public static class PricingBean {

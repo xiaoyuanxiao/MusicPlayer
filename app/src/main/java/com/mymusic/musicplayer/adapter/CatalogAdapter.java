@@ -25,12 +25,12 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
     ItemRankCatalogData itemRankCatalogData;
     private List<BookRankDetailsBean.SectionsBean> sectionBeen;
     private Context context;
-    private String thumbnail;
+    private BookRankDetailsBean.BookBean bookBean;
 
-    public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap, String thumbnail) {
+    public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap, BookRankDetailsBean.BookBean bookBean) {
         super(data, hashMap);
         sectionBeen = (List<BookRankDetailsBean.SectionsBean>) data;
-        this.thumbnail = thumbnail;
+        this.bookBean = bookBean;
         setOnRecycleitemOnClic(this);
     }
 
@@ -74,7 +74,8 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
         Intent intent = new Intent(context, AudioPlayActivity.class);
         BookRankDetailsBean.SectionsBean sectionsBean = sectionBeen.get(position);
         intent.putExtra("sectionsBean", sectionsBean);
-        intent.putExtra("thumbnail", thumbnail);
+        intent.putExtra("thumbnail", bookBean.getThumbnail());
+        intent.putExtra("title", bookBean.getTitle());
         context.startActivity(intent);
 
     }

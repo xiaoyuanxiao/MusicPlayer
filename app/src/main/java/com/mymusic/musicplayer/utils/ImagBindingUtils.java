@@ -15,4 +15,5 @@ public class ImagBindingUtils {
     public static void bindingImage(ImageView imageView, String url) {
         Glide.with(imageView.getContext()).load(url).into(imageView);
     }
+
 }

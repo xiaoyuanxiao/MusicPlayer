@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.BaseInfoData;
 import com.mymusic.musicplayer.R;
 
@@ -43,8 +44,20 @@ public abstract class BaseActivity extends FragmentActivity {
         });
     }
 
-    public void settitlename(String titlename) {
+    public void setDataTitle(String titlename) {
         baseInfoData.setTitlename(titlename);
+    }
+
+    public <T> void setTitleLeftimg(T img) {
+        Glide.with(this).load(img).into(baseInfoData.ivTitlebarLeft);
+    }
+
+    public <T> void setTitleRightimg(T img) {
+        Glide.with(this).load(img).into(baseInfoData.ivTitlebarRight);
+    }
+
+    public void setTextVisible(int visible) {
+        baseInfoData.tvTitlebarLeft.setVisibility(visible);
     }
 
     public <T extends ViewDataBinding> T getBind() {

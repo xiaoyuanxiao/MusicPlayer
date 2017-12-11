@@ -19,6 +19,7 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     AudioPlayBinding audioPlayBinding;
     private AudioPlayPresenter audioPlayPresenter = new AudioPlayPresenter(this);
     private boolean isChecked = true;
+    private String title;
 
     @Override
     int initview() {
@@ -29,16 +30,22 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     void initdatabinding() {
         audioPlayBinding = getBind();
         audioPlayBinding.setAudioPlayActivityonclick(this);
+
     }
 
     @Override
     void initData() {
         Intent intent = getIntent();
         String thumbnail = intent.getStringExtra("thumbnail");
+        title = intent.getStringExtra("title");
         BookRankDetailsBean.SectionsBean sectionsBean = intent.getParcelableExtra("sectionsBean");
         audioPlayBinding.tvAudioplayTitle.setText(sectionsBean.getSection().getTitle());
         audioPlayPresenter.getdata(sectionsBean.getSection().getId(), "section");
         Glide.with(this).load(thumbnail).into(audioPlayBinding.ivAudioplayCover);
+        setDataTitle(title);
+        setTitleRightimg(R.mipmap.f_icon04_sharet);
+        setTitleLeftimg(R.mipmap.f_close);
+        setTextVisible(View.GONE);
     }
 
     @Override
