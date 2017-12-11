@@ -13,6 +13,8 @@ import com.orhanobut.logger.Logger;
 public class MyApplication extends Application {
     private static Application app;
     public static int ID;
+    public static final int PLAY_MAG = 1;//开始播放
+    public static final int PAUSE = 2;//暂停播放
 
     @Override
     public void onCreate() {

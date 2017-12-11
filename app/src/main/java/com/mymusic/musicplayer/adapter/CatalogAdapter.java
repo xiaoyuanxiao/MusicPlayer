@@ -26,6 +26,7 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
     private List<BookRankDetailsBean.SectionsBean> sectionBeen;
     private Context context;
     private BookRankDetailsBean.BookBean bookBean;
+    private String timelength;
 
     public CatalogAdapter(List<?> data, Map<Integer, Integer> hashMap, BookRankDetailsBean.BookBean bookBean) {
         super(data, hashMap);
@@ -66,7 +67,8 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
             itemRankCatalogData.tvItemCatlogDown.setTextColor(ContextCompat.getColor(context, R.color.black));
             itemRankCatalogData.tvItemCatlogDown.setText(sectionBeen.get(position).getPricing().getPrice() + "朗币");
         }
-        itemRankCatalogData.tvCatalogDes.setText("时长： " + sectionBeen.get(position).getSection().getLength() / 60 + ":" + a + "  " + df.format(v) + " MB");
+        timelength = sectionBeen.get(position).getSection().getLength() / 60 + ":" + a;
+        itemRankCatalogData.tvCatalogDes.setText("时长： " + timelength + "  " + df.format(v) + " MB");
     }
 
     @Override
@@ -76,6 +78,7 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
         intent.putExtra("sectionsBean", sectionsBean);
         intent.putExtra("thumbnail", bookBean.getThumbnail());
         intent.putExtra("title", bookBean.getTitle());
+        intent.putExtra("timelength", sectionBeen.get(position).getSection().getLength());
         context.startActivity(intent);
 
     }

@@ -11,6 +11,11 @@
             name="AudioPlayActivityonclick"
             type="android.view.View.OnClickListener" />
 
+
+        <variable
+            name="seeklistener"
+            type="android.widget.SeekBar.OnSeekBarChangeListener" />
+
     </data>
 
 
@@ -72,6 +77,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_audioplay_starttime"
                 style="@style/tv_standard_10sp_gray"
                 android:layout_marginLeft="8dp"
                 android:text="00:00" />
@@ -82,11 +88,12 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
                 android:text="-00:00" />
-
             <SeekBar
+                android:id="@+id/seekbar_audioplay"
                 android:layout_below="@+id/tv_audioplay_endtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </RelativeLayout>
 
         <LinearLayout
@@ -100,15 +107,19 @@
             android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/iv_audioplay_pre5s"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="30dp"
+                android:onClick="@{AudioPlayActivityonclick::onClick}"
                 android:src="@mipmap/pre_5s" />
 
             <ImageView
+                android:id="@+id/iv_audioplay_last"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="30dp"
+                android:onClick="@{AudioPlayActivityonclick::onClick}"
                 android:src="@mipmap/f_icon03_last" />
 
             <ImageView
@@ -120,15 +131,19 @@
                 android:src="@drawable/selector_play" />
 
             <ImageView
+                android:id="@+id/iv_audioplay_next"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="30dp"
+                android:onClick="@{AudioPlayActivityonclick::onClick}"
                 android:src="@mipmap/f_icon03_next" />
 
             <ImageView
+                android:id="@+id/iv_audioplay_next5s"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="30dp"
+                android:onClick="@{AudioPlayActivityonclick::onClick}"
                 android:src="@mipmap/next_5s" />
         </LinearLayout>
 
