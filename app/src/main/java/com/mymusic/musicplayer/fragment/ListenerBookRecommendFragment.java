@@ -3,6 +3,7 @@ package com.mymusic.musicplayer.fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +21,8 @@ import com.mymusic.musicplayer.bean.RecommendationBean;
 import com.mymusic.musicplayer.okhttp.Iview.IListenerBookRecommendView;
 import com.mymusic.musicplayer.okhttp.Presenter.ListenerBookRecommendPresenter;
 import com.mymusic.musicplayer.utils.DynamicTimeFormat;
+import com.mymusic.musicplayer.view.FullyGridLayoutManager;
+import com.mymusic.musicplayer.view.FullyLinearLayoutManager;
 import com.mymusic.musicplayer.view.GlideImageLoader;
 import com.orhanobut.logger.Logger;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -40,15 +43,15 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     private ListenerBookRecommendPresenter listenerBookRecommendPresenter = new ListenerBookRecommendPresenter(this);
     private RecyclerView rv_recommend_hotlists, rv_recommend_editorspicks, rv_recommend_hothits, rv_recommend_newarrivals,
             rv_recommend_bestauthors, rv_recommend_hotrecorders, rv_recommend_JYWX, rv_recommend_WXSJ, rv_recommend_SDMZ;
-    private RecyclerView.LayoutManager HotBooklistsLayoutManager;
-    private RecyclerView.LayoutManager EditorsPicksLayoutManager;
-    private LinearLayoutManager HotRecordersLayoutManager;
-    private GridLayoutManager HothitsLayoutManager;
-    private GridLayoutManager NewarrivalsLayoutManager;
-    private GridLayoutManager BestAuthorsLayoutManager;
-    private GridLayoutManager RecommendationsJYWXLayoutManager;
-    private GridLayoutManager RecommendationsWXSJLayoutManager;
-    private GridLayoutManager RecommendationsSDMZLayoutManager;
+    private FullyLinearLayoutManager HotBooklistsLayoutManager;
+    private FullyLinearLayoutManager EditorsPicksLayoutManager;
+    private FullyLinearLayoutManager HotRecordersLayoutManager;
+    private FullyGridLayoutManager HothitsLayoutManager;
+    private FullyGridLayoutManager NewarrivalsLayoutManager;
+    private FullyGridLayoutManager BestAuthorsLayoutManager;
+    private FullyGridLayoutManager RecommendationsJYWXLayoutManager;
+    private FullyGridLayoutManager RecommendationsWXSJLayoutManager;
+    private FullyGridLayoutManager RecommendationsSDMZLayoutManager;
     LinearLayout ll_fg_lintenerbookrecommend;
     RecommendHotBooklistsAdapter recommendHotBooklistsAdapter;
     private List<RecommendationBean.HotBooklistsBean> hotBooklists;
@@ -86,10 +89,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         return listenerBookRecommendFragment;
     }
 
-
+    View inflate;
     @Override
     View initView() {
-        View inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
+         inflate = View.inflate(getActivity(), R.layout.fg_listenerbookrecommend, null);
         ll_fg_lintenerbookrecommend = (LinearLayout) inflate.findViewById(R.id.ll_fg_lintenerbookrecommend);
 
         mRefreshLayout = (RefreshLayout) inflate.findViewById(R.id.refreshLayout);
@@ -148,10 +151,10 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          * 精选书单
          */
         hotBooklists = new ArrayList<>();
-        HotBooklistsLayoutManager = new LinearLayoutManager(getActivity());
+        HotBooklistsLayoutManager = new FullyLinearLayoutManager(getActivity());
         rv_recommend_hotlists.setLayoutManager(HotBooklistsLayoutManager);
         //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
-        rv_recommend_hotlists.setHasFixedSize(true);
+     //   rv_recommend_hotlists.setHasFixedSize(true);
 
         recommendHotBooklistsAdapter = new RecommendHotBooklistsAdapter(hotBooklists);
         rv_recommend_hotlists.setAdapter(recommendHotBooklistsAdapter);
@@ -159,7 +162,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          * 编辑推荐
          */
         editorsPickslists = new ArrayList<>();
-        EditorsPicksLayoutManager = new LinearLayoutManager(getActivity());
+        EditorsPicksLayoutManager = new FullyLinearLayoutManager(getActivity());
         rv_recommend_editorspicks.setLayoutManager(EditorsPicksLayoutManager);
         //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
         rv_recommend_editorspicks.setHasFixedSize(true);
@@ -171,7 +174,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          */
         hotHitslists = new ArrayList<>();
         recommendHothitsAdapter = new RecommendHothitsAdapter(hotHitslists);
-        HothitsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        HothitsLayoutManager = new FullyGridLayoutManager(getActivity(), 3);
         rv_recommend_hothits.setLayoutManager(HothitsLayoutManager);
         rv_recommend_hothits.setAdapter(recommendHothitsAdapter);
 
@@ -180,7 +183,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          */
         newArrivalslists = new ArrayList<>();
         recommendNewarrivalsAdapter = new RecommendNewarrivalsAdapter(newArrivalslists);
-        NewarrivalsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        NewarrivalsLayoutManager = new FullyGridLayoutManager(getActivity(), 3);
         rv_recommend_newarrivals.setLayoutManager(NewarrivalsLayoutManager);
         rv_recommend_newarrivals.setAdapter(recommendNewarrivalsAdapter);
 
@@ -190,7 +193,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
 
         bestAuthorslists = new ArrayList<>();
         recommendBestAuthorsAdapter = new RecommendBestAuthorsAdapter(bestAuthorslists);
-        BestAuthorsLayoutManager = new GridLayoutManager(getActivity(), 3);
+        BestAuthorsLayoutManager = new FullyGridLayoutManager(getActivity(), 3);
         rv_recommend_bestauthors.setLayoutManager(BestAuthorsLayoutManager);
         rv_recommend_bestauthors.setAdapter(recommendBestAuthorsAdapter);
 
@@ -198,7 +201,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
          * 人气演播
          */
         hotRecorderslists = new ArrayList<>();
-        HotRecordersLayoutManager = new LinearLayoutManager(getActivity());
+        HotRecordersLayoutManager = new FullyLinearLayoutManager(getActivity());
         HotRecordersLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_recommend_hotrecorders.setLayoutManager(HotRecordersLayoutManager);
         recommendHotRecordersAdapter = new RecommendHotRecordersAdapter(hotRecorderslists);
@@ -211,21 +214,21 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         // rv_recommend_JYWX.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationsjywxlists = new ArrayList<>();
         recommendRecommendationsJYWXAdapter = new RecommendRecommendationsAdapter(recommendationsjywxlists);
-        RecommendationsJYWXLayoutManager = new GridLayoutManager(getActivity(), 4);
+        RecommendationsJYWXLayoutManager = new FullyGridLayoutManager(getActivity(), 4);
         rv_recommend_JYWX.setLayoutManager(RecommendationsJYWXLayoutManager);
         rv_recommend_JYWX.setAdapter(recommendRecommendationsJYWXAdapter);
 
         //   rv_recommend_WXSJ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationswxsjlists = new ArrayList<>();
         recommendRecommendationsWXSJAdapter = new RecommendRecommendationsAdapter(recommendationswxsjlists);
-        RecommendationsWXSJLayoutManager = new GridLayoutManager(getActivity(), 4);
+        RecommendationsWXSJLayoutManager = new FullyGridLayoutManager(getActivity(), 4);
         rv_recommend_WXSJ.setLayoutManager(RecommendationsWXSJLayoutManager);
         rv_recommend_WXSJ.setAdapter(recommendRecommendationsWXSJAdapter);
 
         //  rv_recommend_SDMZ.addItemDecoration(new SpacesItemDecoration(spanCount, spacing, includeEdge));
         recommendationssdmzlists = new ArrayList<>();
         recommendRecommendationsSDMZAdapter = new RecommendRecommendationsAdapter(recommendationssdmzlists);
-        RecommendationsSDMZLayoutManager = new GridLayoutManager(getActivity(), 4);
+        RecommendationsSDMZLayoutManager = new FullyGridLayoutManager(getActivity(), 4);
         rv_recommend_SDMZ.setLayoutManager(RecommendationsSDMZLayoutManager);
         rv_recommend_SDMZ.setAdapter(recommendRecommendationsSDMZAdapter);
     }
@@ -263,6 +266,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         this.hotBooklists.clear();
         this.hotBooklists.addAll(hotBooklists);
         recommendHotBooklistsAdapter.notifyDataSetChanged();
+        Log.e("setBookRecommendHotBooklists", hotBooklists+"");
 
     }
 
@@ -273,11 +277,14 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
      */
     @Override
     public void setBookRecommendEditorspicks(List<RecommendationBean.EditorsPicksBean> editorspicks) {
+        mRefreshLayout.finishRefresh();
         editorsPickslists.clear();
         editorsPickslists.addAll(editorspicks);
         recommendEditorsPicksAdapter.notifyDataSetChanged();
-        mRefreshLayout.finishRefresh();
-        Logger.d("傻逼刷新结束==犹如仙女");
+
+        rv_recommend_editorspicks.invalidate();
+
+        Logger.d("傻逼刷新结束==犹如仙女"+editorspicks.size());
     }
 
     /**

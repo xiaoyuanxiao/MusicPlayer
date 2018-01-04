@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,12 +30,13 @@ public class RecommendRecommendationsAdapter extends RecyclerView.Adapter<Recomm
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = View.inflate(parent.getContext(), R.layout.item_recommend_image, null);
         ViewHolder viewHolder = new ViewHolder(inflate);
+        Log.e("tagonCreateViewHolder", viewHolder+"");
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Logger.d("==" + list.get(position).getBook().getCover());
+        Log.e("tag", list.get(position).getBook().getDescription());
         Glide.with(holder.iv_cover.getContext())
                 .load(list.get(position).getBook().getCover())
                 .placeholder(R.mipmap.h_icon01_active)

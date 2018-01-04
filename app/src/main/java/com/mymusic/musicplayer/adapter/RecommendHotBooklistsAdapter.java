@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.bean.RecommendationBean;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -26,12 +28,15 @@ public class RecommendHotBooklistsAdapter extends RecyclerView.Adapter<Recommend
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = View.inflate(parent.getContext(), R.layout.item_recommend_listview, null);
-        RecommendHotBooklistsAdapter.ViewHolder viewHolder = new RecommendHotBooklistsAdapter.ViewHolder(inflate);
+        ViewHolder viewHolder = new ViewHolder(inflate);
+        Log.e("精选书单tag", viewHolder+"");
         return viewHolder;
+
     }
 
     @Override
-    public void onBindViewHolder(RecommendHotBooklistsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Log.e("精选书单tag", list.get(position).getDescription());
         RecommendationBean.HotBooklistsBean hotBooklistsBean = list.get(position);
 
         holder.tv_hot_booklists_title.setText(hotBooklistsBean.getTitle());

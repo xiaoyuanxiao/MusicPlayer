@@ -25,6 +25,7 @@ public class RecommendEditorsPicksAdapter extends RecyclerView.Adapter<Recommend
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View inflate = View.inflate(parent.getContext(), R.layout.item_recommendeditorspicks_listview, null);
         RecommendEditorsPicksAdapter.ViewHolder viewHolder = new RecommendEditorsPicksAdapter.ViewHolder(inflate);
         return viewHolder;
