@@ -119,7 +119,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
     @Override
     protected void initData() {
         super.initData();
-
         mClassicsHeader = (ClassicsHeader) mRefreshLayout.getRefreshHeader();
         mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
@@ -135,8 +134,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
                 //刷新
 
                 Logger.d("刷新准备");
-                ll_fg_lintenerbookrecommend.setVisibility(View.VISIBLE);
-
                 listenerBookRecommendPresenter.getdata();
             }
         });
@@ -265,7 +262,6 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
         this.hotBooklists.clear();
         this.hotBooklists.addAll(hotBooklists);
         recommendHotBooklistsAdapter.notifyDataSetChanged();
-        Log.e("setBookRecommendHotBooklists", hotBooklists+"");
 
     }
 
@@ -276,6 +272,7 @@ public class ListenerBookRecommendFragment extends BaseFragment implements IList
      */
     @Override
     public void setBookRecommendEditorspicks(List<RecommendationBean.EditorsPicksBean> editorspicks) {
+        ll_fg_lintenerbookrecommend.setVisibility(View.VISIBLE);
         mRefreshLayout.finishRefresh();
         editorsPickslists.clear();
         editorsPickslists.addAll(editorspicks);

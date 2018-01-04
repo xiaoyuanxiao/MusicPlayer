@@ -57,6 +57,7 @@
         <RadioButton
             android:id="@+id/rb_fg_listenerbook_list"
             style="@style/tv_weight"
+
             android:text="@string/list"
             android:button="@null"
             android:textColor="@drawable/selector_text_color" />
