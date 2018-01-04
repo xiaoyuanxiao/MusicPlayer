@@ -13,6 +13,7 @@ import com.mymusic.musicplayer.okhttp.Iview.IClassifyFragmentView;
 import com.mymusic.musicplayer.okhttp.Presenter.ClassifyFragmentPresenter;
 import com.mymusic.musicplayer.utils.DynamicTimeFormat;
 import com.mymusic.musicplayer.view.MyDividerDecoration;
+import com.mymusic.musicplayer.view.MyGridLayoutManager;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
@@ -24,9 +25,9 @@ import java.util.List;
  */
 
 public class ListenerBookClassifyFragment extends BaseFragment implements IClassifyFragmentView {
-    private GridLayoutManager AllLayoutManager;
-    private GridLayoutManager ChineseLayoutManager;
-    private GridLayoutManager OtherLayoutManager;
+    private MyGridLayoutManager AllLayoutManager;
+    private MyGridLayoutManager ChineseLayoutManager;
+    private MyGridLayoutManager OtherLayoutManager;
     private RefreshLayout mRefreshLayout;
     private ClassicsHeader mClassicsHeader;
     private RecyclerView rv_classify_all, rv_classify_chinese, rv_classify_otherCountries;
@@ -69,21 +70,21 @@ public class ListenerBookClassifyFragment extends BaseFragment implements IClass
 //        mRefreshLayout.autoRefresh();
 
 
-        AllLayoutManager = new GridLayoutManager(getActivity(), 3);
+        AllLayoutManager = new MyGridLayoutManager(getActivity(), 3);
         rv_classify_all.setLayoutManager(AllLayoutManager);
         labelsBeanList = new ArrayList<>();
         classifyAllAdapter = new ClassifyAllAdapter(labelsBeanList);
         rv_classify_all.setAdapter(classifyAllAdapter);
         rv_classify_all.addItemDecoration(myGridRvDividerDecoration);
 
-        ChineseLayoutManager = new GridLayoutManager(getActivity(), 3);
+        ChineseLayoutManager = new MyGridLayoutManager(getActivity(), 3);
         rv_classify_chinese.setLayoutManager(ChineseLayoutManager);
         standardTypesChineseList = new ArrayList<>();
         classifyStandardChineseAdapter = new ClassifyStandardAdapter(standardTypesChineseList);
         rv_classify_chinese.setAdapter(classifyStandardChineseAdapter);
         rv_classify_chinese.addItemDecoration(myGridRvDividerDecoration);
 
-        OtherLayoutManager = new GridLayoutManager(getActivity(), 3);
+        OtherLayoutManager = new MyGridLayoutManager(getActivity(), 3);
         rv_classify_otherCountries.setLayoutManager(OtherLayoutManager);
         standardTypesOhterList = new ArrayList<>();
         classifyStandardOhterAdapter = new ClassifyStandardAdapter(standardTypesOhterList);

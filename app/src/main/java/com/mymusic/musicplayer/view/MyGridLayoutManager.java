@@ -10,16 +10,15 @@ import android.view.ViewGroup;
  * Created by cc on 2018/1/4.
  */
 
-public class FullyGridLayoutManager extends GridLayoutManager {
+public class MyGridLayoutManager extends GridLayoutManager {
 
-    public FullyGridLayoutManager(Context context, int spanCount) {
+    public MyGridLayoutManager(Context context, int spanCount) {
         super(context, spanCount);
     }
 
-    public FullyGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {
+    public MyGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {
         super(context, spanCount, orientation, reverseLayout);
     }
-
 
     @Override
     public int getItemCount() {
@@ -27,6 +26,7 @@ public class FullyGridLayoutManager extends GridLayoutManager {
     }
 
     private int[] mMeasuredDimension = new int[2];
+
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
         final int widthMode = View.MeasureSpec.getMode(widthSpec);
@@ -72,6 +72,7 @@ public class FullyGridLayoutManager extends GridLayoutManager {
         }
         setMeasuredDimension(width, height);
     }
+
     private void measureScrapChild(RecyclerView.Recycler recycler, int position, int widthSpec,
                                    int heightSpec, int[] measuredDimension) {
         if (position < getItemCount()) {
@@ -93,6 +94,4 @@ public class FullyGridLayoutManager extends GridLayoutManager {
             }
         }
     }
-
-
 }

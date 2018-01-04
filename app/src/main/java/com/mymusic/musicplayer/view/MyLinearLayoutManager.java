@@ -10,16 +10,15 @@ import android.view.ViewGroup;
  * Created by cc on 2018/1/4.
  */
 
-public class FullyLinearLayoutManager extends LinearLayoutManager {
+public class MyLinearLayoutManager extends LinearLayoutManager {
 
+    private static final String TAG = MyLinearLayoutManager.class.getSimpleName();
 
-    private static final String TAG = FullyLinearLayoutManager.class.getSimpleName();
-
-    public FullyLinearLayoutManager(Context context) {
+    public MyLinearLayoutManager(Context context) {
         super(context);
     }
 
-    public FullyLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+    public MyLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
         super(context, orientation, reverseLayout);
     }
 
@@ -31,11 +30,6 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
         final int heightMode = View.MeasureSpec.getMode(heightSpec);
         final int widthSize = View.MeasureSpec.getSize(widthSpec);
         final int heightSize = View.MeasureSpec.getSize(heightSpec);
-            /*Log.i(TAG, "onMeasure called. \nwidthMode " + widthMode
-                    + " \nheightMode " + heightSpec
-                    + " \nwidthSize " + widthSize
-                    + " \nheightSize " + heightSize
-                    + " \ngetItemCount() " + getItemCount());*/
         int width = 0;
         int height = 0;
         for (int i = 0; i < getItemCount(); i++) {
@@ -89,6 +83,4 @@ public class FullyLinearLayoutManager extends LinearLayoutManager {
         } finally {
         }
     }
-
-
 }
