@@ -8,6 +8,7 @@ import com.mymusic.musicplayer.CatalogBinding;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.adapter.CatalogAdapter;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
+import com.mymusic.musicplayer.view.MyLinearLayoutManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.Map;
  */
 
 public class CatalogFragment extends MyBaseFragment {
-    private LinearLayoutManager linearLayoutManager;
+    private MyLinearLayoutManager linearLayoutManager;
     CatalogBinding catalogBinding;
     private CatalogAdapter catalogAdapter;
     private BookRankDetailsBean.BookBean book;
@@ -38,7 +39,7 @@ public class CatalogFragment extends MyBaseFragment {
         super.initData();
         catalogBinding = getBind();
         getActivityData();
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new MyLinearLayoutManager(getActivity());
         catalogBinding.rvCatalog.setLayoutManager(linearLayoutManager);
         Map<Integer, Integer> map = new HashMap<>();
         map.put(R.layout.item_fg_catalog, BR.catalogBean);

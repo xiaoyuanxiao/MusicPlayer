@@ -8,6 +8,7 @@ import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.RankCommentData;
 import com.mymusic.musicplayer.adapter.BaseRecyleAdapter;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
+import com.mymusic.musicplayer.view.MyLinearLayoutManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 public class RankCommentFragment extends MyBaseFragment {
     RankCommentData rankCommentData;
-    private LinearLayoutManager linearLayoutManager;
+    private MyLinearLayoutManager linearLayoutManager;
     private BaseRecyleAdapter baseRecyleAdapte;
 
 
@@ -38,7 +39,7 @@ public class RankCommentFragment extends MyBaseFragment {
         rankCommentData = getBind();
         getActivityData();
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new MyLinearLayoutManager(getActivity());
         rankCommentData.rvRankcomment.setLayoutManager(linearLayoutManager);
         Map<Integer, Integer> map = new HashMap<>();
         map.put(R.layout.item_fg_rankcomment, BR.latestBean);
