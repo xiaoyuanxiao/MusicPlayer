@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.mymusic.musicplayer.ItemRankCatalogData;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.activity.AudioPlayActivity;
+import com.mymusic.musicplayer.activity.AudioPlayActivity1;
+import com.mymusic.musicplayer.activity.AudioPlayActivity2;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
 
 import java.text.DecimalFormat;
@@ -73,7 +75,7 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
 
     @Override
     public void onItemClic(View view, int position) {
-        Intent intent = new Intent(context, AudioPlayActivity.class);
+        Intent intent = new Intent(context, AudioPlayActivity2.class);
         BookRankDetailsBean.SectionsBean sectionsBean = sectionBeen.get(position);
         intent.putExtra("sectionsBean", sectionsBean);
         intent.putExtra("thumbnail", bookBean.getThumbnail());

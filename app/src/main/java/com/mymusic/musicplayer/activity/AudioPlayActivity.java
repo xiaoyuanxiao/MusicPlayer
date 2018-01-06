@@ -1,10 +1,12 @@
 package com.mymusic.musicplayer.activity;
 
+import android.animation.ObjectAnimator;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Handler;
-import android.os.Message;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
@@ -16,8 +18,10 @@ import com.mymusic.musicplayer.bean.AudioUrlBean;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
 import com.mymusic.musicplayer.okhttp.Iview.IAudioPlayView;
 import com.mymusic.musicplayer.okhttp.Presenter.AudioPlayPresenter;
+import com.mymusic.musicplayer.service.MusicService;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,16 +34,14 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     private static final int ROUTE = 21;
     AudioPlayBinding audioPlayBinding;
     private AudioPlayPresenter audioPlayPresenter = new AudioPlayPresenter(this);
-    private boolean isPlaying = true;
     private String title;
-    private int timelength;
-    private int length;
     public MediaPlayer mediaPlayer;
     private String url;
-    int pro = 0;
-    private int i;
-    private String s, s1;
-    private Timer timer;
+    private MusicService musicService;
+    private boolean tag2 = false;
+    private SimpleDateFormat time = new SimpleDateFormat("mm:ss");
+    private int length;
+    private int timelength;
     @Override
     int initview() {
         return R.layout.activity_audioplay;
@@ -49,11 +51,20 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     void initdatabinding() {
         audioPlayBinding = getBind();
         audioPlayBinding.setAudioPlayActivityonclick(this);
-
-
     }
+    //  通过 Handler 更新 UI 上的组件状态
+    public Handler handler = new Handler();
+    public Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            audioPlayBinding.tvAudioplayStarttime.setText(time.format(musicService.mediaPlayer.getCurrentPosition()));
+            audioPlayBinding.seekbarAudioplay.setProgress(musicService.mediaPlayer.getCurrentPosition());
+            audioPlayBinding.seekbarAudioplay.setMax(musicService.mediaPlayer.getDuration());
+            audioPlayBinding.tvAudioplayEndtime.setText(time.format(musicService.mediaPlayer.getDuration()));
+            handler.postDelayed(runnable, 200);
 
-    String a;
+        }
+    };
 
     @Override
     void initData() {
@@ -64,94 +75,93 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
         BookRankDetailsBean.SectionsBean sectionsBean = intent.getParcelableExtra("sectionsBean");
         audioPlayBinding.tvAudioplayTitle.setText(sectionsBean.getSection().getTitle());
         audioPlayBinding.seekbarAudioplay.setMax(sectionsBean.getSection().getLength());//设置seekbar的最大值为时间长度
-        i = timelength % 60;
-        s = (i < 10) ? ("0" + i) : (i + "");
-        audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
         Glide.with(this).load(thumbnail).into(audioPlayBinding.ivAudioplayCover);
         setDataTitle(title);
         setTitleRightimg(R.mipmap.f_icon04_sharet);
         setTitleLeftimg(R.mipmap.f_close);
         setTextVisible(View.GONE);
         audioPlayPresenter.getdata(sectionsBean.getSection().getId(), "section");
+        bindServiceConnection();
         audioPlayBinding.seekbarAudioplay.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            /**
-             * 进度改变
-             *
-             * @param seekBar
-             * @param progress
-             * @param fromUser
-             */
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-
-                    mediaPlayer.seekTo(progress);// 当进度条的值改变时，音乐播放器从新的位置开始播放
-                    audioPlayBinding.seekbarAudioplay.setProgress(progress);
-                    timelength = length - progress;
-                    pro = progress;
-                    i = timelength % 60;
-                    s = (i < 10) ? (a = "0" + i) : (a = i + "");
-                    audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
+                if (fromUser == true) {
+                    musicService.mediaPlayer.seekTo(progress);
                 }
             }
 
-            /**
-             * 开始拖动
-             *
-             * @param seekBar
-             */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                timer.cancel();
-                mediaPlayer.pause(); // 开始拖动进度条时，音乐暂停播放
+
             }
 
-            /**
-             * 停止拖动
-             *
-             * @param seekBar
-             */
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mediaPlayer.start(); // 停止拖动进度条时，音乐开始播放
-                SeekbarChange();
+
             }
         });
 
     }
-
-    private void SeekbarChange() {
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.sendEmptyMessageDelayed(ROUTE, 0);
-            }
-        }, 0, 1000);
+    //  在Activity中调用 bindService 保持与 Service 的通信
+    private void bindServiceConnection() {
+        Intent intent = new Intent(AudioPlayActivity.this,MusicService.class);
+        startService(intent);
+        bindService(intent, serviceConnection, this.BIND_AUTO_CREATE);
     }
-
-
-    private void initMedia() {
-        mediaPlayer = new MediaPlayer();
-        // 通过Uri解析一个网络地址
-        Uri uri = Uri.parse(url);
-        try {
-            mediaPlayer.setDataSource(AudioPlayActivity.this, uri);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+    //  回调onServiceConnected 函数，通过IBinder 获取 Service对象，实现Activity与 Service的绑定
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            musicService = ((MusicService.MyBinder) (service)).getService();
+            Log.i("musicService", musicService + "");
+            audioPlayBinding.tvAudioplayEndtime.setText(time.format(musicService.mediaPlayer.getDuration()));
         }
-    }
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            musicService = null;
+        }
+    };
+
+
+
+//        btnStop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                musicStatus.setText("Stopped");
+//                btnPlayOrPause.setText("PLAY");
+//                musicService.stop();
+//                animator.pause();
+//                musicService.tag = false;
+//            }
+//        });
+
+//        //  停止服务时，必须解除绑定，写入btnQuit按钮中
+//        btnQuit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                handler.removeCallbacks(runnable);
+//                unbindService(serviceConnection);
+//                Intent intent = new Intent(MainActivity1.this, MusicService.class);
+//                stopService(intent);
+//                try {
+//                    MainActivity1.this.finish();
+//                } catch (Exception e) {
+//
+//                }
+//            }
+//        });
+
+
 
     @Override
     public void setdata(AudioUrlBean audioUrlBean) {
         url = audioUrlBean.getUrl();
         audioPlayBinding.setAudioUrlBean(audioUrlBean);
-        initMedia();
-        if (isPlaying) {
-            SeekbarChange();
+        if (tag2 == false) {
+            handler.post(runnable);
+            tag2 = true;
         }
+
     }
 
 
@@ -159,47 +169,28 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_audioplay_play:
-                isPlaying = !isPlaying;
-                audioPlayBinding.ivAudioplayPlay.setImageResource(isPlaying ? R.mipmap.f_icon03_stop : R.mipmap.f_icon03_play);
-                if (isPlaying) {//是否这个播放
-                    mediaPlayer.start();
-                    Log.e("start", "start===============");
-                    SeekbarChange();
+               audioPlayBinding.ivAudioplayPlay.setImageResource(tag2 ? R.mipmap.f_icon03_stop : R.mipmap.f_icon03_play);
+                if (musicService.mediaPlayer != null) {
+                    audioPlayBinding.seekbarAudioplay.setProgress(musicService.mediaPlayer.getCurrentPosition());
+                    audioPlayBinding.seekbarAudioplay.setMax(musicService.mediaPlayer.getDuration());
+                }
+                //  由tag的变换来控制事件的调用
+                if (musicService.tag != true) {
+                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_stop);
+                    musicService.playOrPause();
+                    musicService.tag = true;
                 } else {
-                    mediaPlayer.pause();
-                    handler.removeMessages(0);
-                    timer.cancel();
-                    Log.e("pause", "pause===============");
+                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_play);
+                    musicService.playOrPause();
+                    musicService.tag = false;
+                }
+                if (tag2 == false) {
+                    handler.post(runnable);
+                    tag2 = true;
                 }
                 break;
         }
     }
 
-    public static final int PROGRESS = 1;
-    private Handler handler = new Handler() {
-
-
-        public void handleMessage(Message msg) {
-            if (msg.what == ROUTE) {
-                handler.sendEmptyMessage(PROGRESS);
-
-            }
-            if (msg.what == PROGRESS) {
-                pro++;
-                timelength--;
-                s = ((timelength % 60) < 10) ? ("0" + (timelength % 60)) : ((timelength % 60) + "");
-                s1 = ((length - timelength % 60) < 10) ? ("0" + (length - timelength % 60)) : ((length - timelength % 60) + "");
-                audioPlayBinding.tvAudioplayEndtime.setText("-" + timelength / 60 + ":" + s);
-                audioPlayBinding.tvAudioplayStarttime.setText((length - timelength) / 60 + ":" + s1);
-                audioPlayBinding.seekbarAudioplay.setProgress(pro);
-            }
-        }
-    };
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mediaPlayer.release();
-    }
 
 }

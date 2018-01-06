@@ -21,7 +21,18 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SalesRankActivity" />
         <activity android:name=".activity.BookRankDetailsActivity" />
+        <activity android:name=".activity.AudioPlayActivity1" />
         <activity android:name=".activity.AudioPlayActivity" />
+        <activity android:name=".activity.AudioPlayActivity2" />
+        <service
+            android:name=".service.MusicService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".service.PlayerService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
