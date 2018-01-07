@@ -75,7 +75,7 @@ public class CatalogAdapter extends BaseRecyleAdapter implements BaseRecyleAdapt
 
     @Override
     public void onItemClic(View view, int position) {
-        Intent intent = new Intent(context, AudioPlayActivity2.class);
+        Intent intent = new Intent(context, AudioPlayActivity.class);
         BookRankDetailsBean.SectionsBean sectionsBean = sectionBeen.get(position);
         intent.putExtra("sectionsBean", sectionsBean);
         intent.putExtra("thumbnail", bookBean.getThumbnail());
