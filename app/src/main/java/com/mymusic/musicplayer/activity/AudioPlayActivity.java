@@ -23,10 +23,7 @@ import com.mymusic.musicplayer.okhttp.Iview.IAudioPlayView;
 import com.mymusic.musicplayer.okhttp.Presenter.AudioPlayPresenter;
 import com.mymusic.musicplayer.service.MusicService;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -34,19 +31,13 @@ import java.util.TimerTask;
  */
 
 public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, View.OnClickListener {
-    private static final int ROUTE = 21;
     AudioPlayBinding audioPlayBinding;
     private AudioPlayPresenter audioPlayPresenter = new AudioPlayPresenter(this);
     private String title;
-    public MediaPlayer mediaPlayer;
     private String url;
     private MusicService musicService;
-    private boolean tag2 = false;
     private SimpleDateFormat time = new SimpleDateFormat("mm:ss");
-    private int length;
-    private int timelength;
     private Intent intent;
-    private Uri uri;
 
     @Override
     int initview() {
@@ -65,7 +56,6 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
         Intent intent = getIntent();
         String thumbnail = intent.getStringExtra("thumbnail");
         title = intent.getStringExtra("title");
-        length = timelength = intent.getIntExtra("timelength", 0);
         BookRankDetailsBean.SectionsBean sectionsBean = intent.getParcelableExtra("sectionsBean");
         audioPlayBinding.tvAudioplayTitle.setText(sectionsBean.getSection().getTitle());
         audioPlayBinding.seekbarAudioplay.setMax(sectionsBean.getSection().getLength());//设置seekbar的最大值为时间长度
@@ -96,11 +86,11 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
         });
 
     }
+
     //  在Activity中调用 bindService 保持与 Service 的通信
     private void bindServiceConnection() {
         intent = new Intent(AudioPlayActivity.this, MusicService.class);
-    //    intent.putExtra("uri","http://jyts-public-oss.longruncloud.com/audios/fd84ee7bc5408a1b2b183f05922ce19684af39ec1654be0cf41a655b6fe8ab2c.mp3");
-        intent.putExtra("uri",url);
+        intent.putExtra("uri", url);
         startService(intent);
         bindService(intent, serviceConnection, this.BIND_AUTO_CREATE);
     }
@@ -113,20 +103,21 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
             Log.i("musicService", musicService + "");
             audioPlayBinding.tvAudioplayEndtime.setText(time.format(musicService.mediaPlayer.getDuration()));
             //  由tag的变换来控制事件的调用
+
+            audioPlayBinding.ivAudioplayPlay.setImageResource(musicService.tag ? R.mipmap.f_icon03_play : R.mipmap.f_icon03_stop);
+
+            //  由tag的变换来控制事件的调用
             if (musicService.tag != true) {
-                audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_stop);
+               handler.post(runnable);
                 musicService.playOrPause();
                 musicService.tag = true;
+
             } else {
-                audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_play);
                 musicService.playOrPause();
                 musicService.tag = false;
             }
-            if (tag2 == false) {
-                handler.post(runnable);
-                tag2 = true;
-            }
         }
+
         @Override
         public void onServiceDisconnected(ComponentName name) {
             musicService = null;
@@ -161,15 +152,14 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
 //        });
 
 
-
     @Override
     public void setdata(AudioUrlBean audioUrlBean) {
-
         url = audioUrlBean.getUrl();
         audioPlayBinding.setAudioUrlBean(audioUrlBean);
 
         bindServiceConnection();
     }
+
     //  通过 Handler 更新 UI 上的组件状态
     public Handler handler = new Handler();
     public Runnable runnable = new Runnable() {
@@ -188,41 +178,32 @@ public class AudioPlayActivity extends BaseActivity implements IAudioPlayView, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_audioplay_play:
-               audioPlayBinding.ivAudioplayPlay.setImageResource(tag2 ? R.mipmap.f_icon03_stop : R.mipmap.f_icon03_play);
+                audioPlayBinding.ivAudioplayPlay.setImageResource(musicService.tag ? R.mipmap.f_icon03_play : R.mipmap.f_icon03_stop);
                 if (musicService.mediaPlayer != null) {
                     audioPlayBinding.seekbarAudioplay.setProgress(musicService.mediaPlayer.getCurrentPosition());
                     audioPlayBinding.seekbarAudioplay.setMax(musicService.mediaPlayer.getDuration());
                 }
                 //  由tag的变换来控制事件的调用
                 if (musicService.tag != true) {
-                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_stop);
+                    handler.post(runnable);
                     musicService.playOrPause();
                     musicService.tag = true;
+
                 } else {
-                    audioPlayBinding.ivAudioplayPlay.setImageResource(R.mipmap.f_icon03_play);
                     musicService.playOrPause();
                     musicService.tag = false;
-                }
-                if (tag2 == false) {
-                    handler.post(runnable);
-                    tag2 = true;
                 }
                 break;
         }
     }
+
     //  获取并设置返回键的点击事件
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             handler.removeCallbacks(runnable);
-                unbindService(serviceConnection);
-                Intent intent = new Intent(AudioPlayActivity.this, MusicService.class);
-                stopService(intent);
-                try {
-                    AudioPlayActivity.this.finish();
-                } catch (Exception e) {
-
-                }
+            unbindService(serviceConnection);
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

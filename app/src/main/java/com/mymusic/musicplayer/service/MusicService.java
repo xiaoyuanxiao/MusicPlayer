@@ -1,14 +1,14 @@
 package com.mymusic.musicplayer.service;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
-import retrofit2.http.Url;
+import java.io.IOException;
+
 
 public class MusicService extends Service {
     public MediaPlayer mediaPlayer;
@@ -17,28 +17,36 @@ public class MusicService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        uri = intent.getStringExtra("uri");
-        try {
-            mediaPlayer.setDataSource(uri);
-            //mediaPlayer.setDataSource("http://jyts-public-oss.longruncloud.com/audios/fd84ee7bc5408a1b2b183f05922ce19684af39ec1654be0cf41a655b6fe8ab2c.mp3");
-            //mediaPlayer.setDataSource("http://sc1.111ttt.cn/2016/1/10/29/203291210339.mp3");
-            mediaPlayer.prepare();
-            mediaPlayer.setLooping(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (!intent.getStringExtra("uri").equals(uri)) {
+            uri = intent.getStringExtra("uri");
+            try {
+                // mediaPlayer.release();
+                tag = false;
+                mediaPlayer.reset();
+                mediaPlayer.setDataSource(uri);
+                mediaPlayer.prepare();
+                mediaPlayer.setLooping(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        } else {
+            mediaPlayer.pause();
+            tag = false;
         }
         return super.onStartCommand(intent, flags, startId);
     }
 
     public MusicService() {
         mediaPlayer = new MediaPlayer();
-
     }
 
     //  通过 Binder 来保持 Activity 和 Service 的通信
     public MyBinder binder = new MyBinder();
+
     public class MyBinder extends Binder {
-       public MusicService getService() {
+        public MusicService getService() {
             return MusicService.this;
         }
     }
@@ -54,18 +62,24 @@ public class MusicService extends Service {
     public void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
-            try {
-                mediaPlayer.reset();
-             //   mediaPlayer.setDataSource("/data/music.mp3");
-                mediaPlayer.setDataSource(uri);
-              //  mediaPlayer.setDataSource("http://sc1.111ttt.cn/2016/1/10/29/203291210339.mp3");
-                mediaPlayer.prepare();
-                mediaPlayer.seekTo(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
     }
+
+    @Override
+    public void onDestroy() {
+        //销毁音乐
+        Log.i("tag", "onDestroy====MusicService");
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+        }
+        mediaPlayer.release();
+        mediaPlayer = null;
+        stop();
+        super.onDestroy();
+    }
+
 
     @Override
     public boolean onUnbind(Intent intent) {

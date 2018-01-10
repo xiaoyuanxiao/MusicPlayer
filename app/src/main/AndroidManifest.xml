@@ -27,7 +27,13 @@
         <service
             android:name=".service.MusicService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+           <!-- <intent-filter>
+                <action android:name="com.mymusic.musicplayer.Android.MUSIC"/>
+
+            </intent-filter>-->
+        </service>
+
 
         <service
             android:name=".service.PlayerService"

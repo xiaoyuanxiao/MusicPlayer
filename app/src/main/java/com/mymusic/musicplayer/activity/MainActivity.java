@@ -1,12 +1,17 @@
 package com.mymusic.musicplayer.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.mymusic.musicplayer.MainData;
 import com.mymusic.musicplayer.R;
 import com.mymusic.musicplayer.fragment.ListenerBookFragment;
+import com.mymusic.musicplayer.service.MusicService;
 import com.mymusic.musicplayer.utils.FragmentUtils;
 import com.mymusic.musicplayer.utils.RadioButtonImgUtil;
 
@@ -86,6 +91,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
 
+    }
+
+    //  获取并设置返回键的点击事件
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            showDialog();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 退出应用
+     */
+    private void showDialog() {
+        new AlertDialog.Builder(this).setTitle("确认退出吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainActivity.this, MusicService.class);
+                        stopService(intent);
+                        finish();
+
+                    }
+                })
+                .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
 
