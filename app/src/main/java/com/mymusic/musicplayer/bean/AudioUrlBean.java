@@ -12,6 +12,9 @@ public class AudioUrlBean {
      */
 
     private String url;
+    private String msg;
+    private String code;
+
 
     public String getUrl() {
         return url;

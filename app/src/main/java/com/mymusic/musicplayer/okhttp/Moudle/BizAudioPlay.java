@@ -1,5 +1,7 @@
 package com.mymusic.musicplayer.okhttp.Moudle;
 
+import android.util.Log;
+
 import com.mymusic.musicplayer.bean.AudioUrlBean;
 import com.mymusic.musicplayer.mynet.HttpSubCribe;
 import com.mymusic.musicplayer.mynet.MyRetroService;
@@ -27,7 +29,7 @@ public class BizAudioPlay implements IAudioPlayBiz {
 
             @Override
             public void onError(Throwable e) {
-
+                Log.e("BizAudioPlay",e+"");
             }
 
             @Override
