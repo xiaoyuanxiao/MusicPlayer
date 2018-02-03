@@ -23,7 +23,7 @@
         <activity android:name=".activity.BookRankDetailsActivity" />
         <activity android:name=".activity.AudioPlayActivity1" />
         <activity android:name=".activity.AudioPlayActivity" />
-        <activity android:name=".activity.AudioPlayActivity2" />
+        <activity android:name=".activity.CampaignDetailActivity" />
         <service
             android:name=".service.MusicService"
             android:enabled="true"

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <data class="com.mymusic.musicplayer.CompaignDetailData">
+
+    </data>
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_compaign_title"
+                style="@style/tv_standard_14sp" />
+
+            <TextView
+                android:id="@+id/tv_compaign_time"
+                style="@style/tv_standard_10sp_gray"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:id="@+id/iv_compaign_cover"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/tv_compaign_content"
+                style="@style/tv_standard_10sp"
+                android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+        </ScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_above="@+id/ll_compaign_bottom"
+            android:background="@color/view"/>
+
+        <LinearLayout
+            android:id="@+id/ll_compaign_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:background="@color/bg_gray"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/a_icon02_zan" />
+
+                <TextView
+                    android:id="@+id/tv_compaign_zan"
+                    style="@style/tv_standard_9sp_gray"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/a_icon01_comment" />
+
+                <TextView
+                    android:id="@+id/tv_compaign_comment"
+                    style="@style/tv_standard_9sp_gray"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

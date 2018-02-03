@@ -1,6 +1,7 @@
 package com.mymusic.musicplayer.mynet;
 
 
+import com.mymusic.musicplayer.bean.ActivityBean;
 import com.mymusic.musicplayer.bean.AudioUrlBean;
 import com.mymusic.musicplayer.bean.BookListBean;
 import com.mymusic.musicplayer.bean.BookRankDetailsBean;
@@ -63,5 +64,7 @@ public interface MyRetroService {
     @GET("api/play")
     Observable<AudioUrlBean> getAudioUrl(@Query("id") int id, @Query("type") String type);
 
+    @GET("api/events")
+    Observable<List<ActivityBean>> getAcitivityData();
 
 }

@@ -1,11 +1,13 @@
 package com.mymusic.musicplayer.okhttp.Factory;
 
+import com.mymusic.musicplayer.okhttp.Moudle.BizActivity;
 import com.mymusic.musicplayer.okhttp.Moudle.BizAudioPlay;
 import com.mymusic.musicplayer.okhttp.Moudle.BizBookList;
 import com.mymusic.musicplayer.okhttp.Moudle.BizBookRank;
 import com.mymusic.musicplayer.okhttp.Moudle.BizBookRankDetails;
 import com.mymusic.musicplayer.okhttp.Moudle.BizClassifyFragment;
 import com.mymusic.musicplayer.okhttp.Moudle.BizListenerBookRecommend;
+import com.mymusic.musicplayer.okhttp.Moudle.IActivityListBiz;
 import com.mymusic.musicplayer.okhttp.Moudle.IAudioPlayBiz;
 import com.mymusic.musicplayer.okhttp.Moudle.IBookListBiz;
 import com.mymusic.musicplayer.okhttp.Moudle.IBookRankBiz;
@@ -41,5 +43,8 @@ public class IBizFactory {
 
     public static IAudioPlayBiz getAudioPlayBiz() {
         return BizAudioPlay.getInstanse();
+    }
+    public static IActivityListBiz getActivityBiz() {
+        return BizActivity.getInstanse();
     }
 }

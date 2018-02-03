@@ -11,6 +11,10 @@
         <!--<variable-->
         <!--name="testBean"-->
         <!--type="com.mymusic.musicplayer.bean.MainTestBean" />-->
+        <variable
+            name="MainActivityonclic"
+            type="android.view.View.OnClickListener" />
+
     </data>
 
     <LinearLayout
@@ -55,11 +59,13 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/iv_main_play"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@mipmap/ic_player_bar_btn" />
+                android:src="@mipmap/ic_player_bar_btn"
+                android:onClick="@{MainActivityonclic::onClick}"/>
 
 
         </LinearLayout>
@@ -92,21 +98,25 @@
                     android:id="@+id/rg_main_listenbook"
                     style="@style/fg_main"
                     android:checked="true"
+                    android:onClick="@{MainActivityonclic::onClick}"
                     android:text="听书馆" />
 
                 <RadioButton
                     android:id="@+id/rg_main_radiostation"
                     style="@style/fg_main"
+                    android:onClick="@{MainActivityonclic::onClick}"
                     android:text="电台" />
 
                 <RadioButton
                     android:id="@+id/rg_main_campaign"
                     style="@style/fg_main"
+                    android:onClick="@{MainActivityonclic::onClick}"
                     android:text="活动" />
 
                 <RadioButton
                     android:id="@+id/rg_main_mine"
                     style="@style/fg_main"
+                    android:onClick="@{MainActivityonclic::onClick}"
                     android:checked="false"
                     android:text="我" />
             </RadioGroup>

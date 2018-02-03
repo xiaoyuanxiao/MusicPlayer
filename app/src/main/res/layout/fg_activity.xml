@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="com.mymusic.musicplayer.FgActivityBinding">
+
+        <!--<variable-->
+        <!--name="sectionsBean"-->
+        <!--type="com.mymusic.musicplayer.bean.BookRankDetailsBean.SectionsBean" />-->
+        <variable
+        name="fgactivityonclick"
+        type="android.view.View.OnClickListener" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_fg_activity"
+            android:layout_below="@+id/view_catalog"
+            android:layout_width="match_parent"
+            android:onClick="@{fgactivityonclick::onClick}"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+</layout>

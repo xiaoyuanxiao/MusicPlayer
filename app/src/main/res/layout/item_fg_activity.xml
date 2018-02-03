@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="com.mymusic.musicplayer.ItemFgActivityData">
+
+        <variable
+            name="activityBean"
+            type="com.mymusic.musicplayer.bean.ActivityBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/corner_gray">
+
+        <TextView
+            style="@style/tv_standard_14sp"
+            android:text="@{activityBean.event.title}" />
+
+        <TextView
+            style="@style/tv_standard_10sp_gray"
+            android:layout_marginTop="10dp"
+            android:text="@{activityBean.event.event_time}" />
+
+        <ImageView
+            app:imgurl="@{activityBean.event.cover}"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            android:layout_height="60dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:background="@color/view"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+             <LinearLayout
+                android:layout_width="0dp"
+                 android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/a_icon02_zan" />
+
+                <TextView
+                    android:id="@+id/rb_tv_item_rankcomment_zan"
+                    style="@style/tv_standard_9sp_gray"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@{activityBean.stat.count_of_like+@string/quotes}" />
+            </LinearLayout>
+            <View
+                android:layout_width="0.2dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:background="@color/view"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/a_icon01_comment" />
+
+                <TextView
+                    style="@style/tv_standard_9sp_gray"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@{activityBean.stat.count_of_comment+@string/quotes}" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

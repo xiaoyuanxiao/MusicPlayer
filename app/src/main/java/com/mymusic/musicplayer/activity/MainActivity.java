@@ -5,11 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 
 import com.mymusic.musicplayer.MainData;
 import com.mymusic.musicplayer.R;
+import com.mymusic.musicplayer.fragment.ActivityFragment;
 import com.mymusic.musicplayer.fragment.ListenerBookFragment;
 import com.mymusic.musicplayer.service.MusicService;
 import com.mymusic.musicplayer.utils.FragmentUtils;
@@ -26,6 +28,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private MainData mainData;
     private ArrayList<Fragment> fragments;
     private FragmentManager fragmentManager;
+    private ListenerBookFragment listenerBookFragment;
+    private ActivityFragment activityFragment;
 
     @Override
     int initview() {
@@ -54,10 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void setOnclick() {
-        mainData.rgMainListenbook.setOnClickListener(this);
-        mainData.rgMainRadiostation.setOnClickListener(this);
-        mainData.rgMainCampaign.setOnClickListener(this);
-        mainData.rgMainMine.setOnClickListener(this);
+        mainData.setMainActivityonclic(this);
     }
 
 
@@ -65,29 +66,71 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * 初始化所有基fragment
      */
     private void initFragment() {
+
         fragmentManager = getSupportFragmentManager();
-        fragments = new ArrayList<Fragment>();
-        fragments.add(ListenerBookFragment.newInstance());
-        fragments.add(ListenerBookFragment.newInstance());
-        fragments.add(ListenerBookFragment.newInstance());
-        fragments.add(ListenerBookFragment.newInstance());
-        FragmentUtils.showFragment(fragments.get(0), R.id.ll_container, fragmentManager, fragments);
+        FragmentTransaction MfragmentTransaction =fragmentManager.beginTransaction();
+        listenerBookFragment = new ListenerBookFragment();
+        MfragmentTransaction.add(R.id.ll_container,listenerBookFragment);
+        MfragmentTransaction.commit();
+    }
+
+    /**
+     * 显示fragment
+     *
+     * @param fragment 要显示的fragment
+     */
+    private void showFragment(Fragment fragment) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        hideFragment(transaction);
+        if (fragment.isAdded()) {
+            transaction.show(fragment);
+        } else {
+            transaction.add(R.id.ll_container, fragment, fragment.getClass().getName());
+        }
+        transaction.commit();
+    }
+
+    /**
+     * 隐藏其他fragment
+     *
+     * @param transaction 控制器
+     */
+    private void hideFragment(FragmentTransaction transaction) {
+        for (int i = 0; fragments.size() > i; i++) {
+            if (fragments.get(i).isVisible()) {
+                transaction.hide(fragments.get(i));
+            }
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_main_play:
+                startActivity(new Intent(this,AudioPlayActivity.class));
+                break;
             case R.id.rg_main_listenbook:
-                FragmentUtils.showFragment(fragments.get(0), R.id.ll_container, fragmentManager, fragments);
+                FragmentTransaction MfragmentTransaction1 =fragmentManager.beginTransaction();
+                MfragmentTransaction1.replace(R.id.ll_container,listenerBookFragment);
+                MfragmentTransaction1.commit();
                 break;
             case R.id.rg_main_radiostation:
-                FragmentUtils.showFragment(fragments.get(1), R.id.ll_container, fragmentManager, fragments);
+
+                FragmentTransaction MfragmentTransaction2 =fragmentManager.beginTransaction();
+                MfragmentTransaction2.replace(R.id.ll_container,listenerBookFragment);
+                MfragmentTransaction2.commit();
                 break;
             case R.id.rg_main_campaign:
-                FragmentUtils.showFragment(fragments.get(2), R.id.ll_container, fragmentManager, fragments);
+                FragmentTransaction MfragmentTransaction4 =fragmentManager.beginTransaction();
+                activityFragment = new ActivityFragment();
+                MfragmentTransaction4.replace(R.id.ll_container,activityFragment);
+                MfragmentTransaction4.commit();
+
                 break;
             case R.id.rg_main_mine:
-                FragmentUtils.showFragment(fragments.get(3), R.id.ll_container, fragmentManager, fragments);
+                FragmentTransaction MfragmentTransaction3 =fragmentManager.beginTransaction();
+                MfragmentTransaction3.replace(R.id.ll_container,listenerBookFragment);
+                MfragmentTransaction3.commit();
                 break;
         }
 
